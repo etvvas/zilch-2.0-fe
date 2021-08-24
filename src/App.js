@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { io } from 'socket.io-client';
 
-const socket = io('https://zilch-v2-staging.herokuapp.com/')
+io('https://zilch-v2-staging.herokuapp.com/')
 
 function App() {
   return (
