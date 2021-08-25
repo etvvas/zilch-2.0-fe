@@ -2,14 +2,14 @@ import React from 'react';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
-  const isSignUp = false;
+  const isSignUp = true;
 
   return (
     <div className={wrap}>
 
       { isSignUp
-        ? <h1 className={h1}>Sign up</h1>
-        : <h1 className={h1}>Log in</h1>
+        ? <h1 className={h1}>Sign up with Zilch</h1>
+        : <h1 className={h1}>Log in with Zilch</h1>
       }
       
       <form className={form}>        
@@ -40,12 +40,14 @@ const AuthForm = () => {
       </form>
 
       { isSignUp
-        ? <p className={p}>Don't have an account? Sign up.</p>
-        : <p className={p}>Already have an account? Log in.</p>
+        ? <p className={p}>Already have an account? Log in.</p>
+        : <p className={p}>Don't have an account? Sign up.</p>
       }
       
 
-      <div className="my-10 text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      { isSignUp &&
+        <div className="my-10 text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      }
     </div>
   )
 }
@@ -56,7 +58,7 @@ const wrap = `
 `;
 
 const h1 = `
-  text-4xl
+  text-3xl
   text-center
   font-light
   my-10
