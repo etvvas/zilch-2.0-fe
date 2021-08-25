@@ -2,19 +2,18 @@ import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
 const AuthForm = () => {
+  const isSignUp = true;
 
   return (
     <div className={wrap}>
 
-      {/* Toggle text Log in / Sign up */}
-      <h1 className={h1}>Log in</h1>
+      { isSignUp
+        ? <h1 className={h1}>Sign up</h1>
+        : <h1 className={h1}>Log in</h1>
+      }
       
-      <form className={form}>
+      <form className={form}>        
 
-
-        
-
-        {/* Log in */}
         <label className={label}>
           <span className={span}>Username</span>
           <input 
@@ -28,42 +27,56 @@ const AuthForm = () => {
             placeholder="Password" />
         </label>
 
-        {/* Sign up && */}
-        <div className="flex flex-wrap gap-4 justify-center my-10">
-          <svg className={svg}>
-            <use href={avatars + '#bear'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#dog'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#polar-bear'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#puffer-fish'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#dog-1'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#weasel'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#giraffe'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#cobra'} />
-          </svg>
-          <svg className={svg}>
-            <use href={avatars + '#cow'} />
-          </svg>
-        </div>
 
-        {/* Toggle text Log in / Sign up */}
-        <button className={button}>Log in</button>
+        { isSignUp && 
+          <>
+            <h3 className="text-sm font-bold mt-10 uppercase">Choose an avatar</h3>
+            <div className="flex flex-wrap gap-4 justify-center my-10">
+              <svg className={svg}>
+                <use href={avatars + '#bear'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#dog'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#polar-bear'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#puffer-fish'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#dog-1'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#weasel'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#giraffe'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#cobra'} />
+              </svg>
+              <svg className={svg}>
+                <use href={avatars + '#cow'} />
+              </svg>
+            </div>
+          </>
+        }
+
+        { isSignUp
+          ? <button className={button}>Sign up</button>
+          : <button className={button}>Log in</button>
+        }
+        
       </form>
 
-      <div className="text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      { isSignUp
+        ? <p className={p}>Don't have an account? Sign up.</p>
+        : <p className={p}>Already have an account? Log in.</p>
+      }
+      
+
+      <div className="my-10 text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </div>
   )
 }
@@ -121,6 +134,12 @@ const button = `
 const form = `
   flex
   flex-col
+`;
+
+const p = `
+  text-sm
+  text-indigo-500
+  text-center
 `;
 
 export default AuthForm;
