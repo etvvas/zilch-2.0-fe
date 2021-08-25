@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { io } from 'socket.io-client';
 import Header from './components/header/Header';
