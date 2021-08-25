@@ -1,8 +1,8 @@
 import React from 'react';
-import avatars from '../../assets/avatars.svg';
+import Avatars from './Avatars';
 
 const AuthForm = () => {
-  const isSignUp = true;
+  const isSignUp = false;
 
   return (
     <div className={wrap}>
@@ -29,38 +29,7 @@ const AuthForm = () => {
 
 
         { isSignUp && 
-          <>
-            <h3 className="text-sm font-bold mt-10 uppercase">Choose an avatar</h3>
-            <div className="flex flex-wrap gap-4 justify-center my-10">
-              <svg className={svg}>
-                <use href={avatars + '#bear'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#dog'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#polar-bear'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#puffer-fish'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#dog-1'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#weasel'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#giraffe'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#cobra'} />
-              </svg>
-              <svg className={svg}>
-                <use href={avatars + '#cow'} />
-              </svg>
-            </div>
-          </>
+          <Avatars />
         }
 
         { isSignUp
@@ -80,11 +49,6 @@ const AuthForm = () => {
     </div>
   )
 }
-
-const svg = `
-  w-20
-  h-20
-`;
 
 const wrap = `
   mx-auto
