@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Navigation = () => {
+const Navigation = ({ isOpen }) => {
+  console.log(isOpen);
   return (
-    <nav className={nav}>
+    <nav className={
+      isOpen
+        ? nav
+        : nav + 'hidden'}>
       <ul className={ul}>
         <li className={li + selected}>Play Zilch</li>
         <li className={li}>Rules</li>
@@ -14,50 +18,55 @@ const Navigation = () => {
 }
 
 const nav = `
-  hidden
-  sm:block
-  sm:col-span-12
   shadow-md
   bg-gray-800
+
+
+  sm:block
+  sm:col-span-12
 `;
 
 const ul = `
   mx-auto
   flex 
-  gap-4
+  flex-col
+  gap-2
+  py-8
+  px-2
+
+  sm:gap-2
   justify-evenly 
-  p-2
+  sm:p-2
   max-w-screen-xl
+
+  sm:flex-row
+  sm:gap-4
 `;
 
 const li = `
+  rounded-md
   px-4 
   tracking-wider 
   text-gray-200 
   cursor-pointer
   w-full
-  text-center
-  gap-1
   
-  hover:text-white
-  hover:border-opacity-30 
-
+  
   text-sm
-  hover:bg-white
-  hover:bg-opacity-10
-  rounded-full
+  hover:text-white
+  hover:bg-purple-900
   px-6
   py-2
-
-  xl:hover:border-gray-500
+  
+  sm:text-center
 
   2xl:text-green-300
   2xl:font-light
 `;
 
 const selected = `
-  bg-white 
-  bg-opacity-10 
+  bg-purple-500 
+  bg-opacity-20 
   2xl:text-white
 `;
 

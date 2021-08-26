@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MenuIcon } from '@heroicons/react/solid';
 import avatars from '../../assets/avatars.svg';
+import Navigation from './Navigation';
 
 const Header = () => {
   const user = 'ZilchPlayer420';
   const avatar = 'cobra';
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className={header}>
-      <div className={wrap}>
-        <MenuIcon className={icon} />
-        <h1 className={h1}>Zilch 2.0</h1>
-      </div>
-      <div className={wrap}>
-        <h2 className={h2}>{user}</h2>
-        <svg className={svg}>
-          <use href={avatars + `#${avatar}`} />
-        </svg>
-      </div>
-    </header>
+    <>
+      <header className={header}>
+        <div className={wrap}>
+          <button className={button} onClick={() => setIsOpen(!isOpen)}>
+            <MenuIcon className={
+              isOpen
+                ? icon + 'text-green-400 hover:text-green-200'
+                : icon + 'text-purple-600 hover:text-purple-800'} />
+          </button>
+          <h1 className={h1}>Zilch 2.0</h1>
+        </div>
+        <div className={wrap}>
+          <h2 className={h2}>{user}</h2>
+            <svg className={svg}>
+              <use href={avatars + `#${avatar}`} />
+            </svg>
+        </div>
+      </header>
+
+      <Navigation isOpen={isOpen} />
+    </>
   )
 }
 
@@ -35,26 +46,23 @@ const header = `
   justify-between
 `;
 
+const button = `
+  sm:hidden
+`;
+
 const icon = `
-  h-8 
   sm:hidden 
-  text-purple-600 
-  hover:text-purple-800
+  w-8
 `;
 
 const h1 = `
-  font-light 
   text-white
-  text-2xl
+  text-xl
   tracking-wider 
-  w-full
-  mx-auto
-  xl:max-w-screen-xl
-  xl:pl-6
 `;
 
 const h2 = `
-  text-white
+  text-purple-200
   text-sm
   tracking-widest
   text-shadow
