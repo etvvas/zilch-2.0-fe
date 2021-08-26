@@ -84,11 +84,14 @@ const Avatars = ({onChange}) => {
 }
 
 const svg = `
+  bg-white
   w-24
   h-24
   border-8
   border-gray-100
   rounded-full 
+  filter
+  saturate-75
 `;
 
 export default Avatars;
