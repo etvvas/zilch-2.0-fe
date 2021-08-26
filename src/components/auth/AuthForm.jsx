@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSignup } from '../../state/SessionProvider';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
-  const isSignUp = true;
+  const [isSignUp, setIsSignUp] = useState(false)
+
+  const signup = useSignup();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    await signup({
+    username: 'joe@joe.joe',
+    password: 'password',
+    avatar: 'png'})
+  }
 
   return (
     <div className={wrap}>
@@ -12,7 +23,7 @@ const AuthForm = () => {
         : <h1 className={h1}>Log in with Zilch</h1>
       }
       
-      <form className={form}>        
+      <form className={form} onSubmit={handleSubmit}>        
 
         <label className={label}>
           <span className={span}>Username</span>
@@ -40,8 +51,8 @@ const AuthForm = () => {
       </form>
 
       { isSignUp
-        ? <p className={p}>Already have an account? Log in.</p>
-        : <p className={p}>Don't have an account? Sign up.</p>
+        ? <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Already have an account? Log in.</p>
+        : <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Don't have an account? Sign up.</p>
       }
       
 
