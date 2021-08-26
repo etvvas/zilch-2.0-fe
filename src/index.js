@@ -7,13 +7,11 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import SessionProvider from './state/SessionProvider';
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <SessionProvider>
         <App />
       </SessionProvider>
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById('root')
 );
 

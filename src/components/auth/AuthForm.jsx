@@ -1,9 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import useAuthForm from '../../state/hooks/useAuthForm';
 import { useLogin, useSignup } from '../../state/SessionProvider';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
+  const history = useHistory();
   const[username, password, avatar, isSignUp, setIsSignUp, handleChange] = useAuthForm()
   const signup = useSignup();
   const login = useLogin();
@@ -12,6 +14,7 @@ const AuthForm = () => {
     e.preventDefault();
     if(isSignUp) await signup({username, password, avatar})
     else await login({username, password})
+    history.push('/rooms')
   }
 
 
