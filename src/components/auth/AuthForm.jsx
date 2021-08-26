@@ -14,7 +14,7 @@ const AuthForm = () => {
     e.preventDefault();
     if(isSignUp) await signup({username, password, avatar})
     else await login({username, password})
-    history.push('/rooms')
+    history.push('/lobby')
   }
 
 
