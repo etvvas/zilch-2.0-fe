@@ -1,3 +1,4 @@
+
 import './App.css';
 // import { io } from 'socket.io-client';
 import Header from './components/header/Header';
@@ -6,9 +7,8 @@ import { Switch, Route } from 'react-router-dom';
 import Navigation from './components/header/Navigation';
 import RoomsList from './components/rooms/RoomsList';
 import GameRoom from './components/rooms/GameRoom';
-
-// io('https://zilch-v2-staging.herokuapp.com/')
-
+// import SocketProvider from './state/SocketProvider';
+import {SocketContext, socket} from './state/SocketProvider'
 function App() {
   return (
     <>
@@ -17,8 +17,10 @@ function App() {
 
       <Switch>
         <Route path="/" exact={true} component={AuthForm} />
+        <SocketContext.Provider value={socket}>
         <Route path="/rooms" exact component={RoomsList} />
         <Route path="/rooms/:room" exact component={GameRoom} />
+        </SocketContext.Provider>
       </Switch>
     </>
   );
