@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSession } from '../../state/SessionProvider';
-import { socket, SocketContext } from '../../state/SocketProvider';
+import {  SocketContext } from '../../state/SocketProvider';
 
 const GameRoom = () => {
   //grab user session info 
@@ -15,13 +15,14 @@ const GameRoom = () => {
 
   //useEffect that will trigger join event
     
-  socket.emit('JOIN_GAME', session, room);
-  useEffect(()=> {
+  console.log(socket);
+  socket.emit('JOIN_ROOM', session, room);
 
-    socket.on('WELCOME', msg => {
-    console.log(msg)
+  useEffect(()=> {
+    socket.on('WELCOME', (user, room) => {
+      console.log('welcome', user, room);
     })
-  })
+  }, [socket])
 
   
   return (
