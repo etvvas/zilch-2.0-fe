@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSignup } from '../../state/SessionProvider';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
-  const isSignUp = true;
+  const [isSignUp, setIsSignUp] = useState(false)
 
   const signup = useSignup();
 
@@ -51,8 +51,8 @@ const AuthForm = () => {
       </form>
 
       { isSignUp
-        ? <p className={p}>Already have an account? Log in.</p>
-        : <p className={p}>Don't have an account? Sign up.</p>
+        ? <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Already have an account? Log in.</p>
+        : <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Don't have an account? Sign up.</p>
       }
       
 
