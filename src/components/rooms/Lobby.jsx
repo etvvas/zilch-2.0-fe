@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Room from './Room';
@@ -10,6 +10,7 @@ const Lobby = () => {
 
 
   const roomsElements = rooms.map((room) => (
+    
     <li key={room}>
       <Link to={`/lobby/${room}`}>
         <Room room={room} />
@@ -18,10 +19,21 @@ const Lobby = () => {
   ))
 
   return (
-    <ul>
-      {roomsElements}
-    </ul>
+    <>
+      <h1>Zilch lobby</h1>
+      <ul className={ul}>
+        {roomsElements}
+      </ul>
+    </>
   )
 }
+
+const ul = `
+  flex
+  flex-wrap
+  gap-4
+  justify-evenly
+  p-10
+`;
 
 export default Lobby;
