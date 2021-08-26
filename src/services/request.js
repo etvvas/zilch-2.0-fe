@@ -10,7 +10,8 @@ const request = async (path, method, body) => {
             'Content-Type': 'application/json'
         }
         : {},
-        body: body ? JSON.stringify(body) : null
+        body: body ? JSON.stringify(body) : null,
+        credentials: 'include'
         });
 
         if (!res.ok) throw await res.json();

@@ -1,15 +1,17 @@
 import React from 'react';
 import useAuthForm from '../../state/hooks/useAuthForm';
-import { useSignup } from '../../state/SessionProvider';
+import { useLogin, useSignup } from '../../state/SessionProvider';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
   const[username, password, avatar, isSignUp, setIsSignUp, handleChange] = useAuthForm()
   const signup = useSignup();
+  const login = useLogin();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await signup({username, password, avatar})
+    if(isSignUp) await signup({username, password, avatar})
+    else await login({username, password})
   }
 
 

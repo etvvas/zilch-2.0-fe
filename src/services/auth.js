@@ -7,3 +7,9 @@ export function postSignup(username, password, avatar) {
         avatar
     })
 }
+export function postLogin(username, password) {
+    return post('/api/v1/login', {
+        username,
+        password
+    })
+}

@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from 'react';
-import { postSignup } from '../services/auth';
+import { postSignup, postLogin } from '../services/auth';
 
 const SessionContext = createContext();
 
@@ -11,8 +11,13 @@ export default function SessionProvider({ children }) {
         setSession(newUser);
     }
 
+    const login = async ({username, password}) => {
+        const newUser = await postLogin(username, password)
+        setSession(newUser)
+    }
+
     return (
-        <SessionContext.Provider value={{ session, signup }}>
+        <SessionContext.Provider value={{ session, signup, login }}>
             {children}
         </SessionContext.Provider>
     )
@@ -23,12 +28,12 @@ export function useSession(){
     return session;
 }
 
-export function useUser() {
-    const { user } = useContext(SessionContext);
-    return user;
-}
-
 export function useSignup() {
     const { signup } = useContext(SessionContext);
     return signup;
+}
+
+export function useLogin() {
+    const { login } = useContext(SessionContext);
+    return login;
 }
