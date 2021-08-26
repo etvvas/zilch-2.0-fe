@@ -48,7 +48,7 @@ const AuthForm = () => {
 
 
         { isSignUp && 
-          <Avatars />
+          <Avatars onChange={handleChange} />
         }
 
         { isSignUp

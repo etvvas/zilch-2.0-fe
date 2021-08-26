@@ -12,6 +12,7 @@ const useAuthForm = () => {
         if(target.name === 'avatar') setAvatar(target.value)
       }
 
+     
     return [username, password, avatar, isSignUp, setIsSignUp, handleChange]
 }
 
