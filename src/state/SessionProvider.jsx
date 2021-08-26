@@ -5,11 +5,14 @@ const SessionContext = createContext();
 
 export default function SessionProvider({ children }) {
     const [session, setSession] = useState(null);
-
+    const [loading, setLoading] = useState(true)
+  
+    //will retain access to protected routes even on refresh
     useEffect(() => {
         getVerify()
-        .then(user => console.log(user))
+        .then(user => setSession(user))
         .then(error => console.error(error))
+        .finally(() => setLoading(false))
     }, [])
 
 
@@ -24,7 +27,7 @@ export default function SessionProvider({ children }) {
     }
 
     return (
-        <SessionContext.Provider value={{ session, signup, login }}>
+        <SessionContext.Provider value={{ session, loading, signup, login }}>
             {children}
         </SessionContext.Provider>
     )
@@ -43,4 +46,9 @@ export function useSignup() {
 export function useLogin() {
     const { login } = useContext(SessionContext);
     return login;
+}
+
+export function useVerificationLoading() {
+    const { loading } = useContext(SessionContext);
+    return loading;
 }
