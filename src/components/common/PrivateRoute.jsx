@@ -1,12 +1,12 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom'
-import { useSession, useVerificationLoading } from '../../state/SessionProvider';
+import { useSession } from '../../state/SessionProvider';
 const PrivateRoute = (props) => {
-    const loading = useVerificationLoading()
+    // const loading = useVerificationLoading()
     const session = useSession()
-    if(loading) return <h1>Authenticating...</h1>
+    // if(loading) return <h1>Authenticating...</h1>
 
-    if(!session && !loading) return <Redirect to="/" />
+    if(!session) return <Redirect to="/" />
     return <Route {...props} />
 }
 
