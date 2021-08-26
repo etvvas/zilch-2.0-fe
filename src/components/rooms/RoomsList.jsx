@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Room from './Room';
 
 const RoomsList = () => {
 
@@ -6,7 +8,9 @@ const RoomsList = () => {
 
   const roomsElements = rooms.map((room) => (
     <li key={room}>
-      {room}
+      <Link to={`/rooms/${room}`}>
+        <Room room={room} />
+      </Link>
     </li>
   ))
 
