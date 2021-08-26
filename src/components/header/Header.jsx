@@ -16,7 +16,7 @@ const Header = () => {
             <MenuIcon className={
               isOpen
                 ? icon + 'text-green-400 hover:text-green-200'
-                : icon + 'text-purple-600 hover:text-purple-800'} />
+                : icon + 'text-purple-800 hover:text-purple-600'} />
           </button>
           <h1 className={h1}>Zilch 2.0</h1>
         </div>

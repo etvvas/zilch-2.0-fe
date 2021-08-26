@@ -46,13 +46,13 @@ const ul = `
 const li = `
   rounded-md
   px-4 
-  tracking-wider 
-  text-gray-200 
+  tracking-wider
+  text-purple-100 
   cursor-pointer
   w-full
+  text-lg
   
-  
-  text-sm
+  sm:text-sm
   hover:text-white
   hover:bg-purple-900
   px-6
