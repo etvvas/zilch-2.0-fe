@@ -1,10 +1,17 @@
-import React, { useState, useContext, createContext } from 'react';
-import { postSignup, postLogin } from '../services/auth';
+import React, { useState, useContext, createContext, useEffect } from 'react';
+import { postSignup, postLogin, getVerify } from '../services/auth';
 
 const SessionContext = createContext();
 
 export default function SessionProvider({ children }) {
     const [session, setSession] = useState(null);
+
+    useEffect(() => {
+        getVerify()
+        .then(user => console.log(user))
+        .then(error => console.error(error))
+    }, [])
+
 
     const signup = async ({ username, password, avatar }) => {
         const newUser = await postSignup(username, password, avatar);

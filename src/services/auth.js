@@ -1,4 +1,4 @@
-import { post } from "./request";
+import { post, get } from "./request";
 
 export function postSignup(username, password, avatar) {
     return post('/api/v1/signup', {
@@ -12,4 +12,8 @@ export function postLogin(username, password) {
         username,
         password
     })
+}
+
+export function getVerify(){
+    return get('/api/v1/verify')
 }
