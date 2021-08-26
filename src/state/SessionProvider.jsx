@@ -7,7 +7,7 @@ export default function SessionProvider({ children }) {
     const [session, setSession] = useState(null);
     const [loading, setLoading] = useState(true)
   
-    //will retain access to protected routes even on refresh
+    //will retain access to protected routes even on refresh //
     useEffect(() => {
         getVerify()
         .then(user => setSession(user))
