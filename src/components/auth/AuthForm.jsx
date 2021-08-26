@@ -115,8 +115,10 @@ const form = `
 
 const p = `
   text-sm
-  text-indigo-500
+  text-indigo-400
   text-center
+  cursor-pointer
+  hover:text-indigo-600
 `;
 
 export default AuthForm;
