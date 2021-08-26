@@ -4,7 +4,6 @@ import './App.css';
 import Header from './components/header/Header';
 import AuthForm from './components/auth/AuthForm';
 import { Switch, Route } from 'react-router-dom';
-import Navigation from './components/header/Navigation';
 import RoomsList from './components/rooms/RoomsList';
 import GameRoom from './components/rooms/GameRoom';
 // import SocketProvider from './state/SocketProvider';
@@ -13,7 +12,6 @@ function App() {
   return (
     <>
       <Header />
-      <Navigation />
 
       <Switch>
         <Route path="/" exact={true} component={AuthForm} />
