@@ -1,6 +1,7 @@
 import React, { useState, useContext, createContext, useEffect } from 'react';
 import { postSignup, postLogin, getVerify } from '../services/auth';
 
+
 const SessionContext = createContext();
 
 export default function SessionProvider({ children }) {
@@ -16,10 +17,12 @@ export default function SessionProvider({ children }) {
     }, [])
 
 
+
     const signup = async ({ username, password, avatar }) => {
         const newUser = await postSignup(username, password, avatar);
         setSession(newUser);
     }
+
 
     const login = async ({username, password}) => {
         const newUser = await postLogin(username, password)
@@ -38,6 +41,7 @@ export function useSession(){
     return session;
 }
 
+
 export function useSignup() {
     const { signup } = useContext(SessionContext);
     return signup;
@@ -52,3 +56,4 @@ export function useVerificationLoading() {
     const { loading } = useContext(SessionContext);
     return loading;
 }
+
