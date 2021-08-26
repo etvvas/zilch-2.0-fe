@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useAuthForm from '../../state/hooks/useAuthForm';
 import { useSignup } from '../../state/SessionProvider';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
-  const [isSignUp, setIsSignUp] = useState(false)
-
+  const[username, password, avatar, isSignUp, setIsSignUp, handleChange] = useAuthForm()
   const signup = useSignup();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await signup({
-    username: 'joe@joe.joe',
-    password: 'password',
-    avatar: 'png'})
+    await signup({username, password, avatar})
   }
+
 
   return (
     <div className={wrap}>
@@ -29,13 +27,21 @@ const AuthForm = () => {
           <span className={span}>Username</span>
           <input 
             className={input}
-            placeholder="Username" />
+            placeholder="Username" 
+            name="username"
+            value={username}
+            onChange={handleChange}
+            />
         </label>
         <label className={label}>
           <span className={span}>Password</span>
           <input 
             className={input}
-            placeholder="Password" />
+            placeholder="Password" 
+            name="password"
+            value={password}
+            onChange={handleChange}
+            />
         </label>
 
 
