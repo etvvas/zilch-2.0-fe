@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ActiveScoreboard from '../game/ActiveScoreboard';
 import Dice from '../game/Dice';
 import GameControls from '../game/GameControls';
@@ -9,8 +9,8 @@ import { useSession } from '../../state/SessionProvider';
 import {  SocketContext } from '../../state/SocketProvider';
 // import socket from '../../socket/socket.js'
 
-
 const GameRoom = () => {
+  const [readyUsers, setReadyUsers] = useState([])
   const history = useHistory();
   //grab user session info 
   const session = useSession();;
@@ -30,6 +30,9 @@ useEffect(() => {
     setTimeout(() => alert('Room Full'), 300)
   })
   socket.on('START_GAME', msg => console.log(msg))
+  socket.on('READY', (player) => {
+    setReadyUsers(prevState => [...prevState, player])
+  })
   return () => socket.emit('DISCONNECT')
 
 }, [])
