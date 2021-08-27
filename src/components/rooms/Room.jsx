@@ -12,7 +12,7 @@ const Room = ({ room }) => {
         <div className={innerWrap}>
           <div className={side}>
             <p className={playerName}>ScrumMast3r</p>
-            <svg className={svg}>
+            <svg className={svg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
             <p className={score}>1837 pts</p>
@@ -76,6 +76,11 @@ const playerName = `
   truncate
 `;
 
+const winning = `
+  border-purple-400
+  rounded-full
+`;
+
 const vs = `
   text-4xl
   font-light
@@ -89,6 +94,8 @@ const svg = `
   md:h-20
   my-2
   mx-auto
+  border-4
+  border-transparent
 `;
 
 const score = `
