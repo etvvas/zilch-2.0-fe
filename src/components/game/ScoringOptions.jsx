@@ -7,26 +7,34 @@ const ScoringOptions = () => {
       <button className={button + scoringButton}>3 Fives: 300 pts</button>
       <button className={button + scoringButton}>1 Five: 50 pts</button>
       <button className={button + scoringButton}>1 Five: 50 pts</button>
+      <button className={button + scoringButton}>1 Five: 50 pts</button>
     </div>
   )
 }
 
 const button = `
-  py-4
-  text-center
-  w-full
-  rounded
 `;
 
 const scoringOptionsDisplay = `
   flex
   flex-wrap
   gap-4
+  justify-center
+  p-6
+  bg-gray-200
+  rounded-lg
 `;
 
 const scoringButton = `
+  flex-grow
+  py-4
+  text-center
+  rounded
   border
-  w-1/2
+  bg-white
+  shadow-sm
+
+  w-1/3
 `;
 
 export default ScoringOptions;

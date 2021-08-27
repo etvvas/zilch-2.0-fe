@@ -24,7 +24,9 @@ const progressDisplay = `
 `;
 
 const goalDisplay = `
-
+  text-center
+  text-xs
+  italic
 `;
 
 export default PlayerProgress;
