@@ -1,7 +1,15 @@
-/* ./src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* body {
+  background: rgb(31,27,98);
+  background: linear-gradient(75deg, rgba(31,27,98,1) 0%, rgba(163,38,179,1) 33%, rgba(66,219,250,1) 100%);
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+} */
+
 
 input[type="radio"]:checked ~ svg {
   border-color: #F9A8D4;
