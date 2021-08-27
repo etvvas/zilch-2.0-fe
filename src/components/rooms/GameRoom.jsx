@@ -6,7 +6,7 @@ import {  SocketContext } from '../../state/SocketProvider';
 const GameRoom = () => {
   //grab user session info 
   const session = useSession();;
-
+  
   //grab params
   const {room} = useParams();
 
@@ -15,8 +15,9 @@ const GameRoom = () => {
 
   //useEffect that will trigger join event
     
-  console.log(socket);
-  socket.emit('JOIN_ROOM', session, room);
+useEffect(() => {
+  socket.emit('JOIN_ROOM', session, room)
+}, [])
 
   useEffect(()=> {
     socket.on('WELCOME', (user, room) => {
