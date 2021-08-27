@@ -35,7 +35,7 @@ useEffect(() => {
 }, [])
 
 const handleReady = () => {
-  socket.emit('PLAYER_READY', session.userId, room)
+  socket.emit('PLAYER_READY')
 }
 
   return (
