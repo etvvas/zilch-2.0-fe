@@ -11,6 +11,8 @@ import {  SocketContext } from '../../state/SocketProvider';
 
 const GameRoom = () => {
   const [readyUsers, setReadyUsers] = useState([])
+  console.log(readyUsers);
+  //map out readyUsers
   const history = useHistory();
   //grab user session info 
   const session = useSession();;
@@ -56,7 +58,10 @@ const handleReady = () => {
 
       <ScoringOptions />
       <PlayerProgress />
-      <button onClick={handleReady}>READY</button>
+      <button 
+      onClick={handleReady}
+      disabled={readyUsers.find(user => user === session.username)}
+      >READY</button>
 
     </div>
   )
