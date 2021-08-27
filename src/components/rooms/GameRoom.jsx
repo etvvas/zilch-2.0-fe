@@ -24,9 +24,14 @@ useEffect(() => {
     history.push('/lobby') 
     setTimeout(() => alert('Room Full'), 300)
   })
+  socket.on('START_GAME', msg => console.log(msg))
   return () => socket.emit('DISCONNECT')
 
 }, [])
+
+const handleReady = () => {
+  socket.emit('PLAYER_READY', session.userId, room)
+}
 
   return (
     <div className={wrap}>
@@ -78,6 +83,7 @@ useEffect(() => {
         <button className={diceButton + bankButton}>Bank</button>
       </div>
     </div>
+      <button onClick={handleReady}>READY</button>
     </div>
   )
 }
