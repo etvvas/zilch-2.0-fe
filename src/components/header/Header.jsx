@@ -63,9 +63,10 @@ const icon = `
 `;
 
 const h1 = `
-  text-white
-  text-xl
+  text-gray-100
+  text-2xl
   tracking-wider 
+  zilch
 `;
 
 const h2 = `
