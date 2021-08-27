@@ -39,24 +39,6 @@ const h1 = `
   my-10
 `;
 
-const scoreBoard = `
-  grid
-  grid-cols-2
-`;
-
-const currentPlayerBox = `
-  flex
-  flex-col
-`;
-
-const currentPlayer = `
-  text-lg
-`;
-
-const currentPlayerScore = `
-  text-3xl
-`;
-
 const mainControls = `
 
 `;
