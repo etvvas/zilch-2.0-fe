@@ -1,19 +1,19 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useContext, createContext, useEffect } from 'react';
 import { postSignup, postLogin } from '../services/auth';
-
+import { getVerify } from '../services/auth';
 const SessionContext = createContext();
 
 export default function SessionProvider({ children }) {
     const [session, setSession] = useState(null);
-    // const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
   
     //will retain access to protected routes even on refresh //
-    // useEffect(() => {
-    //     getVerify()
-    //     .then(user => setSession(user))
-    //     .then(error => console.error(error))
-    //     .finally(() => setLoading(false))
-    // }, [])
+    useEffect(() => {
+        getVerify()
+        .then(user => setSession(user))
+        .then(error => console.error(error))
+        .finally(() => setLoading(false))
+    }, [])
 
 
     const signup = async ({ username, password, avatar }) => {
@@ -27,7 +27,7 @@ export default function SessionProvider({ children }) {
     }
 
     return (
-        <SessionContext.Provider value={{ session, signup, login }}>
+        <SessionContext.Provider value={{ session, loading, signup, login }}>
             {children}
         </SessionContext.Provider>
     )
@@ -48,7 +48,7 @@ export function useLogin() {
     return login;
 }
 
-// export function useVerificationLoading() {
-//     const { loading } = useContext(SessionContext);
-//     return loading;
-// }
+export function useVerificationLoading() {
+    const { loading } = useContext(SessionContext);
+    return loading;
+}
