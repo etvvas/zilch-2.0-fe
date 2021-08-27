@@ -20,18 +20,14 @@ const socket = useContext(SocketContext)
     
 useEffect(() => {
   socket.emit('JOIN_ROOM', session, room)
+  socket.on('FULL_ROOM', () =>{ 
+    history.push('/lobby') 
+    setTimeout(() => alert('Room Full'), 300)
+  })
   return () => socket.emit('DISCONNECT')
 
 }, [])
 
-useEffect(()=> {
-  socket.on('WELCOME', (user, room) => {
-    console.log('welcome', user, room);
-  })
-  socket.on('FULL_ROOM', () => history.push('/lobby') )
-}, [socket])
-
-  
   return (
     <h1>game room</h1>
   )
