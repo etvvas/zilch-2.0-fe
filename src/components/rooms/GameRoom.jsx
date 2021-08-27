@@ -1,15 +1,14 @@
 import React, { useContext, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { useSession } from '../../state/SessionProvider';
-import {  SocketContext } from '../../state/SocketProvider';
-// import socket from '../../socket/socket.js'
-
-
 import ActiveScoreboard from '../game/ActiveScoreboard';
 import Dice from '../game/Dice';
 import GameControls from '../game/GameControls';
 import PlayerProgress from '../game/PlayerProgress';
 import ScoringOptions from '../game/ScoringOptions';
+import { useHistory, useParams } from 'react-router-dom';
+import { useSession } from '../../state/SessionProvider';
+import {  SocketContext } from '../../state/SocketProvider';
+// import socket from '../../socket/socket.js'
+
 
 const GameRoom = () => {
   const history = useHistory();
@@ -36,11 +35,11 @@ useEffect(() => {
 }, [])
 
 const handleReady = () => {
-  socket.emit('PLAYER_READY', session.userId, room)
+  socket.emit('PLAYER_READY')
 }
 
   return (
-    <>
+    
     <div className={wrap}>
       <h1 className={h1}>ScrumMast3r vs _UXgUrU_</h1>
 
@@ -51,13 +50,12 @@ const handleReady = () => {
         <Dice />
         <GameControls />
       </div>
-    </div>
-      <button onClick={handleReady}>READY</button>
 
       <ScoringOptions />
       <PlayerProgress />
+      <button onClick={handleReady}>READY</button>
 
-    </>
+    </div>
   )
 }
 
