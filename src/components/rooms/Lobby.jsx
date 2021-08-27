@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { SocketContext } from '../../state/SocketProvider';
 
 import Room from './Room';
 
 const Lobby = () => {
+  const socket = useContext(SocketContext)
 
+  useEffect(() => {
+    socket.on('ENTER_LOBBY', (gameRooms) => {
+      console.log(gameRooms);
+    })
+    return () => socket.emit('DISCONNECT')
+  })
+ 
   const rooms = ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5', 'Room 6'];
-
-
   const roomsElements = rooms.map((room) => (
     
     <li key={room} className={li}>
