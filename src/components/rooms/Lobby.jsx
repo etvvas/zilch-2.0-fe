@@ -16,6 +16,7 @@ const Lobby = () => {
       </Link>
     </li>
   ))
+  
 
   return (
     <div className={wrap}>
