@@ -12,6 +12,7 @@ const GameRoom = () => {
     <div className={wrap}>
       <h1 className={h1}>ScrumMast3r vs _UXgUrU_</h1>
 
+
       <ActiveScoreboard />
 
       <div className={mainControls}>
@@ -21,6 +22,7 @@ const GameRoom = () => {
 
       <ScoringOptions />
       <PlayerProgress />
+
     </div>
   )
 }
@@ -35,6 +37,24 @@ const h1 = `
   text-2xl
   text-center
   my-10
+`;
+
+const scoreBoard = `
+  grid
+  grid-cols-2
+`;
+
+const currentPlayerBox = `
+  flex
+  flex-col
+`;
+
+const currentPlayer = `
+  text-lg
+`;
+
+const currentPlayerScore = `
+  text-3xl
 `;
 
 const mainControls = `

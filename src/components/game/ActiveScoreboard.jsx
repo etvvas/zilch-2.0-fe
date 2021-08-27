@@ -3,6 +3,7 @@ import React from 'react';
 const ActiveScoreboard = () => {
 
   return (
+
     <div className={scoreBoard}>
         <div className={currentPlayerBox}>
           <p className={currentPlayer}>Your move, ZilchPlayer420</p>
