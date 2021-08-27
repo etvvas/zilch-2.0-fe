@@ -16,6 +16,12 @@ const Lobby = () => {
  
   const rooms = ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5', 'Room 6'];
 
+  useEffect(() => {
+  socket.emit('ENTER_LOBBY')
+  socket.on('ENTERED_LOBBY', msg => console.log(msg))
+  // socket.on('ENTER_LOBBY', gameRooms => console.log(gameRooms))
+
+  }, [socket])
 
   const roomsElements = rooms.map((room) => (
     

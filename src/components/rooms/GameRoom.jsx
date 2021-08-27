@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useSession } from '../../state/SessionProvider';
 import {  SocketContext } from '../../state/SocketProvider';
 // import socket from '../../socket/socket.js'
 
 
 const GameRoom = () => {
+  const history = useHistory();
   //grab user session info 
   const session = useSession();;
 
