@@ -39,26 +39,46 @@ const GameRoom = () => {
           </tbody>
         </table>
       </div>
-    <div className={mainControls}>
-      <div className={diceDisplay}>
-        <i className={die + 'fa-dice-one'}></i>
-        <i className={die + 'fa-dice-two'}></i>
-        <i className={die + 'fa-dice-three'}></i>
-        <i className={die + 'fa-dice-four'}></i>
-        <i className={die + 'fa-dice-five'}></i>
-        <i className={die + 'fa-dice-six'}></i>
+      <div className={mainControls}>
+        <div className={diceDisplay}>
+          <i className={die + 'fa-dice-one'}></i>
+          <i className={die + 'fa-dice-two'}></i>
+          <i className={die + 'fa-dice-three'}></i>
+          <i className={die + 'fa-dice-four'}></i>
+          <i className={die + 'fa-dice-five'}></i>
+          <i className={die + 'fa-dice-six'}></i>
+        </div>
+        <div className={diceControls}>
+          <button className={button + rollButton}>Roll</button>
+          <button className={button + bankButton}>Bank</button>
+        </div>
       </div>
-      <div className={diceControls}>
-        <button className={diceButton + rollButton}>Roll</button>
-        <button className={diceButton + bankButton}>Bank</button>
+      <div className={scoringOptionsDisplay}>
+        <button className={button + scoringButton}>1 One: 100 pts</button>
+        <button className={button + scoringButton}>3 Fives: 300 pts</button>
+        <button className={button + scoringButton}>1 Five: 50 pts</button>
+        <button className={button + scoringButton}>1 Five: 50 pts</button>
       </div>
-    </div>
+      <div className={progressDisplay}>
+        <div class="relative pt-1">
+          <div class="overflow-hidden h-2 mb-2 text-xs flex rounded bg-purple-200">
+          </div>
+        </div>
+        <div class="relative pt-1">
+          <div class="overflow-hidden h-2 mb-2 text-xs flex rounded bg-blue-200">
+            <div style={{ width: '30%' }} class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+          </div>
+        </div>
+        <div className={goalDisplay}>
+          <p>Race to <span>6000 pts</span></p>
+        </div>
+      </div>
     </div>
   )
 }
 
 const wrap = `
-  max-w-screen-xl
+  max-w-screen-sm
   mx-auto
   p-4
 `;
@@ -110,20 +130,40 @@ const diceControls = `
   my-4
 `;
 
-const diceButton = `
+const button = `
   py-4
   text-center
-  text-white
   w-full
   rounded
 `;
 
 const rollButton = `
   bg-indigo-500
+  text-white
 `;
 
 const bankButton = `
   bg-green-500
+  text-white
+`;
+
+const scoringOptionsDisplay = `
+  flex
+  flex-wrap
+  gap-4
+`;
+
+const scoringButton = `
+  border
+  w-1/2
+`;
+
+const progressDisplay = `
+
+`;
+
+const goalDisplay = `
+
 `;
 
 export default GameRoom;
