@@ -19,6 +19,8 @@ const socket = useContext(SocketContext)
     
 useEffect(() => {
   socket.emit('JOIN_ROOM', session, room)
+  return () => socket.emit('DISCONNECT')
+
 }, [])
 
   
