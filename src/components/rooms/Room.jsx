@@ -10,9 +10,9 @@ const Room = ({ room }) => {
       <div className={outerWrap}>
         <h3 className={h3}>{room}</h3>
         <div className={innerWrap}>
-          <div>
-            <p className={playerName}>Player 1</p>
-            <svg className={svg}>
+          <div className={side}>
+            <p className={playerName}>ScrumMast3r</p>
+            <svg className={svg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
             <p className={score}>1837 pts</p>
@@ -20,8 +20,8 @@ const Room = ({ room }) => {
           <div className={vs}>
             vs
           </div>
-          <div>
-            <p className={playerName}>Player 2</p>
+          <div className={side}>
+            <p className={playerName}>_UXgUrU_</p>
             <svg className={svg}>
               <use href={avatars + `#${avatar}`} />
             </svg>
@@ -36,6 +36,7 @@ const Room = ({ room }) => {
 
 const outerWrap = `
   flex
+  flex-grow
   flex-col
   bg-gray-800
   text-purple-100
@@ -57,10 +58,27 @@ const innerWrap = `
   py-6
   px-10
   gap-6
+  justify-center
+`;
+
+const side = `
+  w-28
+  md:max-w-32
 `;
 
 const playerName = `
   text-center
+  text-sm
+  text-green-300
+  font-semibold
+  italic
+  tracking-wider
+  truncate
+`;
+
+const winning = `
+  border-purple-400
+  rounded-full
 `;
 
 const vs = `
@@ -72,10 +90,18 @@ const vs = `
 const svg = `
   w-20
   h-20
+  md:w-20
+  md:h-20
+  my-2
+  mx-auto
+  border-4
+  border-transparent
 `;
 
 const score = `
   text-center
+  text-sm
+  text-gray-400
 `;
 
 export default Room;

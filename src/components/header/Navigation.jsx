@@ -60,8 +60,6 @@ const li = `
   
   sm:text-center
 
-  2xl:text-green-300
-  2xl:font-light
 `;
 
 const selected = `
