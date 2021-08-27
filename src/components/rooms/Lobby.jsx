@@ -11,7 +11,7 @@ const Lobby = () => {
 
   const roomsElements = rooms.map((room) => (
     
-    <li key={room}>
+    <li key={room} className={li}>
       <Link to={`/lobby/${room}`}>
         <Room room={room} />
       </Link>
@@ -19,21 +19,39 @@ const Lobby = () => {
   ))
 
   return (
-    <>
-      <h1>Zilch lobby</h1>
+    <div className={wrap}>
+      <h1 className={h1}>Zilch Lobby</h1>
       <ul className={ul}>
         {roomsElements}
       </ul>
-    </>
+    </div>
   )
 }
+
+const wrap = `
+  max-w-screen-xl
+  mx-auto
+`;
+
+const h1 = `
+  text-4xl
+  text-center
+  mt-10
+`;
 
 const ul = `
   flex
   flex-wrap
-  gap-4
   justify-evenly
-  p-10
+  p-4
+  md:p-10
+`;
+
+const li = `
+  w-full
+  p-2
+  sm:w-1/2
+  lg:w-1/3
 `;
 
 export default Lobby;
