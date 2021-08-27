@@ -8,6 +8,7 @@ import Lobby from './components/rooms/Lobby';
 import GameRoom from './components/rooms/GameRoom';
 // import SocketProvider from './state/SocketProvider';
 import {SocketContext, socket} from './state/SocketProvider'
+import PrivateRoute from './components/common/PrivateRoute';
 function App() {
   return (
     <>
@@ -16,8 +17,8 @@ function App() {
       <Switch>
         <Route path="/" exact={true} component={AuthForm} />
         <SocketContext.Provider value={socket}>
-        <Route path="/lobby" exact component={Lobby} />
-        <Route path="/lobby/:room" exact component={GameRoom} />
+        <PrivateRoute path="/lobby" exact component={Lobby} />
+        <PrivateRoute path="/lobby/:room" exact component={GameRoom} />
         </SocketContext.Provider>
       </Switch>
     </>

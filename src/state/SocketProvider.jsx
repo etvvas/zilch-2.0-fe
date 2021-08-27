@@ -11,6 +11,6 @@ import io from 'socket.io-client'
 //     // )
 // }
 
-export const socket = io('https://zilch-v2-staging.herokuapp.com')
+export const socket = io('http://localhost:7890')
 
 export const SocketContext = createContext()
