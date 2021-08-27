@@ -24,6 +24,13 @@ useEffect(() => {
 
 }, [])
 
+useEffect(()=> {
+  socket.on('WELCOME', (user, room) => {
+    console.log('welcome', user, room);
+  })
+  socket.on('FULL_ROOM', () => history.push('/lobby') )
+}, [socket])
+
   
   return (
     <h1>game room</h1>
