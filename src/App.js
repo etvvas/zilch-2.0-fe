@@ -17,8 +17,8 @@ function App() {
       <Switch>
         <Route path="/" exact={true} component={AuthForm} />
         <SocketContext.Provider value={socket}>
-        <PrivateRoute path="/lobby" exact component={Lobby} />
-        <PrivateRoute path="/lobby/:room" exact component={GameRoom} />
+          <PrivateRoute path="/lobby" exact component={Lobby} />
+          <PrivateRoute path="/lobby/:room" exact component={GameRoom} />
         </SocketContext.Provider>
       </Switch>
     </>
