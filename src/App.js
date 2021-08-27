@@ -9,6 +9,7 @@ import GameRoom from './components/rooms/GameRoom';
 // import SocketProvider from './state/SocketProvider';
 import {SocketContext, socket} from './state/SocketProvider'
 import PrivateRoute from './components/common/PrivateRoute';
+
 function App() {
   return (
     <>
