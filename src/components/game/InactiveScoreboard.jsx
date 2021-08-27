@@ -2,7 +2,7 @@ import React from 'react';
 
 const InactiveScoreboard = () => {
   return (
-    null
+    <h1>Other player name and score</h1>
   )
 }
 
