@@ -20,7 +20,6 @@ const diceDisplay = `
   my-4
   gap-1
   
-  xs:gap-2
   sm:gap-4
 `;
 
