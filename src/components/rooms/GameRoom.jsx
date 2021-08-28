@@ -46,7 +46,7 @@ useEffect(() => {
 }, [] )
 
 const handleReady = () => {
-  socket.emit('PLAYER_READY')
+  socket.emit('PLAYER_READY', room)
   console.log(gameState);
 }
 
