@@ -14,6 +14,11 @@ const button = `
   text-center
   w-full
   rounded
+  border-b-4
+  text-lg
+  font-semibold
+  tracking-wider
+  uppercase
 `;
 
 const diceControls = `
@@ -25,11 +30,13 @@ const diceControls = `
 
 const rollButton = `
   bg-indigo-500
+  border-indigo-600
   text-white
 `;
 
 const bankButton = `
   bg-green-500
+  border-green-600
   text-white
 `;
 

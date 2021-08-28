@@ -53,6 +53,7 @@ const handleReady = () => {
   return (
     
     <div className={wrap}>
+      <PlayerProgress />
       <Players />
       <ActiveScoreboard />
       <Dice />

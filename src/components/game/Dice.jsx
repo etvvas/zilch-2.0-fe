@@ -16,20 +16,20 @@ const Dice = () => {
 
 const diceDisplay = `
   flex
-  justify-center
+  justify-between
   my-4
   gap-1
-
-  sm:gap-4
-  sm:justify-between
+  
   xs:gap-2
+  sm:gap-4
 `;
 
 const die = `
   fas
-  text-6xl
+  text-5xl
   text-gray-700
 
+  xs:text-6xl
   sm:text-8xl
 `;
 
