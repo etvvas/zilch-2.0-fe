@@ -19,7 +19,6 @@ const diceDisplay = `
   justify-between
   my-4
   gap-1
-  
   sm:gap-4
 `;
 
