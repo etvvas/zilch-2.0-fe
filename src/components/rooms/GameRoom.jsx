@@ -10,12 +10,12 @@ const GameRoom = () => {
   
   return (
     <div className={wrap}>
+      <PlayerProgress />
       <Players />
       <ActiveScoreboard />
       <Dice />
       <GameControls />
       <ScoringOptions />
-      <PlayerProgress />
     </div>
   )
 }

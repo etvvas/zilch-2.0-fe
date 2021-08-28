@@ -17,5 +17,7 @@ input[type="radio"]:checked ~ svg {
   --tw-saturate: saturate(1);
 }
 
-.zilch {
+tbody tr:nth-child(odd) {
+  background-color: rgba(255,255,255,.3);
 }
+

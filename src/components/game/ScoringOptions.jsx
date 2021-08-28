@@ -18,9 +18,11 @@ const button = `
 const scoringOptionsDisplay = `
   flex
   flex-wrap
-  gap-4
+  gap-2
+  sm:gap-4
   justify-center
   p-6
+  my-4
   bg-gray-200
   rounded-lg
 `;
@@ -29,11 +31,14 @@ const scoringButton = `
   flex-grow
   py-4
   text-center
+  text-purple-500
+  text-sm
+  font-semibold
+  tracking-wide
   rounded
-  border
+  border-b-2
+  border-gray-300
   bg-white
-  shadow-sm
-
   w-1/3
 `;
 
