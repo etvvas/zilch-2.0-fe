@@ -38,12 +38,11 @@ useEffect(() => {
     setTimeout(() => alert('Room Full'), 300)
   })
   socket.on('START_GAME', gameState => setGameState(gameState))
-  socket.on('READY', (player) => {
-    setReadyUsers(prevState => [...prevState, player])
-  })
+  socket.on('READY', gameState => setGameState(gameState));
+  
   return () => socket.emit('DISCONNECT')
 
-}, [] )
+}, [])
 
 const handleReady = () => {
   socket.emit('PLAYER_READY', room, session.userId)
