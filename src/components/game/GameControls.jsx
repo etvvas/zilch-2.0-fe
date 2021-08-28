@@ -4,7 +4,7 @@ const GameControls = () => {
   return (
     <div className={diceControls}>
       <button className={button + rollButton}>Roll</button>
-      <button className={button + bankButton}>Bank</button>
+      <button className={button + bankReady}>Bank <span className={span}>250</span></button>
     </div>
   )
 }
@@ -15,9 +15,9 @@ const button = `
   w-full
   rounded
   border-b-4
-  text-2xl
+  text-lg
   font-bold
-  tracking-widest
+  sm:text-2xl
 `;
 
 const diceControls = `
@@ -33,10 +33,22 @@ const rollButton = `
   text-white
 `;
 
-const bankButton = `
+const bankNotReady = `
+  bg-gray-200
+  border-gray-300
+  text-gray-600
+`;
+
+const bankReady = `
   bg-green-500
   border-green-600
   text-white
+`;
+
+const span = `
+  font-light
+  text-lg
+  tracking-normal
 `;
 
 export default GameControls;

@@ -6,9 +6,9 @@ const Dice = () => {
     <div className={diceDisplay}>
       <i className={die + 'fa-dice-one roll'}></i>
       <i className={die + 'fa-dice-two roll'}></i>
-      <i className={die + 'fa-dice-three roll'}></i>
+      <i className={die + 'fa-dice-three roll' + held}></i>
       <i className={die + 'fa-dice-four roll'}></i>
-      <i className={die + 'fa-dice-five roll'}></i>
+      <i className={die + 'fa-dice-five roll' + held}></i>
       <i className={die + 'fa-dice-six roll'}></i>
     </div>
   )
@@ -27,6 +27,10 @@ const die = `
   text-5xl
   text-gray-700
   sm:text-8xl
+`;
+
+const held = `
+  text-blue-400
 `;
 
 
