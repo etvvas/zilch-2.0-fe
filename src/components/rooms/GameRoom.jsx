@@ -37,7 +37,7 @@ useEffect(() => {
     history.push('/lobby') 
     setTimeout(() => alert('Room Full'), 300)
   })
-  socket.on('START_GAME', msg => console.log(msg))
+  socket.on('START_GAME', gameState => setGameState(gameState))
   socket.on('READY', (player) => {
     setReadyUsers(prevState => [...prevState, player])
   })
@@ -46,7 +46,7 @@ useEffect(() => {
 }, [] )
 
 const handleReady = () => {
-  socket.emit('PLAYER_READY', room)
+  socket.emit('PLAYER_READY', room, session.userId)
   console.log(gameState);
 }
 
