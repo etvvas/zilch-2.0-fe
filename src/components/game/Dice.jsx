@@ -28,6 +28,7 @@ const die = `
   text-5xl
   text-gray-700
 
+  xs:text-6xl
   sm:text-8xl
 `;
 
