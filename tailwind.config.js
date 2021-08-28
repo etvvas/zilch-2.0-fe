@@ -8,6 +8,9 @@ module.exports = {
       saturate: {
         25: '.25',
         75: '.75',
+      },
+      screens: {
+        'xs': '456px' 
       }
     }
   },
