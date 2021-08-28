@@ -14,7 +14,7 @@ const Lobby = () => {
     return () => socket.emit('DISCONNECT')
   })
  
-  const rooms = ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5', 'Room 6'];
+  const rooms = ['Room1', 'Room2', 'Room3', 'Room4', 'Room5', 'Room6'];
   const roomsElements = rooms.map((room) => (
     
     <li key={room} className={li}>

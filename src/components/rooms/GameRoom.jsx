@@ -12,6 +12,7 @@ import {  SocketContext } from '../../state/SocketProvider';
 
 const GameRoom = () => {
   const [readyUsers, setReadyUsers] = useState([])
+  const [gameState, setGameState] = useState({});
   console.log(readyUsers);
   //map out readyUsers
   const history = useHistory();
@@ -28,6 +29,10 @@ const socket = useContext(SocketContext)
     
 useEffect(() => {
   socket.emit('JOIN_ROOM', session, room)
+  socket.on('ROOM_JOINED', (gameState) => {
+    console.log(gameState);
+    setGameState(gameState[room])
+  })
   socket.on('FULL_ROOM', () =>{ 
     history.push('/lobby') 
     setTimeout(() => alert('Room Full'), 300)
@@ -38,10 +43,11 @@ useEffect(() => {
   })
   return () => socket.emit('DISCONNECT')
 
-}, [])
+}, [] )
 
 const handleReady = () => {
   socket.emit('PLAYER_READY')
+  console.log(gameState);
 }
 
   return (
