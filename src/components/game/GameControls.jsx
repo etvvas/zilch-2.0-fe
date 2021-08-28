@@ -15,10 +15,9 @@ const button = `
   w-full
   rounded
   border-b-4
-  text-lg
-  font-semibold
-  tracking-wider
-  uppercase
+  text-2xl
+  font-bold
+  tracking-widest
 `;
 
 const diceControls = `

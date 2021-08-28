@@ -47,10 +47,12 @@ const header = `
 `;
 
 const outerWrap = `
-border-b-8
-border-black
-border-opacity-30
-bg-purple-500 
+  border-b-8
+  border-black
+  border-opacity-30
+  bg-gradient-to-r
+  from-purple-500
+  to-purple-600
 `;
 
 const button = `
@@ -63,17 +65,19 @@ const icon = `
 `;
 
 const h1 = `
-  text-gray-100
+  text-purple-100
+  font-bold
   text-2xl
-  tracking-wider 
   zilch
 `;
 
 const h2 = `
+  hidden
   text-purple-200
   text-sm
   tracking-widest
   text-shadow
+  sm:block
 `;
 
 const svg = `
