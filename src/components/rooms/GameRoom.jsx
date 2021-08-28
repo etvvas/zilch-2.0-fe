@@ -3,6 +3,7 @@ import ActiveScoreboard from '../game/ActiveScoreboard';
 import Dice from '../game/Dice';
 import GameControls from '../game/GameControls';
 import PlayerProgress from '../game/PlayerProgress';
+import Players from '../game/Players';
 import ScoringOptions from '../game/ScoringOptions';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSession } from '../../state/SessionProvider';
@@ -46,16 +47,10 @@ const handleReady = () => {
   return (
     
     <div className={wrap}>
-      <h1 className={h1}>ScrumMast3r vs _UXgUrU_</h1>
-
-
+      <Players />
       <ActiveScoreboard />
-
-      <div className={mainControls}>
-        <Dice />
-        <GameControls />
-      </div>
-
+      <Dice />
+      <GameControls />
       <ScoringOptions />
       <PlayerProgress />
       <button 
@@ -72,16 +67,5 @@ const wrap = `
   mx-auto
   p-4
 `;
-
-const h1 = `
-  text-2xl
-  text-center
-  my-10
-`;
-
-const mainControls = `
-
-`;
-
 
 export default GameRoom;
