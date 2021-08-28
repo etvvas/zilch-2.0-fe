@@ -10,23 +10,25 @@ const Header = () => {
 
   return (
     <>
-      <header className={header}>
-        <div className={wrap}>
-          <button className={button} onClick={() => setIsOpen(!isOpen)}>
-            <MenuIcon className={
-              isOpen
-                ? icon + 'text-green-400 hover:text-green-200'
-                : icon + 'text-purple-800 hover:text-purple-600'} />
-          </button>
-          <h1 className={h1}>Zilch 2.0</h1>
-        </div>
-        <div className={wrap}>
-          <h2 className={h2}>{user}</h2>
-            <svg className={svg}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-        </div>
-      </header>
+      <div className={outerWrap}>
+        <header className={header}>
+          <div className={wrap}>
+            <button className={button} onClick={() => setIsOpen(!isOpen)}>
+              <MenuIcon className={
+                isOpen
+                  ? icon + 'text-green-400 hover:text-green-200'
+                  : icon + 'text-purple-800 hover:text-purple-600'} />
+            </button>
+            <h1 className={h1}>Zilch 2.0</h1>
+          </div>
+          <div className={wrap}>
+            <h2 className={h2}>{user}</h2>
+              <svg className={svg}>
+                <use href={avatars + `#${avatar}`} />
+              </svg>
+          </div>
+        </header>
+      </div>
 
       <Navigation isOpen={isOpen} />
     </>
@@ -35,15 +37,20 @@ const Header = () => {
 
 const header = `
   col-span-12 
-  bg-purple-500 
   p-4
   flex
-  border-b-8
-  border-black
-  border-opacity-30
   gap-4
   items-center
   justify-between
+  max-w-screen-xl
+  mx-auto
+`;
+
+const outerWrap = `
+border-b-8
+border-black
+border-opacity-30
+bg-purple-500 
 `;
 
 const button = `
@@ -56,9 +63,10 @@ const icon = `
 `;
 
 const h1 = `
-  text-white
-  text-xl
+  text-gray-100
+  text-2xl
   tracking-wider 
+  zilch
 `;
 
 const h2 = `

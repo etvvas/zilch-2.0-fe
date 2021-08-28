@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext, useEffect } from 'react';
-import { postSignup, postLogin } from '../services/auth';
-import { getVerify } from '../services/auth';
+import { postSignup, postLogin, getVerify } from '../services/auth';
+
 const SessionContext = createContext();
 
 export default function SessionProvider({ children }) {
