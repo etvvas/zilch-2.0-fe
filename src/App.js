@@ -18,8 +18,8 @@ function App() {
       <Switch>
         <Route path="/" exact={true} component={AuthForm} />
         <SocketProvider>
-        <PrivateRoute path="/lobby" exact component={Lobby} />
-        <PrivateRoute path="/lobby/:room" exact component={GameRoom} />
+          <PrivateRoute path="/lobby" exact component={Lobby} />
+          <PrivateRoute path="/lobby/:room" exact component={GameRoom} />
         </SocketProvider>
       </Switch>
     </>
