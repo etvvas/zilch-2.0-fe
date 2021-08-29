@@ -52,7 +52,7 @@ const outerWrap = `
   border-opacity-30
   bg-gradient-to-r
   from-purple-500
-  to-purple-600
+  to-purple-800
 `;
 
 const button = `
