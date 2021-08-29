@@ -8,11 +8,14 @@ const Lobby = () => {
   const socket = useContext(SocketContext)
 
   useEffect(() => {
-    socket.on('ENTER_LOBBY', (gameRooms) => {
+    socket.on('UPDATE_LOBBY', (gameRooms) => {
       console.log(gameRooms);
     })
-    return () => socket.emit('DISCONNECT')
-  })
+    return () => {
+      socket.removeListener('UPDATE_LOBBY')
+      socket.emit('DISCONNECT')
+    }
+  }, [])
  
   const rooms = ['Room1', 'Room2', 'Room3', 'Room4', 'Room5', 'Room6'];
   const roomsElements = rooms.map((room) => (
