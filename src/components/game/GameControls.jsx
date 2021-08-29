@@ -31,9 +31,8 @@ const button = `
   rounded
   border-b-4
   text-lg
-  font-semibold
-  tracking-wider
-  uppercase
+  font-bold
+  sm:text-2xl
 `;
 
 const diceControls = `
@@ -49,10 +48,16 @@ const rollButton = `
   text-white
 `;
 
-const bankButton = `
+const bankReady = `
   bg-green-500
   border-green-600
   text-white
+`;
+
+const span = `
+  font-light
+  text-lg
+  tracking-normal
 `;
 
 export default GameControls;

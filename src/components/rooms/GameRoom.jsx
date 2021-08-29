@@ -4,6 +4,7 @@ import Dice from '../game/Dice';
 import GameControls from '../game/GameControls';
 import PlayerProgress from '../game/PlayerProgress';
 import Players from '../game/Players';
+import Rules from '../game/Rules';
 import ScoringOptions from '../game/ScoringOptions';
 import { useHistory, useParams } from 'react-router-dom';
 import { useSession } from '../../state/SessionProvider';
@@ -62,17 +63,17 @@ const handleReady = () => {
  }
    
   return (
-    
-    <div className={wrap}>
-      <PlayerProgress />
-      <Players />
-      <ActiveScoreboard />
-      <Dice />
-      <GameControls gameState={gameState}/>
-      <ScoringOptions />
-      <PlayerProgress />
-     
+    <div className="relative">
 
+      <div className={wrap}>
+        <PlayerProgress />
+        <Players />
+        <ActiveScoreboard />
+        <Dice />
+        <GameControls />
+        <ScoringOptions />
+        <Rules />
+      </div>
     </div>
     
   )

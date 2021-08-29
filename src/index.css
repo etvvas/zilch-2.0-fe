@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +8,8 @@ body {
   /* background: rgb(31,27,98);
   background: linear-gradient(75deg, rgba(31,27,98,1) 0%, rgba(163,38,179,1) 33%, rgba(66,219,250,1) 100%);
   background-attachment: fixed; */
-  font-family: 'Open Sans', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
+  font-family: 'Nunito', sans-serif;
 }
 
 
@@ -21,3 +23,17 @@ tbody tr:nth-child(odd) {
   background-color: rgba(255,255,255,.3);
 }
 
+input[type="checkbox"]:checked + label {
+  background-color: #F472B6;
+  color: #FDF2F8;
+  border-color: #EC4899;
+}
+
+.roll {
+  transform: rotate(3600deg);
+  -webkit-transition: -webkit-transform 500ms ease-out;
+  -moz-transition:    -moz-transform 500ms ease-out;
+  -o-transition:      -o-transform 500ms ease-out;
+  -ms-transition:     -ms-transform 500ms ease-out;
+  transition: transform 500ms cubic-bezier(0, 0.13, 0.92, 1.03);
+}

@@ -20,8 +20,6 @@ const Navigation = ({ isOpen }) => {
 const nav = `
   shadow-md
   bg-gray-800
-
-
   sm:block
   sm:col-span-12
 `;
