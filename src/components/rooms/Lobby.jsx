@@ -1,23 +1,51 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { SocketContext } from '../../state/SocketProvider';
 
 import Room from './Room';
-const rooms = ['Room1', 'Room2', 'Room3', 'Room4', 'Room5', 'Room6'];
+const rooms = [{roomName: 'Room1'}, {roomName: 'Room2'}, {roomName: 'Room3'}, {roomName: 'Room4'}, {roomName: 'Room5'}, {roomName: 'Room6'}];
 
 const Lobby = () => {
   const socket = useContext(SocketContext)
-
+  const [gameRooms, setGameRooms] = useState(rooms)
   useEffect(() => {
-    socket.on('UPDATE_LOBBY', (gameRooms) => {
-      console.log(gameRooms);
+    socket.on('UPDATE_LOBBY', (socketRooms) => {
+      // console.log('Socket Rooms', socketRooms);
         const updatedRooms = rooms.map(room => {
-        const match = gameRooms.find(item => item[room]?.roomName === room) 
-        if(match) return match[room]
-        else return { roomName: room }
+          // console.log('socket room', socketRooms[0][room.roomName]?.roomName);
+        let newRoom;
+        const match = socketRooms.find(item => item[room.roomName]?.roomName === room.roomName) 
+        match ? newRoom = match[room.roomName] : newRoom = room
+        return newRoom
       })
-      console.log(updatedRooms);
-    })
+      console.log('updated rooms', updatedRooms);
+      
+    }, [])
+
+  //   [
+  //     {
+  //         "Room1": {
+  //             "ready": [],
+  //             "currentPlayerIndex": 0,
+  //             "players": [
+  //                 "1"
+  //             ],
+  //             "roomName": "Room1",
+  //             "rounds": 0,
+  //             "targetScore": 5000,
+  //             "firstUser": {
+  //                 "userName": "user1",
+  //                 "userId": "1",
+  //                 "avatar": "dog",
+  //                 "gameId": "",
+  //                 "numberOfRound": 0,
+  //                 "playerScore": 0,
+  //                 "playerZilches": 0,
+  //                 "playerUberZilches": 0
+  //             }
+  //         }
+  //     }
+  // ]
     return () => {
       socket.removeListener('UPDATE_LOBBY')
       socket.emit('DISCONNECT')
@@ -26,9 +54,9 @@ const Lobby = () => {
  
   const roomsElements = rooms.map((room) => (
     
-    <li key={room} className={li}>
-      <Link to={`/lobby/${room}`}>
-        <Room room={room} />
+    <li key={room.roomName} className={li}>
+      <Link to={`/lobby/${room.roomName}`}>
+        <Room room={room.roomName} />
       </Link>
     </li>
   ))
