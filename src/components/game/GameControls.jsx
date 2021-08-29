@@ -33,12 +33,6 @@ const rollButton = `
   text-white
 `;
 
-const bankNotReady = `
-  bg-gray-200
-  border-gray-300
-  text-gray-600
-`;
-
 const bankReady = `
   bg-green-500
   border-green-600
