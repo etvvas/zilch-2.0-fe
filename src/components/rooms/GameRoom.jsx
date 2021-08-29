@@ -13,7 +13,7 @@ import {  SocketContext } from '../../state/SocketProvider';
 const GameRoom = () => {
   const [readyUsers, setReadyUsers] = useState([])
   const [gameState, setGameState] = useState({});
-  console.log(readyUsers);
+  // console.log(readyUsers);
   //map out readyUsers
   const history = useHistory();
   //grab user session info 
