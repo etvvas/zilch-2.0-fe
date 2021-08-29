@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { SocketContext } from '../../state/SocketProvider';
 
 import Room from './Room';
+const rooms = ['Room1', 'Room2', 'Room3', 'Room4', 'Room5', 'Room6'];
 
 const Lobby = () => {
   const socket = useContext(SocketContext)
@@ -10,6 +11,12 @@ const Lobby = () => {
   useEffect(() => {
     socket.on('UPDATE_LOBBY', (gameRooms) => {
       console.log(gameRooms);
+        const updatedRooms = rooms.map(room => {
+        const match = gameRooms.find(item => item[room]?.roomName === room) 
+        if(match) return match[room]
+        else return { roomName: room }
+      })
+      console.log(updatedRooms);
     })
     return () => {
       socket.removeListener('UPDATE_LOBBY')
@@ -17,7 +24,6 @@ const Lobby = () => {
     }
   }, [])
  
-  const rooms = ['Room1', 'Room2', 'Room3', 'Room4', 'Room5', 'Room6'];
   const roomsElements = rooms.map((room) => (
     
     <li key={room} className={li}>
