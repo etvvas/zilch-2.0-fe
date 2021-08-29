@@ -1,15 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const Room = ({ room }) => {
+const Room = ({ room, roomData }) => {
   
   const avatar = 'polar-bear';
+
+  useEffect(() => {
+    console.log(roomData)
+  })
 
   return (
     <>
       <div className={outerWrap}>
         <h3 className={h3}>{room}</h3>
         <div className={innerWrap}>
+        {/* {roomData.firstUser ?
+          <div className={side}>
+            <p className={playerName}>{roomData.firstUser.username}</p>
+            <svg className={svg + winning}>
+              <use href={avatars + `#${avatar}`} />
+            </svg>
+            <p className={score}>1837 pts</p>
+          </div>
+          :  
+          <div className={side}>
+            <p className={playerName}>ScrumMast3r</p>
+            <svg className={svg + winning}>
+              <use href={avatars + `#${avatar}`} />
+            </svg>
+            <p className={score}>1837 pts</p>
+          </div>
+        } */}
           <div className={side}>
             <p className={playerName}>ScrumMast3r</p>
             <svg className={svg + winning}>

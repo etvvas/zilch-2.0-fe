@@ -1,31 +1,44 @@
 import React, {useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { SocketContext } from '../../state/SocketProvider';
+import useLobby from '../../state/hooks/useLobby';
 
 import Room from './Room';
 
 const Lobby = () => {
   const socket = useContext(SocketContext)
+  const {lobby, setLobby} = useLobby();
 
   useEffect(() => {
     socket.on('UPDATE_LOBBY', (gameRooms) => {
       console.log(gameRooms);
+      setLobby(gameRooms)
     })
     return () => {
       socket.removeListener('UPDATE_LOBBY')
       socket.emit('DISCONNECT')
     }
   }, [])
+
+  // useEffect(() => {
+
+  // }, [lobby])
+
+  // need to took in the lobby data to see if there is data that exists for the room
+  // regardless of whether there is or isn't data, we need to pass a prop down
  
   const rooms = ['Room1', 'Room2', 'Room3', 'Room4', 'Room5', 'Room6'];
-  const roomsElements = rooms.map((room) => (
+  const roomsElements = rooms.map((room) => { 
+    let matchingRoomData = []
     
-    <li key={room} className={li}>
+    console.log()
+
+    return(<li key={room} className={li}>
       <Link to={`/lobby/${room}`}>
-        <Room room={room} />
+        <Room room={room} roomData={matchingRoomData}/>
       </Link>
-    </li>
-  ))
+    </li>)
+})
   
 
   return (
