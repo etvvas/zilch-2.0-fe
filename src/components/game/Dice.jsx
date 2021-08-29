@@ -4,12 +4,12 @@ const Dice = () => {
 
   return (
     <div className={diceDisplay}>
-      <i className={die + 'fa-dice-one'}></i>
-      <i className={die + 'fa-dice-two'}></i>
-      <i className={die + 'fa-dice-three'}></i>
-      <i className={die + 'fa-dice-four'}></i>
-      <i className={die + 'fa-dice-five'}></i>
-      <i className={die + 'fa-dice-six'}></i>
+      <i className={die + 'fa-dice-one roll'}></i>
+      <i className={die + 'fa-dice-two roll'}></i>
+      <i className={die + 'fa-dice-three roll' + held}></i>
+      <i className={die + 'fa-dice-four roll'}></i>
+      <i className={die + 'fa-dice-five roll' + held}></i>
+      <i className={die + 'fa-dice-six roll'}></i>
     </div>
   )
 }
@@ -27,6 +27,10 @@ const die = `
   text-5xl
   text-gray-700
   sm:text-8xl
+`;
+
+const held = `
+  text-blue-400
 `;
 
 

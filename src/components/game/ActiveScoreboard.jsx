@@ -34,15 +34,15 @@ const ActiveScoreboard = () => {
               <td className={td + 'w-20'}>4200</td>
             </tr>
             <tr className={tr}>
-              <td className={td + 'w-full'}>ZILCH!</td>
+              <td className={td + 'w-full'}>Zilch!</td>
               <td className={td + 'w-20'}>4200</td>
             </tr>
             <tr className={tr}>
-              <td className={td + 'w-full'}>ZILCH!</td>
+              <td className={td + 'w-full'}>Zilch!</td>
               <td className={td + 'w-20'}>4200</td>
             </tr>
             <tr className={tr}>
-              <td className={td + 'w-full'}>ZILCH! -500</td>
+              <td className={td + 'w-full'}>Uberzilch! -500</td>
               <td className={td + 'w-20'}>3700</td>
             </tr>
           </tbody>
@@ -117,7 +117,7 @@ const tbody = `
 `;
 
 const th = `
-  font-bold
+  font-black
   text-right
   text-sm
   pt-3
@@ -132,7 +132,8 @@ const tr = `
 
 const td = `
   text-right
-  text-sm
+  text-gray-500
+  font-semibold
   p-2
   sm:text-sm
   sm:py-2

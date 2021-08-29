@@ -50,12 +50,14 @@ const scoreOne = `
   text-xs
   text-right
   text-pink-500
+  italic
 `;
 
 const scoreTwo = `
   text-xs
   text-right
   text-purple-500
+  italic
 `;
 
 export default PlayerProgress;
