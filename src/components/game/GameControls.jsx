@@ -1,13 +1,19 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { useSession } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
 
-const GameControls = ({gameState}) => {
-
-const session = useSession()
+const GameControls = ({gameState, currentPlayer}) => {
+const [disabled, setDisabled] = useState(true)
+const {userId} = useSession()
 const socket = useContext(SocketContext)
-let disabled;
-if(gameState.currentPlayerIndex) gameState.players[gameState.currentPlayerIndex] !== session.userId ? disabled = true : disabled = false
+
+
+useEffect(() => {
+    if(currentPlayer === userId) setDisabled(false)
+    else setDisabled(true)
+ }, [currentPlayer])
+ 
+
 
 
 const handleRoll = () => {
@@ -24,8 +30,11 @@ const handleBank = () => {
         disabled={disabled}
         className={button + rollButton}
         onClick={handleRoll}>Roll</button>
-      <button className={button + bankReady}
-      onClick={handleBank}>Bank</button>
+      <button 
+      disabled={disabled}
+      className={button + bankReady}
+      onClick={handleBank} 
+      >Bank</button>
     </div>
   )
 }

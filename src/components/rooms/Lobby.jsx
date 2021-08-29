@@ -18,7 +18,8 @@ const Lobby = () => {
         match ? newRoom = match[room.roomName] : newRoom = room
         return newRoom
       })
-      console.log('updated rooms', updatedRooms);
+      // filter again
+     setGameRooms(updatedRooms)
       
     }, [])
 
@@ -52,11 +53,11 @@ const Lobby = () => {
     }
   }, [])
  
-  const roomsElements = rooms.map((room) => (
+  const roomsElements = gameRooms.map((room) => (
     
-    <li key={room.roomName} className={li}>
+    <li  key={room.roomName} className={li}>
       <Link to={`/lobby/${room.roomName}`}>
-        <Room room={room.roomName} />
+        <Room {...room} />
       </Link>
     </li>
   ))

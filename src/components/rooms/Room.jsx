@@ -1,31 +1,50 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const Room = ({ room }) => {
-  
+const Room = ({roomName, firstUser, secondUser, }) => {
+  // console.log(props);
   const avatar = 'polar-bear';
-
+//   {
+//     "ready": [],
+//     "currentPlayerIndex": 0,
+//     "players": [
+//         "2"
+//     ],
+//     "roomName": "Room1",
+//     "rounds": 0,
+//     "targetScore": 5000,
+//     "firstUser": {
+//         "userName": "user2",
+//         "userId": "2",
+//         "avatar": "dog",
+//         "gameId": "",
+//         "numberOfRound": 0,
+//         "playerScore": 0,
+//         "playerZilches": 0,
+//         "playerUberZilches": 0
+//     }
+// }
   return (
     <>
       <div className={outerWrap}>
-        <h3 className={h3}>{room}</h3>
+        <h3 className={h3}>{roomName}</h3>
         <div className={innerWrap}>
           <div className={side}>
-            <p className={playerName}>ScrumMast3r</p>
+            <p className={playerName}>{firstUser?.userName ? firstUser.userName : 'Player One'}</p>
             <svg className={svg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            <p className={score}>1837 pts</p>
+            <p className={score}>{firstUser?.playerScore ? firstUser.playerScore : '0'}</p>
           </div>
           <div className={vs}>
             vs
           </div>
           <div className={side}>
-            <p className={playerName}>_UXgUrU_</p>
+            <p className={playerName}>{secondUser?.userName ? secondUser.userName : 'Player One'}</p>
             <svg className={svg}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            <p className={score}>1837 pts</p>
+            <p className={score}>{secondUser?.playerScore ? secondUser.playerScore : '0'}</p>
           </div>
 
         </div>
