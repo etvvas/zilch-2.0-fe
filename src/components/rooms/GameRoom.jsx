@@ -40,6 +40,15 @@ useEffect(() => {
   socket.on('START_GAME', gameState => {
     setGameState(gameState[room])})
   socket.on('READY', gameState => setGameState(gameState[room]));
+
+  socket.on('ROLLED', dice => {
+    console.log(dice)
+  })
+
+  socket.on('BANKED', gameState => {
+    console.log(gameState)
+    setGameState(gameState[room])
+  })
   
   return () => socket.emit('DISCONNECT')
 
@@ -70,7 +79,7 @@ const handleReady = () => {
         <Players />
         <ActiveScoreboard />
         <Dice />
-        <GameControls />
+        <GameControls gameState={gameState}/>
         <ScoringOptions />
         <Rules />
       </div>
