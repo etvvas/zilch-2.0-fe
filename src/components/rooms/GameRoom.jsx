@@ -11,7 +11,6 @@ import {  SocketContext } from '../../state/SocketProvider';
 // import socket from '../../socket/socket.js'
 
 const GameRoom = () => {
-  const [readyUsers, setReadyUsers] = useState([])
   const [gameState, setGameState] = useState({});
   // console.log(readyUsers);
   //map out readyUsers
@@ -30,15 +29,16 @@ const socket = useContext(SocketContext)
 useEffect(() => {
   socket.emit('JOIN_ROOM', session, room)
   socket.on('ROOM_JOINED', (gameState) => {
-    console.log(gameState);
+    console.log(gameState[room]);
     setGameState(gameState[room])
   })
   socket.on('FULL_ROOM', () =>{ 
     history.push('/lobby') 
     setTimeout(() => alert('Room Full'), 300)
   })
-  socket.on('START_GAME', gameState => setGameState(gameState))
-  socket.on('READY', gameState => setGameState(gameState));
+  socket.on('START_GAME', gameState => {
+    setGameState(gameState[room])})
+  socket.on('READY', gameState => setGameState(gameState[room]));
   
   return () => socket.emit('DISCONNECT')
 
@@ -49,6 +49,18 @@ const handleReady = () => {
   console.log(gameState);
 }
 
+
+
+
+
+ if (gameState.ready && gameState.ready.length < 2) {
+  console.log(gameState.ready);
+  return  <button 
+ onClick={handleReady}
+//  disabled={gameState.ready.find(user => user === session.username)}
+ >READY</button>
+ }
+   
   return (
     
     <div className={wrap}>
@@ -59,12 +71,10 @@ const handleReady = () => {
       <GameControls />
       <ScoringOptions />
       <PlayerProgress />
-      <button 
-      onClick={handleReady}
-      disabled={readyUsers.find(user => user === session.username)}
-      >READY</button>
+     
 
     </div>
+    
   )
 }
 
