@@ -57,7 +57,7 @@ const handleReady = () => {
   console.log(gameState.ready);
   return  <button 
  onClick={handleReady}
-//  disabled={gameState.ready.find(user => user === session.username)}
+ disabled={gameState.ready.find(user => user === session.userId)}
  >READY</button>
  }
    
@@ -68,7 +68,7 @@ const handleReady = () => {
       <Players />
       <ActiveScoreboard />
       <Dice />
-      <GameControls />
+      <GameControls gameState={gameState}/>
       <ScoringOptions />
       <PlayerProgress />
      
