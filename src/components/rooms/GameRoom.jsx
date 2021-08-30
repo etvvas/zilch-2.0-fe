@@ -70,7 +70,8 @@ const GameRoom = () => {
       setIsDisabled(!(session.userId === players[index]))
     });
 
-    socket.on('UPDATE_SCORING_OPTIONS', (dice, scoringOptions) => {
+    socket.on('UPDATE_SCORING_OPTIONS', (dice, scoringOptions, gameState) => {
+      setGameState(gameState)
       setScoringOptions(scoringOptions)    
       setDice(dice)
       setBankDisabled(false)

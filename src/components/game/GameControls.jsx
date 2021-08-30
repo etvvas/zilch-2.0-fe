@@ -21,12 +21,12 @@ const handleBank = () => {
       <button 
         disabled={isDisabled || rollDisabled}
         className={button + rollButton}
-        onClick={handleRoll}>Roll</button>
+        onClick={handleRoll}>Roll </button>
       <button 
       disabled={isDisabled || bankDisabled}
       className={button + bankReady}
       onClick={handleBank} 
-      >Bank</button>
+      >Bank {gameState.firstUser?.roundScore ? gameState.firstUser?.roundScore : gameState.secondUser?.roundScore }</button>
     </div>
   )
 }
