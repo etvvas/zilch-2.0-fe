@@ -93,7 +93,8 @@ const GameRoom = () => {
 
     // })
     setScoringOptions(updatedScoringOptions);
-    socket.emit('UPDATE_SELECTED', updatedScoringOptions)
+    const selectedScoringOption = updatedScoringOptions.filter(option => option.selected === true)
+    socket.emit('UPDATE_SELECTED', selectedScoringOption)
   };
 
 
