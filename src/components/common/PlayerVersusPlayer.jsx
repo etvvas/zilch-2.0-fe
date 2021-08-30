@@ -3,7 +3,9 @@ import avatars from '../../assets/avatars.svg';
 
 const PlayerVersusPlayer = ({user1, user2, room}) => {
   room = 'Room1';
-  const avatar = 'polar-bear';
+  const avatar = 'dice';
+  // add conditional styling (noPlayerSvg) if player does not exist
+
   return (
     <>
       <div className={outerWrap}>
@@ -11,7 +13,7 @@ const PlayerVersusPlayer = ({user1, user2, room}) => {
         <div className={innerWrap}>
           <div className={side}>
             <p className={playerName}>ScrumMast3r</p>
-            <svg className={svg + winning}>
+            <svg className={noPlayerSvg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
             <p className={score}>1837 pts</p>
@@ -99,6 +101,19 @@ const svg = `
   border-4
   border-transparent
 `;
+
+const noPlayerSvg = `
+  w-20
+  h-20
+  md:w-20
+  md:h-20
+  my-2
+  mx-auto
+  border-4
+  border-transparent
+  filter
+  grayscale
+`
 
 const score = `
   text-center
