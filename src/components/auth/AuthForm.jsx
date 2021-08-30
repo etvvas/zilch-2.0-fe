@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useAuthForm from '../../state/hooks/useAuthForm';
-import { useLogin, useSession, useSignup } from '../../state/SessionProvider';
+import { useLogin, useSession, useSetLoading, useSignup, useVerificationLoading } from '../../state/SessionProvider';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
@@ -10,9 +10,14 @@ const AuthForm = () => {
   const signup = useSignup();
   const login = useLogin();
   const session = useSession()
+  const loading = useVerificationLoading()
+  const setLoading = useSetLoading()
   
   useEffect(() => {
+    setLoading(true)
     if(session !== null) history.push("/lobby")
+    setLoading(false)
+    console.log(loading)
   }, [session])
 
   const handleSubmit = async e => {
@@ -22,7 +27,7 @@ const AuthForm = () => {
     history.push('/lobby')
   }
 
-
+if(loading) return <h1>LOADING</h1>
   return (
     <div className={wrap}>
 

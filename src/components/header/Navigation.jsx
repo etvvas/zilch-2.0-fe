@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { getLogout } from '../../services/auth';
-import { useSession, useSetSession } from '../../state/SessionProvider';
+import { useSetSession } from '../../state/SessionProvider';
 
 
 const Navigation = ({ isOpen }) => {

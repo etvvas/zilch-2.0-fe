@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useVerificationLoading } from '../../state/SessionProvider';
+import { useSetLoading, useVerificationLoading } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
 
 import Room from './Room';
@@ -10,7 +10,9 @@ const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
   const loading = useVerificationLoading()
+  const setLoading = useSetLoading()
   useEffect(() => {
+    setLoading(true)
     socket.on('UPDATE_LOBBY', (socketRooms) => {
       // console.log('Socket Rooms', socketRooms);
         const updatedRooms = rooms.map(room => {
@@ -22,37 +24,42 @@ const Lobby = () => {
       })
       // filter again
      setGameRooms(updatedRooms)
-      
-    }, [])
-
+    // setTimeout(() => setLoading(false), 1000)
+    
+  }, [])
+  
   //   [
-  //     {
-  //         "Room1": {
-  //             "ready": [],
-  //             "currentPlayerIndex": 0,
-  //             "players": [
-  //                 "1"
-  //             ],
-  //             "roomName": "Room1",
-  //             "rounds": 0,
-  //             "targetScore": 5000,
-  //             "firstUser": {
-  //                 "userName": "user1",
-  //                 "userId": "1",
-  //                 "avatar": "dog",
-  //                 "gameId": "",
-  //                 "numberOfRound": 0,
-  //                 "playerScore": 0,
-  //                 "playerZilches": 0,
-  //                 "playerUberZilches": 0
-  //             }
-  //         }
-  //     }
-  // ]
+    //     {
+      //         "Room1": {
+        //             "ready": [],
+        //             "currentPlayerIndex": 0,
+        //             "players": [
+          //                 "1"
+          //             ],
+          //             "roomName": "Room1",
+          //             "rounds": 0,
+          //             "targetScore": 5000,
+          //             "firstUser": {
+            //                 "userName": "user1",
+            //                 "userId": "1",
+            //                 "avatar": "dog",
+            //                 "gameId": "",
+            //                 "numberOfRound": 0,
+            //                 "playerScore": 0,
+            //                 "playerZilches": 0,
+            //                 "playerUberZilches": 0
+            //             }
+            //         }
+            //     }
+            // ]
+            //
+            // Loading long enough to see spinning dice 
+            // 
 
-    return () => {
-      socket.removeListener('UPDATE_LOBBY')
-      socket.emit('DISCONNECT')
+           setTimeout(() => setLoading(false),500) 
+            return () => {
+              socket.removeListener('UPDATE_LOBBY')
+              socket.emit('DISCONNECT')
     }
   }, [])
 

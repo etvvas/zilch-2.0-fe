@@ -27,7 +27,7 @@ export default function SessionProvider({ children }) {
     }
 
     return (
-        <SessionContext.Provider value={{ setSession, session, loading, signup, login }}>
+        <SessionContext.Provider value={{ setLoading, setSession, session, loading, signup, login }}>
             {children}
         </SessionContext.Provider>
     )
@@ -51,6 +51,11 @@ export function useSignup() {
 export function useLogin() {
     const { login } = useContext(SessionContext);
     return login;
+}
+
+export function useSetLoading(){
+    const { setLoading } = useContext(SessionContext);
+    return setLoading
 }
 
 export function useVerificationLoading() {
