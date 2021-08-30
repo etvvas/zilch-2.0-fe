@@ -74,13 +74,18 @@ const GameRoom = () => {
       setGameState(gameState)
       setScoringOptions(scoringOptions)    
       setDice(dice)
-    //  console.log( "STATE", gameState);     
-    //  console.log("CURRENT PLAYER", currentPlayer); 
-    //   let matchingUser;
-    //   gameState.firstUser.userId === currentPlayer
-    //     ? (matchingUser = "firstUser")
-    //     : (matchingUser = "secondUser");
-    //   if(gameState[matchingUser].roundScore >= 300)  setBankDisabled(false)
+      
+      let matchingUser;
+      console.log('CURRENT PLAYER', gameState.players[gameState.currentPlayerIndex]);
+      console.log('FIRST USER ID', gameState.firstUser.userId);
+      gameState.firstUser.userId === gameState.players[gameState.currentPlayerIndex] 
+        ? (matchingUser = "firstUser")
+        : (matchingUser = "secondUser");
+        console.log('GAMESTATE', gameState[matchingUser].roundScore);
+      if(gameState[matchingUser].roundScore >= 300) { 
+        setBankDisabled(false)
+      }
+      // setBankDisabled(false)
     })
 
     return () => socket.emit("DISCONNECT");

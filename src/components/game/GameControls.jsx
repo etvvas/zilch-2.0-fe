@@ -3,7 +3,7 @@ import { useSession } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
 
 const GameControls = ({gameState, scoringOptions, isDisabled, rollDisabled, bankDisabled}) => {
-
+console.log(bankDisabled);
 const socket = useContext(SocketContext)
 
 // if the sum of the users points < 300, disable bank button
