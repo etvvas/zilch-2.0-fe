@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 import Results from './Results';
 
@@ -23,6 +23,17 @@ import Results from './Results';
 
 const ResultsPage = ({user1, user2, results}) => {
   console.log('rp user', user1, user2)
+
+  useEffect(() => {
+    const results1 = fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${user1.userId}/results`)
+    const results2 = fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${user2.userId}/results`)
+    const zilches1 = fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${user1.userId}/zilches`)
+    const zilches2 = fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${user2.userId}/zilches`)
+    const uberZilches1 = fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${user1.userId}/uberZilches`)
+    const uberZilches2 = fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${user2.userId}/uberZilches`)
+  }, [])
+
+
   return (
     <>
       <div className={resultsPage}>
