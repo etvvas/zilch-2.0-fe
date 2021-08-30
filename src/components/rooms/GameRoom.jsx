@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import ActiveScoreboard from '../game/ActiveScoreboard';
 // import Dice from '../game/Dice';
 // import GameControls from '../game/GameControls';
@@ -35,7 +35,10 @@ const GameRoom = () => {
     playerZilches: 0,
     playerUberZilches: 0
   })
-
+  
+  useEffect (() => {
+    setResults(false);
+  }, [])
 
   return (
     <div className={main}>
