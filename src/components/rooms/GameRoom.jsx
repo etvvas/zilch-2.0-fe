@@ -66,10 +66,14 @@ const GameRoom = () => {
   const handleScoreSelect = ({ target }) => {
     const updatedScoringOptions = scoringOptions.map((option) => {
       if (option.id === JSON.parse(target.value).id)
-        return { ...option, selected: !option.selected };
+        return { ...option, selected: true };
       else return option;
     });
+    // const updateState = scoringOptions.map(option => {
+
+    // })
     setScoringOptions(updatedScoringOptions);
+    socket.emit('UPDATE_SELECTED', updatedScoringOptions)
   };
 
 
