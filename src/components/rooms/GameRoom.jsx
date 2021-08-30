@@ -34,7 +34,6 @@ const socket = useContext(SocketContext)
 useEffect(() => {
   socket.emit('JOIN_ROOM', session, room)
   socket.on('ROOM_JOINED', (gameState) => {
-    console.log(gameState[room]);
     setGameState(gameState[room])
   })
 
@@ -45,7 +44,6 @@ useEffect(() => {
 
   socket.on('START_GAME', (gameState, index, players) => {
     setGameState(gameState[room])
-    console.log(players, index);
     setCurrentPlayer(players[index])
   })
 
@@ -58,7 +56,6 @@ useEffect(() => {
 
   socket.on('BANKED', (gameState, index, players) => {
     setGameState(gameState[room])
-    console.log(players, index);
     setCurrentPlayer(players[index])
   })
   
@@ -68,7 +65,6 @@ useEffect(() => {
 
 const handleReady = () => {
   socket.emit('PLAYER_READY', room, session.userId)
-  console.log(gameState);
 }
 
  if (gameState.ready && gameState.ready.length < 2) {

@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSession } from '../../state/SessionProvider';
 
 const ScoringOptions = ({scoringOptions, currentPlayer}) => {
   const session = useSession();
-
+  const [selectedScoringOption, setSelectedScoringOption] = useState([])
   // scoringOptiong structure
   // {"score":600,"choice":"3 6s: Score: 600","dice":[{"held":false,"value":6},{"held":false,"value":6},{"held":false,"value":6}]}
 
   // need to clear selected inputs when turn ends
+  const handleChange = ({target}) => {
+    const updatedState = [...selectedScoringOption]
+    const matchIndex = updatedState.findIndex(option => option.score === JSON.parse(target.value).score)
+    if(matchIndex !== -1) {
+      updatedState.splice(matchIndex, 1)
+      setSelectedScoringOption(updatedState)
+    } else {
+      setSelectedScoringOption(prevState => [...prevState, JSON.parse(target.value)])
+    }
+        
+  }
   return (
     <form className={scoringOptionsForm}>
       {  scoringOptions.map((option, i) => (
         <>
-          <input disabled={currentPlayer !== session.userId ? "disabled" : ""} type="checkbox" id={`input${(i+1).toString()}`} className="hidden" value={option.score} />
+          <input 
+          onChange={handleChange}
+          disabled={currentPlayer !== session.userId ? "disabled" : ""} type="checkbox" id={`input${(i+1).toString()}`} className="hidden" value={JSON.stringify(option)} />
           <label for={`input${(i+1).toString()}`}  className={scoringOption}>{option.choice}</label>
         </>
       ))
