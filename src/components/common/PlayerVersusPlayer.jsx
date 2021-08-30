@@ -1,11 +1,11 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const PlayerVersusPlayer = ({user1, user2, room}) => {
+const PlayerVersusPlayer = ({user1, user2, room, results}) => {
   room = 'Room1';
   const avatar = 'dice';
   // add conditional styling (noPlayerSvg) if player does not exist
-
+console.log('results', results)
   return (
     <>
       <div className={outerWrap}>
@@ -16,7 +16,10 @@ const PlayerVersusPlayer = ({user1, user2, room}) => {
             <svg className={noPlayerSvg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            <p className={ready}>Ready!</p>
+            {!results  
+              ? <p className={ready}>Ready!</p>
+              : null
+            }
           </div>
           <div className={vs}>
             vs
@@ -26,10 +29,12 @@ const PlayerVersusPlayer = ({user1, user2, room}) => {
             <svg className={svg}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            <p className={ready}>Ready!</p>
+            {!results  
+              ? <p className={ready}>Ready!</p>
+              : null
+            }
           </div>
         </div>
-          <button className={readyButton}>Ready</button>
         <div className={readyMessage}>
           {/* Case1: player joins, no other player has joined yet
             "waiting for opponent to join"
@@ -38,7 +43,10 @@ const PlayerVersusPlayer = ({user1, user2, room}) => {
             "waiting on opponent to be ready"
           */}
           {/*  */}
-          Game will start when both players are ready.
+          {!results  
+              ? 'Game will start when both players are ready.'
+              : null
+          }
         </div>
       </div>
     </>
@@ -130,28 +138,6 @@ const ready = `
 
 const readyMessage = `
   text-center
-`;
-
-const readyButton = `
-  py-2
-  px-10
-  block
-  mx-auto
-  my-4
-  text-center
-  text-lg
-  text-white
-  font-bold
-  w-full
-  rounded
-  bg-indigo-500
-  border-b-4
-  border-indigo-600
-  w-max
-  sm:py-4
-  sm:text-2xl
-  hover:bg-indigo-600
-  hover:border-indigo-700
 `;
 
 export default PlayerVersusPlayer;

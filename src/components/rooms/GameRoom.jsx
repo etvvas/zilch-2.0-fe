@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ActiveScoreboard from '../game/ActiveScoreboard';
 import Dice from '../game/Dice';
 import GameControls from '../game/GameControls';
@@ -6,15 +6,17 @@ import PlayerProgress from '../game/PlayerProgress';
 import Rules from '../game/Rules';
 import Scoring from '../game/Scoring';
 import ScoringOptions from '../game/ScoringOptions';
+import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
+  const [results, setResults] = useState(false);
 
   return (
     <div className={main}>
 
       <div className={wrap}>
-        <WaitingRoom />
+        {!results ? <WaitingRoom results={results}/> : null}
 
 
 
@@ -32,6 +34,7 @@ const GameRoom = () => {
         <Scoring />
         <button className={button}>Leave</button>
       </div>
+      {results ? <ResultsPage results={results} /> : null}
     </div>
   )
 }
@@ -45,6 +48,7 @@ const main = `
 
 const wrap = `
   max-w-screen-sm
+  w-full
   mx-auto
   p-4
   bg-white
