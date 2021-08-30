@@ -121,6 +121,8 @@ const GameRoom = () => {
     <div className={main}>
 
       <div className={wrap}>
+        {/* {!results ? <WaitingRoom results={results}/> : null} */}
+
         <PlayerProgress />
         <ActiveScoreboard />
         <Dice dice={dice} />
@@ -138,7 +140,14 @@ const GameRoom = () => {
         />
         <Rules />
       </div>
-      <Rules />
+
+      <div className={footer}>
+        <Rules />
+        {/* <Scoring /> */}
+        <button className={button}>Leave</button>
+      </div>
+{/* 
+      {results ? <ResultsPage results={results} /> : null} */}
     </div>
   );
 };
@@ -152,6 +161,7 @@ const main = `
 
 const wrap = `
   max-w-screen-sm
+  w-full
   mx-auto
   p-4
   bg-white
@@ -159,6 +169,28 @@ const wrap = `
   sm:rounded-lg
   sm:my-8
   sm:p-12
+`;
+
+const footer = `
+  max-w-screen-sm
+  flex
+  flex-row
+  gap-2
+  sm:gap-4
+  justify-center
+`;
+
+const button = `
+  text-indigo-500
+  bg-gray-100
+  sm:bg-purple-400
+  sm:bg-opacity-50
+  sm:text-white
+  rounded-full
+  py-1
+  px-8
+  my-4
+  w-max
 `;
 
 export default GameRoom;
