@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { getLogout } from '../../services/auth';
@@ -6,18 +7,15 @@ import { useSession, useSetSession } from '../../state/SessionProvider';
 
 const Navigation = ({ isOpen }) => {
   const history = useHistory();
-  const session = useSession();
   const setSession = useSetSession();
 
   const handleLogout = () => {
-    setSession(null)
+    const yes = confirm('Are you sure you want to logout?')
+    if(yes){ setSession(null)
     getLogout();    
-    history.push("/") 
+    history.push("/") }
+    return
   }
-
-  // useEffect(() => {
-  //   if(!session?.value) history.push("/")
-  // },[session])
 
   console.log(isOpen);
   return (
