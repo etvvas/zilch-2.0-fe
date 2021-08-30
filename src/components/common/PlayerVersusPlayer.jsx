@@ -12,7 +12,7 @@ console.log('results', results)
         <h3 className={h3}>{room}</h3>
         <div className={innerWrap}>
           <div className={side}>
-            <p className={playerName}>{user1.userName}</p>
+            <p className={playerName}>Player 1</p>
             <svg className={noPlayerSvg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
@@ -25,7 +25,7 @@ console.log('results', results)
             vs
           </div>
           <div className={side}>
-            <p className={playerName}>{user2.userName}</p>
+            <p className={playerName}>Player 2</p>
             <svg className={svg}>
               <use href={avatars + `#${avatar}`} />
             </svg>
@@ -58,6 +58,7 @@ const outerWrap = `
   flex-grow
   flex-col
   rounded-lg
+  w-full
 `;
 
 const h3 = `
@@ -105,10 +106,10 @@ const vs = `
 `;
 
 const svg = `
-  w-20
-  h-20
-  md:w-20
-  md:h-20
+  w-12
+  h-12
+  md:w-12
+  md:h-12
   my-2
   mx-auto
   border-4
@@ -116,10 +117,10 @@ const svg = `
 `;
 
 const noPlayerSvg = `
-  w-20
-  h-20
-  md:w-20
-  md:h-20
+  w-12
+  h-12
+  md:w-12
+  md:h-12
   my-2
   mx-auto
   border-4
