@@ -3,7 +3,7 @@ import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 import { useSession } from '../../state/SessionProvider';
 
 const WaitingRoom = ({ results, onReady, ready }) => {
-  const { session } = useSession()
+  const session = useSession()
   return (
     <>
       <PlayerVersusPlayer results={results} />

@@ -27,6 +27,7 @@ const GameRoom = () => {
   const [rollDisabled, setRollDisabled] = useState(true)
   const [bankDisabled, setBankDisabled] = useState(true)
   const [isDisabled, setIsDisabled] = useState(true)
+  const [isRolled, setIsRolled] = useState(false);
 
 
   useEffect(() => {
@@ -54,16 +55,22 @@ const GameRoom = () => {
     socket.on("READY", (gameState) => setGameState(gameState[room]));
 
     socket.on("ROLLED", (dice, scoringOptions) => {
+      setIsRolled(true)
+
       setDice(dice);
-      setScoringOptions(
-        scoringOptions.map((option, i) => {
-          return {
-            ...option,
-            id: i,
-            selected: false,
-          };
-        })
-      );
+      setTimeout(() => {
+        setScoringOptions(
+          scoringOptions.map((option, i) => {
+            return {
+              ...option,
+              id: i,
+              selected: false,
+            };
+          })
+        )
+        setIsRolled(false)
+      }, 500)
+
     });
 
     socket.on("BANKED", (gameState, index, players) => {
@@ -136,7 +143,7 @@ const GameRoom = () => {
 
         <PlayerProgress />
         <ActiveScoreboard />
-        <Dice dice={dice} />
+        <Dice dice={dice} isRolled={isRolled} />
         <GameControls
           gameState={gameState}
           currentPlayer={currentPlayer}

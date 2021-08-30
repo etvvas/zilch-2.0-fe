@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { wordify } from '../../utils/dice.js';
 
-const Dice = ({dice}) => {
+const Dice = ({dice, isRolled}) => {
+  useEffect(() => {
+
+  }, [isRolled])
   const diceElements = dice.map((eachDie, i) => {
-    return <i key={i} className={die + `fa-dice-${wordify(eachDie)} roll + ${eachDie.held ? held : null }`}></i>
+    return <i key={i} className={die + `fa-dice-${wordify(eachDie)} ${eachDie.held ? held : null } ${isRolled && !eachDie.held? 'roll' : null}`}></i>
   })
 
   return(
