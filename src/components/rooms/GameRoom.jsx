@@ -18,15 +18,12 @@ const GameRoom = () => {
       <div className={wrap}>
         {!results ? <WaitingRoom results={results}/> : null}
 
-
-
-
         {/* <PlayerProgress />
         <ActiveScoreboard />
         <Dice />
         <GameControls />
-        <ScoringOptions />
-        <Rules /> */}
+        <ScoringOptions />*/}
+
       </div>
 
       <div className={footer}>
@@ -34,6 +31,7 @@ const GameRoom = () => {
         <Scoring />
         <button className={button}>Leave</button>
       </div>
+
       {results ? <ResultsPage results={results} /> : null}
     </div>
   )
@@ -59,21 +57,24 @@ const wrap = `
 `;
 
 const footer = `
-  w-full
+  max-w-screen-sm
   flex
   flex-row
   gap-2
+  sm:gap-4
   justify-center
 `;
 
 const button = `
-  bg-purple-400
-  bg-opacity-50
+  text-indigo-500
+  bg-gray-100
+  sm:bg-purple-400
+  sm:bg-opacity-50
+  sm:text-white
   rounded-full
   py-1
   px-8
   my-4
-  text-white
   w-max
 `;
 

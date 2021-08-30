@@ -118,13 +118,15 @@ const Scoring = () => {
 }
 
 const scoringButton = `
-  bg-purple-400
-  bg-opacity-50
+text-indigo-500
+bg-gray-100
+  sm:bg-purple-400
+  sm:bg-opacity-50
+  sm:text-white
   rounded-full
   py-1
   px-8
   my-4
-  text-white
   w-max
 `;
 
@@ -138,6 +140,7 @@ const modal = `
   bottom-0
   px-2
   pt-20
+  sm:pt-36
   pb-2
 `;
 
@@ -147,9 +150,7 @@ const modalWrap = `
   mx-auto
   bg-white
   rounded
-  h-full
   pt-12
-  sm:h-4/5
 `;
 
 const modalInner = `
