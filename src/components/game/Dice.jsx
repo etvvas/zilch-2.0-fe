@@ -14,7 +14,6 @@ const Dice = () => {
   )
 }
 
-
 const diceDisplay = `
   flex
   justify-around
@@ -23,7 +22,6 @@ const diceDisplay = `
   sm:gap-4
   sm:justify-between
 `;
-
 
 const die = `
   fas
@@ -35,10 +33,5 @@ const die = `
 const held = `
   text-blue-400
 `;
-
-const held = `
-  text-blue-400
-`;
-
 
 export default Dice;
