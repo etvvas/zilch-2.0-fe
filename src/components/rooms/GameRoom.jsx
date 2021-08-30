@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import ActiveScoreboard from '../game/ActiveScoreboard';
 // import Dice from '../game/Dice';
 // import GameControls from '../game/GameControls';
@@ -11,7 +11,10 @@ import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
   const [results, setResults] = useState(false);
-  setResults(false);
+  
+  useEffect (() => {
+    setResults(false);
+  }, [])
 
   return (
     <div className={main}>
