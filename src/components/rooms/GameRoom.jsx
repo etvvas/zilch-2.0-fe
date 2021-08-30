@@ -13,6 +13,7 @@ import {  SocketContext } from '../../state/SocketProvider';
 
 const GameRoom = () => {
   const [gameState, setGameState] = useState({});
+  const [currentPlayer, setCurrentPlayer] = useState('')
   // console.log(readyUsers);
   //map out readyUsers
   const history = useHistory();
@@ -37,17 +38,23 @@ useEffect(() => {
     history.push('/lobby') 
     setTimeout(() => alert('Room Full'), 300)
   })
-  socket.on('START_GAME', gameState => {
-    setGameState(gameState[room])})
+  socket.on('START_GAME', (gameState, index, players) => {
+    setGameState(gameState[room])
+    console.log(players, index);
+    setCurrentPlayer(players[index])
+  }
+    
+    )
   socket.on('READY', gameState => setGameState(gameState[room]));
 
   socket.on('ROLLED', dice => {
     console.log(dice)
   })
 
-  socket.on('BANKED', gameState => {
-    console.log(gameState)
+  socket.on('BANKED', (gameState, index, players) => {
     setGameState(gameState[room])
+    console.log(players, index);
+    setCurrentPlayer(players[index])
   })
   
   return () => socket.emit('DISCONNECT')
@@ -79,7 +86,7 @@ const handleReady = () => {
         <Players />
         <ActiveScoreboard />
         <Dice />
-        <GameControls gameState={gameState}/>
+        <GameControls gameState={gameState} currentPlayer={currentPlayer}/>
         <ScoringOptions />
         <Rules />
       </div>
