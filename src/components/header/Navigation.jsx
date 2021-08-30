@@ -9,7 +9,7 @@ const Navigation = ({ isOpen }) => {
         : nav + 'hidden'}>
       <ul className={ul}>
         <li className={li + selected}>Lobby</li>
-        <li className={li}>Rules</li>
+        <li className={li}>Profile</li>
         <li className={li}>Leaderboard</li>
         <li className={li}>Log Out</li>
       </ul>

@@ -3,32 +3,42 @@ import ActiveScoreboard from '../game/ActiveScoreboard';
 import Dice from '../game/Dice';
 import GameControls from '../game/GameControls';
 import PlayerProgress from '../game/PlayerProgress';
-import Players from '../game/Players';
 import Rules from '../game/Rules';
 import ScoringOptions from '../game/ScoringOptions';
 
 const GameRoom = () => {
   
   return (
-    <div className="relative">
+    <div className={main}>
 
       <div className={wrap}>
         <PlayerProgress />
-        <Players />
         <ActiveScoreboard />
         <Dice />
         <GameControls />
         <ScoringOptions />
-        <Rules />
       </div>
+      <Rules />
     </div>
   )
 }
+
+const main = `
+  relative
+  flex
+  flex-col
+  items-center
+`;
 
 const wrap = `
   max-w-screen-sm
   mx-auto
   p-4
+  bg-white
+  h-full
+  sm:rounded-lg
+  sm:my-8
+  sm:p-12
 `;
 
 export default GameRoom;
