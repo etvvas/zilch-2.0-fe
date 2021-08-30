@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useAuthForm from '../../state/hooks/useAuthForm';
-import { useLogin, useSignup } from '../../state/SessionProvider';
+import { useLogin, useSession, useSignup } from '../../state/SessionProvider';
 import Avatars from './Avatars';
 
 const AuthForm = () => {
@@ -9,6 +9,12 @@ const AuthForm = () => {
   const[username, password, avatar, isSignUp, setIsSignUp, handleChange] = useAuthForm()
   const signup = useSignup();
   const login = useLogin();
+  const session = useSession()
+  
+  useEffect(() => {
+    if(session !== null) history.push("/lobby")
+    console.log(session)
+  }, [session])
 
   const handleSubmit = async e => {
     e.preventDefault();
