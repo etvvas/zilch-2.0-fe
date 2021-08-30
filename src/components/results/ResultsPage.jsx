@@ -22,13 +22,13 @@ import Results from './Results';
     // playerUberZilches;
 
 const ResultsPage = ({user1, user2, results}) => {
-  
+  console.log('rp user', user1, user2)
   return (
     <>
       <div className={resultsPage}>
         <h1>Results Page</h1>
-        <PlayerVersusPlayer results={results}/>
-        <Results />
+        <PlayerVersusPlayer results={results} user1={user1} user2={user2}/>
+        <Results user1={user1} user2={user2}/>
         <button className={readyButton}>{results ? 'Back to Lobby' : 'Ready!'}</button>
       </div>
     </>

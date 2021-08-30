@@ -19,7 +19,8 @@ import React from 'react';
     // userId;
     // playerUberZilches;
 
-const Results = () => {
+const Results = ({user1, user2}) => {
+  console.log('users', user1, user2)
   return(
     <>
     <h1>Results</h1>
