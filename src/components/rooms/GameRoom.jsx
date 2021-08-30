@@ -90,10 +90,10 @@ const GameRoom = () => {
   }
 
   return (
-    <div className="relative">
+    <div className={main}>
+
       <div className={wrap}>
         <PlayerProgress />
-        <Players />
         <ActiveScoreboard />
         <Dice dice={dice} />
         <GameControls gameState={gameState} currentPlayer={currentPlayer} />
@@ -104,14 +104,27 @@ const GameRoom = () => {
         />
         <Rules />
       </div>
+      <Rules />
     </div>
   );
 };
+
+const main = `
+  relative
+  flex
+  flex-col
+  items-center
+`;
 
 const wrap = `
   max-w-screen-sm
   mx-auto
   p-4
+  bg-white
+  h-full
+  sm:rounded-lg
+  sm:my-8
+  sm:p-12
 `;
 
 export default GameRoom;

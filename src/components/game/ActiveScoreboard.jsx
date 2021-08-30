@@ -62,7 +62,7 @@ const scoreBoard = `
 `;
 
 const playerStats = `
-h-full
+  h-full
   flex
   flex-col
   gap-2
@@ -119,10 +119,11 @@ const tbody = `
 const th = `
   font-black
   text-right
-  text-sm
+  text-xs
   pt-3
   px-2
   sm:px-6
+  sm:text-sm
   tracking-wider
 `;
 
@@ -132,7 +133,8 @@ const tr = `
 
 const td = `
   text-right
-  text-gray-500
+  text-gray-700
+  text-xs
   font-semibold
   p-2
   sm:text-sm

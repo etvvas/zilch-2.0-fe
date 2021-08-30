@@ -10,7 +10,7 @@ const Rules = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full flex justify-center">
       <button 
         onClick={handleModal}
         className={rulesButton}>Rules</button>
@@ -137,9 +137,12 @@ const Rules = () => {
 
 const rulesButton = `
   bg-purple-400
+  bg-opacity-50
   rounded-full
   py-1
   px-8
+  my-4
+  mx-auto
   text-white
   mx-auto
   w-max
