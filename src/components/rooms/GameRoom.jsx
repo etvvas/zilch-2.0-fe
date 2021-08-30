@@ -13,7 +13,10 @@ import {  SocketContext } from '../../state/SocketProvider';
 
 const GameRoom = () => {
   const [gameState, setGameState] = useState({});
-  const [currentPlayer, setCurrentPlayer] = useState('')
+  const [currentPlayer, setCurrentPlayer] = useState('');
+  const [dice , setDice] = useState([]);
+  const [scoringOptions , setScoringOptions] = useState([]);
+
   // console.log(readyUsers);
   //map out readyUsers
   const history = useHistory();
@@ -34,21 +37,23 @@ useEffect(() => {
     console.log(gameState[room]);
     setGameState(gameState[room])
   })
+
   socket.on('FULL_ROOM', () =>{ 
     history.push('/lobby') 
     setTimeout(() => alert('Room Full'), 300)
   })
+
   socket.on('START_GAME', (gameState, index, players) => {
     setGameState(gameState[room])
     console.log(players, index);
     setCurrentPlayer(players[index])
-  }
-    
-    )
+  })
+
   socket.on('READY', gameState => setGameState(gameState[room]));
 
-  socket.on('ROLLED', dice => {
-    console.log(dice)
+  socket.on('ROLLED', (dice, scoringOptions) => {
+    setDice(dice);
+    setScoringOptions(scoringOptions);
   })
 
   socket.on('BANKED', (gameState, index, players) => {
@@ -66,16 +71,12 @@ const handleReady = () => {
   console.log(gameState);
 }
 
-
-
-
-
  if (gameState.ready && gameState.ready.length < 2) {
   console.log(gameState.ready);
-  return  <button 
- onClick={handleReady}
- disabled={gameState.ready.find(user => user === session.userId)}
- >READY</button>
+  return <button 
+    onClick={handleReady}
+    disabled={gameState.ready.find(user => user === session.userId)}
+  >READY</button>
  }
    
   return (
@@ -85,9 +86,9 @@ const handleReady = () => {
         <PlayerProgress />
         <Players />
         <ActiveScoreboard />
-        <Dice />
+        <Dice dice={dice}/>
         <GameControls gameState={gameState} currentPlayer={currentPlayer}/>
-        <ScoringOptions />
+        <ScoringOptions scoringOptions={scoringOptions}/>
         <Rules />
       </div>
     </div>
