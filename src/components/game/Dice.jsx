@@ -16,22 +16,22 @@ const Dice = () => {
 
 const diceDisplay = `
   flex
-  justify-between
+  justify-around
   my-4
   gap-1
   sm:gap-4
+  sm:justify-between
 `;
 
 const die = `
   fas
   text-5xl
   text-gray-700
-  sm:text-8xl
+  sm:text-7xl
 `;
 
 const held = `
   text-blue-400
 `;
-
 
 export default Dice;
