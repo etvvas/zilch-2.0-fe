@@ -73,7 +73,7 @@ const Lobby = () => {
 ))
   
 if(loading) return <h1>LOADING</h1>
-console.log('LOADING', loading)
+
   return (
     <div className={wrap}>
       <h1 className={h1}>Zilch Lobby</h1>
