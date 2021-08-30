@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { getLogout } from '../../services/auth';
+import { useSession, useSetSession } from '../../state/SessionProvider';
+
 
 const Navigation = ({ isOpen }) => {
+  const history = useHistory();
+  const session = useSession();
+  const setSession = useSetSession();
+
+  const handleLogout = () => {
+    setSession(null)
+    getLogout();     
+  }
+
+  useEffect(() => {
+    if(!session?.value) history.push("/")
+  },[session])
+
   console.log(isOpen);
   return (
     <nav className={
@@ -11,7 +28,7 @@ const Navigation = ({ isOpen }) => {
         <li className={li + selected}>Lobby</li>
         <li className={li}>Rules</li>
         <li className={li}>Leaderboard</li>
-        <li className={li}>Log Out</li>
+        <li className={li} onClick={handleLogout}>Log Out</li>
       </ul>
     </nav>
   )

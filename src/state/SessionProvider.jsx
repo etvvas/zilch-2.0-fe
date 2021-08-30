@@ -27,10 +27,15 @@ export default function SessionProvider({ children }) {
     }
 
     return (
-        <SessionContext.Provider value={{ session, loading, signup, login }}>
+        <SessionContext.Provider value={{ setSession, session, loading, signup, login }}>
             {children}
         </SessionContext.Provider>
     )
+}
+
+export function useSetSession(){
+    const { setSession } = useContext(SessionContext);
+    return setSession
 }
 
 export function useSession(){
