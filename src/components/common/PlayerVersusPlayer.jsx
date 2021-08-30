@@ -12,26 +12,33 @@ const PlayerVersusPlayer = ({user1, user2, room}) => {
         <h3 className={h3}>{room}</h3>
         <div className={innerWrap}>
           <div className={side}>
-            <p className={playerName}>ScrumMast3r</p>
+            <p className={playerName}>Player 1</p>
             <svg className={noPlayerSvg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            <p className={score}>1837 pts</p>
+            <p className={ready}>Ready!</p>
           </div>
           <div className={vs}>
             vs
           </div>
           <div className={side}>
-            <p className={playerName}>_UXgUrU_</p>
+            <p className={playerName}>Player 2</p>
             <svg className={svg}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            <p className={score}>1837 pts</p>
+            <p className={ready}>Ready!</p>
           </div>
-          <div>
-            Waiting for opponent...
-          </div>
-          <button>Ready</button>
+        </div>
+          <button className={readyButton}>Ready</button>
+        <div className={readyMessage}>
+          {/* Case1: player joins, no other player has joined yet
+            "waiting for opponent to join"
+          */}
+          {/* Case2: player joins and hits ready button 
+            "waiting on opponent to be ready"
+          */}
+          {/*  */}
+          Game will start when both players are ready.
         </div>
       </div>
     </>
@@ -42,15 +49,12 @@ const outerWrap = `
   flex
   flex-grow
   flex-col
-  bg-gray-800
-  text-purple-100
   rounded-lg
 `;
 
 const h3 = `
   text-lg
   text-center
-  bg-gray-700
   p-2
   text-gray-300
   tracking-wider
@@ -72,12 +76,13 @@ const side = `
 
 const playerName = `
   text-center
-  text-sm
-  text-green-300
+  text-xl
+  text-gray-700
   font-semibold
   italic
   tracking-wider
   truncate
+  font-bold
 `;
 
 const winning = `
@@ -113,13 +118,39 @@ const noPlayerSvg = `
   border-transparent
   filter
   grayscale
-`
-
-const score = `
-  text-center
-  text-sm
-  text-gray-400
 `;
 
+const ready = `
+  font-bold
+  text-green-500
+  text-center
+  tracking-wide
+`;
+
+const readyMessage = `
+  text-center
+`;
+
+const readyButton = `
+  py-2
+  px-10
+  block
+  mx-auto
+  my-4
+  text-center
+  text-lg
+  text-white
+  font-bold
+  w-full
+  rounded
+  bg-indigo-500
+  border-b-4
+  border-indigo-600
+  w-max
+  sm:py-4
+  sm:text-2xl
+  hover:bg-indigo-600
+  hover:border-indigo-700
+`;
 
 export default PlayerVersusPlayer;

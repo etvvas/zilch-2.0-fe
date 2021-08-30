@@ -19,7 +19,6 @@ const GameRoom = () => {
 
 
         {/* <PlayerProgress />
-        <Players />
         <ActiveScoreboard />
         <Dice />
         <GameControls />
