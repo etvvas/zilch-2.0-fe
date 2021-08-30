@@ -11,12 +11,13 @@ const Navigation = ({ isOpen }) => {
 
   const handleLogout = () => {
     setSession(null)
-    getLogout();     
+    getLogout();    
+    history.push("/") 
   }
 
-  useEffect(() => {
-    if(!session?.value) history.push("/")
-  },[session])
+  // useEffect(() => {
+  //   if(!session?.value) history.push("/")
+  // },[session])
 
   console.log(isOpen);
   return (
