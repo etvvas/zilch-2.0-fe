@@ -3,7 +3,7 @@ import ActiveScoreboard from "../game/ActiveScoreboard";
 import Dice from "../game/Dice";
 import GameControls from "../game/GameControls";
 import PlayerProgress from "../game/PlayerProgress";
-import Players from "../game/Players";
+// import Player from "../game/Players";
 import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import { useHistory, useParams } from "react-router-dom";
@@ -19,6 +19,9 @@ const GameRoom = () => {
   const session = useSession();
   const { room } = useParams();
   const socket = useContext(SocketContext);
+  const [rollDisabled, setRollDisabled] = useState(true)
+  const [bankDisabled, setBankDisabled] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(true)
 
 
   useEffect(() => {
@@ -35,6 +38,11 @@ const GameRoom = () => {
     socket.on("START_GAME", (gameState, index, players) => {
       setGameState(gameState[room]);
       setCurrentPlayer(players[index]);
+
+      // refactor to custom hook setting all pieces of state at once
+      setRollDisabled(!(session.userId === players[index]))
+      setBankDisabled(true)
+      setIsDisabled(!(session.userId === players[index]))
     });
 
     socket.on("READY", (gameState) => setGameState(gameState[room]));
@@ -55,7 +63,19 @@ const GameRoom = () => {
     socket.on("BANKED", (gameState, index, players) => {
       setGameState(gameState[room]);
       setCurrentPlayer(players[index]);
+
+      // refactor to custom hook setting all pieces of state at once
+      setRollDisabled(false)
+      setBankDisabled(true)
+      setIsDisabled(!(session.userId === players[index]))
     });
+
+    socket.on('UPDATE_SCORING_OPTIONS', (dice, scoringOptions) => {
+      setScoringOptions(scoringOptions)    
+      setDice(dice)
+      setBankDisabled(false)
+    })
+
     return () => socket.emit("DISCONNECT");
   }, []);
 
@@ -96,7 +116,13 @@ const GameRoom = () => {
         <PlayerProgress />
         <ActiveScoreboard />
         <Dice dice={dice} />
-        <GameControls gameState={gameState} currentPlayer={currentPlayer} />
+        <GameControls 
+        gameState={gameState} 
+        currentPlayer={currentPlayer} 
+        scoringOptions={scoringOptions}
+        rollDisabled={rollDisabled}
+        bankDisabled={bankDisabled}
+        isDisabled={isDisabled}/>
         <ScoringOptions
           scoringOptions={scoringOptions}
           currentPlayer={currentPlayer}

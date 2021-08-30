@@ -2,18 +2,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import { useSession } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
 
-const GameControls = ({gameState, currentPlayer}) => {
-const [disabled, setDisabled] = useState(true)
-const {userId} = useSession()
+const GameControls = ({gameState, scoringOptions, isDisabled, rollDisabled, bankDisabled}) => {
+
 const socket = useContext(SocketContext)
 
-
-useEffect(() => {
-    if(currentPlayer === userId) setDisabled(false)
-    else setDisabled(true)
- }, [currentPlayer])
+// if the sum of the users points < 300, disable bank button
  
-
 const handleRoll = () => {
   socket.emit('ROLL')
 }
@@ -25,11 +19,11 @@ const handleBank = () => {
   return (
     <div className={diceControls}>
       <button 
-        disabled={disabled}
+        disabled={isDisabled || rollDisabled}
         className={button + rollButton}
         onClick={handleRoll}>Roll</button>
       <button 
-      disabled={disabled}
+      disabled={isDisabled || bankDisabled}
       className={button + bankReady}
       onClick={handleBank} 
       >Bank</button>
