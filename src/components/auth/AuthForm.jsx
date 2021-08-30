@@ -13,7 +13,6 @@ const AuthForm = () => {
   
   useEffect(() => {
     if(session !== null) history.push("/lobby")
-    console.log(session)
   }, [session])
 
   const handleSubmit = async e => {

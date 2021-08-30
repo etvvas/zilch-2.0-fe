@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import { useVerificationLoading } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
-import useLobby from '../../state/hooks/useLobby';
 
 import Room from './Room';
 const rooms = [{roomName: 'Room1'}, {roomName: 'Room2'}, {roomName: 'Room3'}, {roomName: 'Room4'}, {roomName: 'Room5'}, {roomName: 'Room6'}];
@@ -9,6 +9,7 @@ const rooms = [{roomName: 'Room1'}, {roomName: 'Room2'}, {roomName: 'Room3'}, {r
 const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
+  const loading = useVerificationLoading()
   useEffect(() => {
     socket.on('UPDATE_LOBBY', (socketRooms) => {
       // console.log('Socket Rooms', socketRooms);
@@ -48,6 +49,7 @@ const Lobby = () => {
   //         }
   //     }
   // ]
+
     return () => {
       socket.removeListener('UPDATE_LOBBY')
       socket.emit('DISCONNECT')
@@ -70,7 +72,8 @@ const Lobby = () => {
     </li>
 ))
   
-
+if(loading) return <h1>LOADING</h1>
+console.log('LOADING', loading)
   return (
     <div className={wrap}>
       <h1 className={h1}>Zilch Lobby</h1>
