@@ -124,9 +124,7 @@ const scoringButton = `
   py-1
   px-8
   my-4
-  mx-auto
   text-white
-  mx-auto
   w-max
 `;
 

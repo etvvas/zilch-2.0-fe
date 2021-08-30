@@ -26,8 +26,12 @@ const GameRoom = () => {
         <ScoringOptions />
         <Rules /> */}
       </div>
-      <Rules />
-      <Scoring />
+
+      <div className={footer}>
+        <Rules />
+        <Scoring />
+        <button className={button}>Leave</button>
+      </div>
     </div>
   )
 }
@@ -48,6 +52,25 @@ const wrap = `
   sm:rounded-lg
   sm:my-8
   sm:p-12
+`;
+
+const footer = `
+  w-full
+  flex
+  flex-row
+  gap-2
+  justify-center
+`;
+
+const button = `
+  bg-purple-400
+  bg-opacity-50
+  rounded-full
+  py-1
+  px-8
+  my-4
+  text-white
+  w-max
 `;
 
 export default GameRoom;

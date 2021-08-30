@@ -50,6 +50,7 @@ const outerWrap = `
   flex-grow
   flex-col
   rounded-lg
+  w-full
 `;
 
 const h3 = `
@@ -97,10 +98,10 @@ const vs = `
 `;
 
 const svg = `
-  w-20
-  h-20
-  md:w-20
-  md:h-20
+  w-12
+  h-12
+  md:w-12
+  md:h-12
   my-2
   mx-auto
   border-4
@@ -108,10 +109,10 @@ const svg = `
 `;
 
 const noPlayerSvg = `
-  w-20
-  h-20
-  md:w-20
-  md:h-20
+  w-12
+  h-12
+  md:w-12
+  md:h-12
   my-2
   mx-auto
   border-4
