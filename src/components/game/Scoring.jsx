@@ -184,8 +184,4 @@ const h3 = `
   mb-1
 `;
 
-const p = `
-  text-sm
-`;
-
 export default Scoring;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ActiveScoreboard from '../game/ActiveScoreboard';
-import Dice from '../game/Dice';
-import GameControls from '../game/GameControls';
-import PlayerProgress from '../game/PlayerProgress';
+// import ActiveScoreboard from '../game/ActiveScoreboard';
+// import Dice from '../game/Dice';
+// import GameControls from '../game/GameControls';
+// import PlayerProgress from '../game/PlayerProgress';
 import Rules from '../game/Rules';
 import Scoring from '../game/Scoring';
-import ScoringOptions from '../game/ScoringOptions';
+// import ScoringOptions from '../game/ScoringOptions';
 import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
 
