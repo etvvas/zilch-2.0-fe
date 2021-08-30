@@ -14,8 +14,6 @@ useEffect(() => {
  }, [currentPlayer])
  
 
-
-
 const handleRoll = () => {
   socket.emit('ROLL')
 }

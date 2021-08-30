@@ -88,7 +88,7 @@ const handleReady = () => {
         <ActiveScoreboard />
         <Dice dice={dice}/>
         <GameControls gameState={gameState} currentPlayer={currentPlayer}/>
-        <ScoringOptions scoringOptions={scoringOptions}/>
+        <ScoringOptions scoringOptions={scoringOptions} currentPlayer={currentPlayer}/>
         <Rules />
       </div>
     </div>
