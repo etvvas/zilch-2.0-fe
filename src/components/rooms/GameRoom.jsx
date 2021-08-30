@@ -12,32 +12,32 @@ import WaitingRoom from './WaitingRoom';
 const GameRoom = () => {
   const [results, setResults] = useState(true);
   
-  //CHANGE HERE FOR TESTING
-  setResults(false);
-  
-  const [user1, setUser1] = useState({
-    userId: '1',
-    userName: "PlAyEr 1",
-    avatar: 'dog',
-    gameId: '1',
-    numberOfRounds: 10,
-    playerScore: 3000,
-    playerZilches: 3,
-    playerUberZilches: 1
-  });
-  const [user2, setUser2] = useState({
-    userId: '2',
-    userName: "pLaYeR 2",
-    avatar: 'polar-bear',
-    gameId: '1',
-    numberOfRounds: 10,
-    playerScore: 5000,
-    playerZilches: 0,
-    playerUberZilches: 0
-  })
+  const [user1, setUser1] = useState({});
+  const [user2, setUser2] = useState({});
   
   useEffect (() => {
+    //CHANGE HERE FOR TESTING
     setResults(false);
+    setUser1({
+      userId: '1',
+      userName: "PlAyEr 1",
+      avatar: 'dog',
+      gameId: '1',
+      numberOfRounds: 10,
+      playerScore: 3000,
+      playerZilches: 3,
+      playerUberZilches: 1
+    })
+    setUser2({
+      userId: '2',
+      userName: "pLaYeR 2",
+      avatar: 'polar-bear',
+      gameId: '1',
+      numberOfRounds: 10,
+      playerScore: 5000,
+      playerZilches: 0,
+      playerUberZilches: 0
+  })
   }, [])
 
   return (
