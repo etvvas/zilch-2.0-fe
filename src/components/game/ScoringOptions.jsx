@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
-import { useSession } from '../../state/SessionProvider';
+import React from "react";
+import { useSession } from "../../state/SessionProvider";
 
-const ScoringOptions = ({scoringOptions, currentPlayer}) => {
+const ScoringOptions = ({ scoringOptions, currentPlayer, onChange }) => {
   const session = useSession();
-  const [selectedScoringOption, setSelectedScoringOption] = useState([])
-  // scoringOptiong structure
-  // {"score":600,"choice":"3 6s: Score: 600","dice":[{"held":false,"value":6},{"held":false,"value":6},{"held":false,"value":6}]}
 
-  // need to clear selected inputs when turn ends
-  const handleChange = ({target}) => {
-    const updatedState = [...selectedScoringOption]
-    const matchIndex = updatedState.findIndex(option => option.score === JSON.parse(target.value).score)
-    if(matchIndex !== -1) {
-      updatedState.splice(matchIndex, 1)
-      setSelectedScoringOption(updatedState)
-    } else {
-      setSelectedScoringOption(prevState => [...prevState, JSON.parse(target.value)])
-    }
-        
-  }
   return (
     <form className={scoringOptionsForm}>
-      {  scoringOptions.map((option, i) => (
-        <>
-          <input 
-          onChange={handleChange}
-          disabled={currentPlayer !== session.userId ? "disabled" : ""} type="checkbox" id={`input${(i+1).toString()}`} className="hidden" value={JSON.stringify(option)} />
-          <label for={`input${(i+1).toString()}`}  className={scoringOption}>{option.choice}</label>
-        </>
-      ))
-      }
+      {scoringOptions.map((option, i) => {
+        return (
+          <>
+            <input
+              checked={scoringOptions[i].selected}
+              onChange={onChange}
+              disabled={currentPlayer !== session.userId ? "disabled" : ""}
+              type="checkbox"
+              id={`input${(i + 1).toString()}`}
+              className="hidden"
+              value={JSON.stringify(option)}
+            />
+            <label for={`input${(i + 1).toString()}`} className={scoringOption}>
+              {option.choice}
+            </label>
+          </>
+        );
+      })}
     </form>
-  )
-}
+  );
+};
 
 const scoringOptionsForm = `
   flex
