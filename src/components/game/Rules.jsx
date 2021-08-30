@@ -40,94 +40,7 @@ const Rules = () => {
                 <p className={p}>Once you have taken at least 300 points you can choose to bank them and end your turn or keep on rolling the dice. But careful, if you keep rolling you could zilch out.</p>
     
                 <h3 className={h3}>Re-roll the remaining dice</h3>
-                <p className={p}>You can reroll any dice that you didn't score with. Once you have scored points from all six dice
-                    you
-                    get a free roll!</p>
-
-                <h2 className={h2}>SCORING</h2>
-                <div className="scoring-modal-grid">
-                    <div className="scoring-modal-half">
-                        <h3 className={h3}>Single die</h3>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-one"></i><span>100 Points Each</span>
-                        </div>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-five"></i><span>50 Points Each</span>
-                        </div>
-
-                        <h3 className={h3}>Three of a Kind</h3>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-one"></i>
-                            <i className="fas fa-dice-one"></i>
-                            <i className="fas fa-dice-one"></i><span>1000 Points</span>
-                        </div>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-two"></i><span>200 Points</span>
-                        </div>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-three"></i>
-                            <i className="fas fa-dice-three"></i>
-                            <i className="fas fa-dice-three"></i><span>300 Points</span>
-                        </div>
-                        <div className="scoring-dice"><i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-four"></i><span>400Points</span>
-                        </div>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-five"></i><span>500 Points</span>
-                        </div>
-                        <div className="scoring-dice"><i className="fas fa-dice-six"></i>
-                            <i className="fas fa-dice-six"></i>
-                            <i className="fas fa-dice-six"></i><span>600 Points</span>
-                        </div>
-                    </div>
-                    <div className="scoring-modal-half">
-                        <h3 className={h3}> Four or More of a Kind:</h3> <div className="subtext">Every Extra Die Doubles the Three of a Kind Score</div>
-                        <div className="scoring-dice">
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i><span>600 Points</span>
-                        </div>
-
-                        <div className="scoring-dice">
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i><span>1200 Points</span>
-                        </div>
-
-                        <h3 className={h3}>Straight</h3>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-one"></i>
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-three"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-six"></i>
-                        </div>
-                        <span>1500 Points</span>
-
-                        <h3 className={h3}>Any Three Pairs</h3>
-                        <div className="scoring-dice">
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-five"></i>
-                        </div>
-                        <span>1500 Points</span>
-                    </div>
-                </div>
-                {/* <button 
-                  onClick={() => setisRulesOpen(!isRulesOpen)}
-                  className={closeButton}>Close</button> */}
+                <p className={p}>You can reroll any dice that you didn't score with. Once you have scored points from all six dice you get a free roll!</p>
             </div>
         </div>
       </div>
@@ -136,15 +49,15 @@ const Rules = () => {
 }
 
 const rulesButton = `
-  bg-purple-400
-  bg-opacity-50
+text-indigo-500
+bg-gray-100
+  sm:bg-purple-400
+  sm:bg-opacity-50
+  sm:text-white
   rounded-full
   py-1
   px-8
   my-4
-  mx-auto
-  text-white
-  mx-auto
   w-max
 `;
 
@@ -158,6 +71,7 @@ const modal = `
   bottom-0
   px-2
   pt-20
+  sm:pt-36
   pb-2
 `;
 
@@ -167,9 +81,7 @@ const modalWrap = `
   mx-auto
   bg-white
   rounded
-  h-full
   pt-12
-  sm:h-4/5
 `;
 
 const modalInner = `
