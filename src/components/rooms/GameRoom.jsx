@@ -74,7 +74,13 @@ const GameRoom = () => {
       setGameState(gameState)
       setScoringOptions(scoringOptions)    
       setDice(dice)
-      setBankDisabled(false)
+    //  console.log( "STATE", gameState);     
+    //  console.log("CURRENT PLAYER", currentPlayer); 
+    //   let matchingUser;
+    //   gameState.firstUser.userId === currentPlayer
+    //     ? (matchingUser = "firstUser")
+    //     : (matchingUser = "secondUser");
+    //   if(gameState[matchingUser].roundScore >= 300)  setBankDisabled(false)
     })
 
     return () => socket.emit("DISCONNECT");
