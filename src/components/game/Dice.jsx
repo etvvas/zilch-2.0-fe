@@ -36,5 +36,9 @@ const held = `
   text-blue-400
 `;
 
+const held = `
+  text-blue-400
+`;
+
 
 export default Dice;
