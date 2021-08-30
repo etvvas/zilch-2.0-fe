@@ -4,6 +4,7 @@ import Dice from '../game/Dice';
 import GameControls from '../game/GameControls';
 import PlayerProgress from '../game/PlayerProgress';
 import Rules from '../game/Rules';
+import Scoring from '../game/Scoring';
 import ScoringOptions from '../game/ScoringOptions';
 import WaitingRoom from './WaitingRoom';
 
@@ -26,6 +27,7 @@ const GameRoom = () => {
         <Rules /> */}
       </div>
       <Rules />
+      <Scoring />
     </div>
   )
 }
