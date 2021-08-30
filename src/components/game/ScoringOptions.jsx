@@ -1,25 +1,32 @@
-import React from 'react';
+import React from "react";
+import { useSession } from "../../state/SessionProvider";
 
-const ScoringOptions = () => {
+const ScoringOptions = ({ scoringOptions, currentPlayer, onChange }) => {
+  const session = useSession();
+
   return (
     <form className={scoringOptionsForm}>
-      <input type="checkbox" id="input1" className="hidden" />
-      <label for="input1" className={scoringOption}>1 One: 100 pts</label>
-
-      <input type="checkbox" id="input2" className="hidden" />
-      <label for="input2" className={scoringOption}>3 Fives: 300 pts</label>
-{/* 
-      <input type="checkbox" id="input3" className="hidden" />
-      <label for="input3" className={scoringOption}>1 Five: 50 pts</label>
-
-      <input type="checkbox" id="input4" className="hidden" />
-      <label for="input4" className={scoringOption}>1 Five: 50 pts</label>
-
-      <input type="checkbox" id="input5" className="hidden" />
-      <label for="input5" className={scoringOption}>1 Five: 50 pts</label> */}
+      {scoringOptions.map((option, i) => {
+        return (
+          <>
+            <input
+              checked={scoringOptions[i].selected}
+              onChange={onChange}
+              disabled={currentPlayer !== session.userId ? "disabled" : ""}
+              type="checkbox"
+              id={`input${(i + 1).toString()}`}
+              className="hidden"
+              value={JSON.stringify(option)}
+            />
+            <label htmlFor={`input${(i + 1).toString()}`} className={scoringOption}>
+              {option.choice}
+            </label>
+          </>
+        );
+      })}
     </form>
-  )
-}
+  );
+};
 
 const scoringOptionsForm = `
   flex
@@ -53,3 +60,15 @@ const scoringOption = `
 `;
 
 export default ScoringOptions;
+
+//  original code
+// <input type="checkbox" id="input1" className="hidden" />
+// <label for="input1" className={scoringOption}>1 On100 pts</labe
+// <input type="checkbox" id="input2" className="hidden" />
+// <label for="input2" className={scoringOption}>3 Five300 pts</labe
+// <input type="checkbox" id="input3" className="hidden" />
+// <label for="input3" className={scoringOption}>1 Fiv50 pts</labe
+// <input type="checkbox" id="input4" className="hidden" />
+// <label for="input4" className={scoringOption}>1 Fiv50 pts</labe
+// <input type="checkbox" id="input5" className="hidden" />
+// <label for="input5" className={scoringOption}>1 Fiv50 pts</label>
