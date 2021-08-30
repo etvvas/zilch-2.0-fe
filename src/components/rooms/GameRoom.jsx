@@ -5,18 +5,26 @@ import GameControls from '../game/GameControls';
 import PlayerProgress from '../game/PlayerProgress';
 import Rules from '../game/Rules';
 import ScoringOptions from '../game/ScoringOptions';
+import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
-  
+
   return (
     <div className={main}>
 
       <div className={wrap}>
-        <PlayerProgress />
+        <WaitingRoom />
+
+
+
+
+        {/* <PlayerProgress />
+        <Players />
         <ActiveScoreboard />
         <Dice />
         <GameControls />
         <ScoringOptions />
+        <Rules /> */}
       </div>
       <Rules />
     </div>
