@@ -11,6 +11,7 @@ import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
   const [results, setResults] = useState(false);
+  setResults(false);
 
   return (
     <div className={main}>
