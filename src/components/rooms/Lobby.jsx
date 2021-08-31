@@ -3,104 +3,100 @@ import { Link } from 'react-router-dom';
 import { useSetLoading, useVerificationLoading } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
 
+// import useLobby from '../../state/hooks/useLobby';
+
+
 import Room from './Room';
-const rooms = [{roomName: 'Room1'}, {roomName: 'Room2'}, {roomName: 'Room3'}, {roomName: 'Room4'}, {roomName: 'Room5'}, {roomName: 'Room6'}];
+const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'}, {roomName: 'Mythril'}, {roomName: 'Titanium'}, {roomName: 'Adamantium'}];
 
 const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
+
   const loading = useVerificationLoading()
   const setLoading = useSetLoading()
+
   useEffect(() => {
     
     setLoading(true)
     socket.on('UPDATE_LOBBY', (socketRooms) => {
-      // console.log('Socket Rooms', socketRooms);
-      const updatedRooms = rooms.map(room => {
-        // console.log('socket room', socketRooms[0][room.roomName]?.roomName);
+
+        const updatedRooms = rooms.map(room => {
+
         let newRoom;
         const match = socketRooms.find(item => item[room.roomName]?.roomName === room.roomName) 
         match ? newRoom = match[room.roomName] : newRoom = room
         return newRoom
       })
-      // filter again
-      setGameRooms(updatedRooms)
-      // setTimeout(() => setLoading(false), 1000)
-      
-    }, [])
+
+     setGameRooms(updatedRooms)
+    })
+    socket.on("connect", () => {
+      console.log('LOBBY CONNECTED');
+    });
+    socket.on("disconnect", (reason) => {
+      console.log('LOBBY', reason);
+    });
+    return () => {
+      socket.removeListener('UPDATE_LOBBY')
+      socket.emit('DISCONNECT')
+    }
+  }, [])
+
+const handleClick = () => {
+  socket.emit('DISCONNECT')
+}
+
+ 
+  const roomsElements = gameRooms.map((room) => (
     
-    //   [
-      //     {
-        //         "Room1": {
-          //             "ready": [],
-          //             "currentPlayerIndex": 0,
-          //             "players": [
-            //                 "1"
-            //             ],
-            //             "roomName": "Room1",
-            //             "rounds": 0,
-            //             "targetScore": 5000,
-            //             "firstUser": {
-              //                 "userName": "user1",
-              //                 "userId": "1",
-              //                 "avatar": "dog",
-              //                 "gameId": "",
-              //                 "numberOfRound": 0,
-              //                 "playerScore": 0,
-              //                 "playerZilches": 0,
-              //                 "playerUberZilches": 0
-              //             }
-              //         }
-              //     }
-              // ]
-              //
-              // Loading long enough to see spinning dice 
-              // 
-              
-              setTimeout(() => setLoading(false),500) 
-              return () => {
-                socket.removeListener('UPDATE_LOBBY')
-                socket.emit('DISCONNECT')
-              }
-            },[])
-            
-            // useEffect(() => {
-              
-              // }, [lobby])
-              
-              // need to took in the lobby data to see if there is data that exists for the room
-              // regardless of whether there is or isn't data, we need to pass a prop down
-              
-              const roomsElements = gameRooms.map((room) => (
-                
-                <li  key={room.roomName} className={li}>
-      <Link to={`/lobby/${room.roomName}`}>
+    <li  key={room.roomName} className={li}>
+      <Link 
+      onClick={handleClick}
+      to={`/lobby/${room.roomName}`}>
+
         <Room {...room} />
       </Link>
     </li>
 ))
 
-if(loading) return <h1>LOADING</h1>
 
-return (
-    <div className={wrap}>
-      <h1 className={h1}>Zilch Lobby</h1>
-      <ul className={ul}>
-        {roomsElements}
-      </ul>
+  return (
+    <div className={outer}>
+      <div className={wrap}>
+        <h1 className={h1}><span className={span}>Zilch 2.0</span> Lobby</h1>
+        <ul className={ul}>
+          {roomsElements}
+        </ul>
+      </div>
+
     </div>
   )
 }
 
+const outer = `
+  flex
+  flex-col
+`;
+
 const wrap = `
   max-w-screen-xl
-  mx-auto
+  sm:mx-auto
+  bg-white
+  rounded-xl
+  sm:my-12
+  sm:py-12
 `;
 
 const h1 = `
   text-4xl
   text-center
-  mt-10
+  mt-4
+`;
+
+const span = `
+  font-black
+  text-indigo-500
 `;
 
 const ul = `

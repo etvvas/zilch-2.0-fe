@@ -39,8 +39,7 @@ const Header = () => {
 }
 
 const header = `
-  col-span-12 
-  p-4
+  p-2
   flex
   gap-4
   items-center
@@ -70,8 +69,8 @@ const icon = `
 const h1 = `
   text-purple-100
   font-bold
-  text-2xl
-  zilch
+  text-xl
+  sm:text-2xl
 `;
 
 const h2 = `
@@ -86,6 +85,10 @@ const h2 = `
 const svg = `
   w-8
   h-8
+  border-4
+  border-black
+  border-opacity-10
+  rounded-full
 `
 
 const wrap = `
@@ -93,6 +96,7 @@ const wrap = `
   flex-row
   items-center
   gap-4
+  sm:gap-2
 `;
 
 export default Header;

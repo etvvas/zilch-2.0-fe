@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
 const Room = ({roomName, firstUser, secondUser, }) => {
