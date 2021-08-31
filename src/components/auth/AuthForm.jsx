@@ -50,7 +50,6 @@ const AuthForm = () => {
               />
           </label>
 
-
           { isSignUp && 
             <Avatars onChange={handleChange} />
           }
@@ -66,7 +65,6 @@ const AuthForm = () => {
           ? <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Already have an account? Log in.</p>
           : <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Don't have an account? Sign up.</p>
         }
-        
 
         { isSignUp &&
           <div className="my-10 text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -102,8 +100,6 @@ const brand = `
   font-black
   text-indigo-500
 `;
-
-
 
 const label = `
   flex
