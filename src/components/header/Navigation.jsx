@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
 import { getLogout } from '../../services/auth';
 import { useSetSession } from '../../state/SessionProvider';
