@@ -2,14 +2,18 @@ import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
 const PlayerVersusPlayer = ({user1, user2, room, results}) => {
+  // temp data - can delete once game logic is complete
   room = 'Room1';
   const avatar = 'dice';
-  // add conditional styling (noPlayerSvg) if player does not exist
-console.log('results', results)
+  const winner = user1.userName
+
   return (
     <>
       <div className={outerWrap}>
-        <h3 className={h3}>{room}</h3>
+        {results
+          ? <h2>{winner} WINS!</h2>
+          : <h3 className={h3}>{room}</h3>
+        }
         <div className={innerWrap}>
           <div className={side}>
             <p className={playerName}>{user1.userName}</p>

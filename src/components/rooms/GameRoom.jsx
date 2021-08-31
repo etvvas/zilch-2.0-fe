@@ -49,7 +49,7 @@ const GameRoom = () => {
 
   useEffect (() => {
     //CHANGE HERE FOR TESTING
-    setResults(false);
+    setResults(true);
   }, [])
 
   return (
