@@ -30,40 +30,40 @@ const Scoring = () => {
                 <div className={container}>
                     <div className={side}>
                         <h3 className={h3}>Single die</h3>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-one'}></i><span className={span}>100 Points Each</span>
                         </div>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-five'}></i><span className={span}>50 Points Each</span>
                         </div>
 
                         <h3 className={h3}>Three of a Kind</h3>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-one'}></i>
                           <i className={die + 'fa-dice-one'}></i>
                           <i className={die + 'fa-dice-one'}></i><span className={span}>1000 Points</span>
                         </div>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-two'}></i>
                           <i className={die + 'fa-dice-two'}></i>
                           <i className={die + 'fa-dice-two'}></i><span className={span}>200 Points</span>
                         </div>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-three'}></i>
                           <i className={die + 'fa-dice-three'}></i>
                           <i className={die + 'fa-dice-three'}></i><span className={span}>300 Points</span>
                         </div>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-four'}></i>
                           <i className={die + 'fa-dice-four'}></i>
                           <i className={die + 'fa-dice-four'}></i><span className={span}>400Points</span>
                         </div>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-five'}></i>
                           <i className={die + 'fa-dice-five'}></i>
                           <i className={die + 'fa-dice-five'}></i><span className={span}>500 Points</span>
                         </div>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                           <i className={die + 'fa-dice-six'}></i>
                           <i className={die + 'fa-dice-six'}></i>
                           <i className={die + 'fa-dice-six'}></i><span className={span}>600 Points</span>
@@ -72,14 +72,14 @@ const Scoring = () => {
                     <div className={side}>
                         <h3 className={h3}> Four or More of a Kind:</h3> 
                         <div className={subtext}>Every extra die doubles the score.</div>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                                 <i className={die + 'fa-dice-three'}></i>
                                 <i className={die + 'fa-dice-three'}></i>
                                 <i className={die + 'fa-dice-three'}></i>
                                 <i className={die + 'fa-dice-three'}></i><span className={span}>600 Points</span>
                         </div>
 
-                        <div className="scoring-dice">
+                        <div className={dice}>
                                 <i className={die + 'fa-dice-three'}></i>
                                 <i className={die + 'fa-dice-three'}></i>
                                 <i className={die + 'fa-dice-three'}></i>
@@ -88,7 +88,7 @@ const Scoring = () => {
                         </div>
 
                         <h3 className={h3}>Straight</h3>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                             <i className={die + 'fa-dice-one'}></i>
                             <i className={die + 'fa-dice-two'}></i>
                             <i className={die + 'fa-dice-three'}></i>
@@ -99,7 +99,7 @@ const Scoring = () => {
                         <span className={span}>1500 Points</span>
 
                         <h3 className={h3}>Any Three Pairs</h3>
-                        <div className="scoring-dice">
+                        <div className={dice}>
                             <i className={die + 'fa-dice-two'}></i>
                             <i className={die + 'fa-dice-two'}></i>
                             <i className={die + 'fa-dice-four'}></i>
@@ -129,10 +129,18 @@ const side = `
   
 `;
 
+const dice = `
+  flex
+  flex-row
+  gap-2
+  items-center
+`;
+
 const die = `
   fas
-  text-2xl
-  text-gray-700
+  text-4xl
+  text-indigo-800
+  opacity-50
 `;
 
 const scoringButton = `
@@ -170,7 +178,8 @@ const modalWrap = `
   bg-white
   rounded
   pt-12
-  modal-wrap
+  h-full
+  sm:h-auto
 `;
 
 const modalInner = `
@@ -193,6 +202,7 @@ const x = `
 const h2 = `
   text-2xl
   text-center
+  text-indigo-700
   font-black
   mt-4
   sm:mt-8
@@ -201,17 +211,19 @@ const h2 = `
 const h3 = `
   text-md
   sm:text-lg
-  font-bold
+  font-extrabold
   mt-4
   mb-1
 `;
 
 const subtext = `
-  text-sm
+  text-xs
+  mb-2
 `;
 
 const span = `
   text-sm
+  font-semibold
 `;
 
 export default Scoring;

@@ -82,7 +82,8 @@ const modalWrap = `
   bg-white
   rounded
   pt-12
-  modal-wrap
+  h-full
+  sm:h-auto
 `;
 
 const modalInner = `
@@ -105,13 +106,15 @@ const x = `
 const h2 = `
   text-2xl
   text-center
+  text-indigo-700
   font-black
   mt-8
 `;
 
 const h3 = `
-  text-lg
-  font-bold
+  text-md
+  sm:text-lg
+  font-extrabold
   mt-4
   mb-1
 `;
