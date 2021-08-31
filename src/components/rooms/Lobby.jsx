@@ -35,8 +35,7 @@ const Lobby = () => {
 const handleClick = () => {
   socket.emit('DISCONNECT')
 }
-  // need to took in the lobby data to see if there is data that exists for the room
-  // regardless of whether there is or isn't data, we need to pass a prop down
+
  
   const roomsElements = gameRooms.map((room) => (
     
