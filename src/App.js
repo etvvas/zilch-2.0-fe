@@ -21,7 +21,7 @@ function App() {
         <SocketContext.Provider value={socket}>
           <PrivateRoute exact path="/lobby" component={Lobby} />
           <PrivateRoute exact path="/lobby/:room" component={GameRoom} />
-          <PrivateRoute exact path="/user/:id" component={PlayerProfile} />
+          <PrivateRoute exact path="/user/:username" component={PlayerProfile} />
         </SocketContext.Provider>
       </Switch>
     </>
