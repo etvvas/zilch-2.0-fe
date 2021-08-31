@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from '../../state/SessionProvider';
 import avatars from '../../assets/avatars.svg';
 import { useParams } from 'react-router-dom';
-import { getPlayerWins, getUser } from '../../services/profile';
+import { getPlayerGames, getPlayerWins, getUser } from '../../services/profile';
 
 const PlayerProfile = () => {
   const session = useSession();
@@ -15,9 +15,15 @@ const PlayerProfile = () => {
   const [zilches, setZilches] = useState('');
   const [uberZilches, setUberZilches] = useState('');
 
-  useEffect(() => {
-    getUser(username).then(setUser);
-    getPlayerWins(user.userId).then(setWins);
+  useEffect(async() => {
+    const fetchedUser = await getUser(username);
+    setUser(fetchedUser);
+    // const fetchedWins = await getPlayerWins(user.userId)
+    const fetchedWins = [...Array(6)]
+    setWins(fetchedWins.length);
+    // const fetchedGames = await getPlayerGames(user.userId);
+    const fetchedGames = [...Array(18)]
+    setLosses(fetchedGames.length - wins);
   }, [])
 
   return (
@@ -29,7 +35,7 @@ const PlayerProfile = () => {
       </svg>
       <h2>user: {user.username}</h2>
       <h2>wins: {wins}</h2>
-      <h2>losses: </h2>
+      <h2>losses: {losses} </h2>
       <h2>zilches: </h2>
       <h2>uberZilches: </h2>
 
