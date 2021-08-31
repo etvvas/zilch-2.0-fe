@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import { useSession } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
 
-const GameControls = ({gameState, dice, isDisabled, rollDisabled, bankDisabled}) => {
+const GameControls = ({gameState, dice, isDisabled, rollDisabled, bankDisabled, isFreeRoll}) => {
 console.log(bankDisabled);
 const socket = useContext(SocketContext)
 
@@ -21,7 +21,7 @@ const handleBank = () => {
       <button 
         disabled={isDisabled || rollDisabled}
         className={button + rollButton}
-        onClick={handleRoll}>Roll </button>
+        onClick={handleRoll}>{isFreeRoll ? 'Free Roll!' : 'Roll'} </button>
       <button 
       disabled={isDisabled || bankDisabled}
       className={button + bankReady}

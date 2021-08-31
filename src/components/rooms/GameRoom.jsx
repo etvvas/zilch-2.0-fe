@@ -29,6 +29,7 @@ const GameRoom = () => {
   const [isDisabled, setIsDisabled] = useState(true)
   const [isRolled, setIsRolled] = useState(false);
   const [isZilch, setIsZilch] = useState(false)
+  const [isFreeRoll, setIsFreeRoll] = useState(false)
 
 
   useEffect(() => {
@@ -65,10 +66,17 @@ const GameRoom = () => {
         setScoringOptions([])
     })
 
-    socket.on("ROLLED", (dice, scoringOptions) => {
+    socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
+      setIsFreeRoll(false)
+      // setIsFreeRoll(false)
+      if(isFreeRoll){
+        setIsFreeRoll(true)
+        setRollDisabled(false)
+        setIsZilch(true)
+      }
       
       // indicate zilch on FE
     
@@ -104,6 +112,9 @@ const GameRoom = () => {
       setScoringOptions(scoringOptions)
       setDice(dice)
       setIsZilch(false)
+      if(gameState.isFreeRoll){
+        setIsFreeRoll(true)
+      }
 
       let matchingUser;
       console.log('CURRENT PLAYER', gameState.players[gameState.currentPlayerIndex]);
@@ -163,6 +174,7 @@ const GameRoom = () => {
         <ActiveScoreboard />
         <Dice dice={dice} isRolled={isRolled} />
         <GameControls
+          isFreeRoll={isFreeRoll}
           gameState={gameState}
           dice={dice}
           currentPlayer={currentPlayer}
