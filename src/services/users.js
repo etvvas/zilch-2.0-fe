@@ -6,9 +6,9 @@ export const getUsers = async () => {
     return userIds
 }
 
-export const getWins = (idArray) => {
-      const wins = idArray.map(async id =>
-       await get(`/api/v1/users/${id}/wins`)
+export const getWins =  async (idArray) => {
+      const wins = await idArray.map(id =>
+         get(`/api/v1/users/${id}/wins`)
         )
-      return wins
+      return Promise.all(wins)
 }
