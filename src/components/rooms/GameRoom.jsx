@@ -130,6 +130,10 @@ const GameRoom = () => {
       // setBankDisabled(false)
     })
 
+    socket.on('GAME_OVER', (gameData) => {
+      console.log(gameData)
+    })
+
     return () => socket.emit("DISCONNECT");
   }, []);
 
