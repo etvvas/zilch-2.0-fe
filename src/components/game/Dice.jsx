@@ -14,18 +14,19 @@ const Dice = ({dice}) => {
 }
 
 const diceDisplay = `
-flex
-justify-between
-my-4
-gap-1
-sm:gap-4
+  flex
+  justify-around
+  my-4
+  gap-1
+  sm:gap-4
+  sm:justify-between
 `;
 
 const die = `
-fas
-text-5xl
-text-gray-700
-sm:text-8xl
+  fas
+  text-5xl
+  text-gray-700
+  sm:text-7xl
 `;
 
 const held = `
