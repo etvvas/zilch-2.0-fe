@@ -61,6 +61,8 @@ const GameRoom = () => {
         setRollDisabled(false)
         setBankDisabled(true)
         setIsDisabled(!(session.userId === newCurrentPlayer))
+        setDice([])
+        setScoringOptions([])
     })
 
     socket.on("ROLLED", (dice, scoringOptions) => {
