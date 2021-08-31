@@ -1,11 +1,17 @@
 import React from 'react';
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
+import { useSession } from '../../state/SessionProvider';
 
-const WaitingRoom = ({results}) => {
-  return(
+const WaitingRoom = ({ results, onReady, ready }) => {
+  const session = useSession()
+  return (
     <>
       <PlayerVersusPlayer results={results} />
-      <button className={readyButton}>{results ? 'Back to Lobby' : 'Ready!'}</button>
+      <button
+        className={readyButton}
+        onClick={onReady}
+        disabled={ready.find((user) => user === session.userId)}
+      >{results ? 'Back to Lobby' : 'Ready!'}</button>
       <div className={readyMessage}>
         {!results  
             ? 'Game will start when both players are ready.'
@@ -13,7 +19,7 @@ const WaitingRoom = ({results}) => {
         }
       </div>
     </>
-    
+
   )
 }
 

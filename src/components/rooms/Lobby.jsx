@@ -1,21 +1,44 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import { SocketContext } from '../../state/SocketProvider';
+// import useLobby from '../../state/hooks/useLobby';
 
 import Room from './Room';
+const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'}, {roomName: 'Mythril'}, {roomName: 'Titanium'}, {roomName: 'Adamantium'}];
 
 const Lobby = () => {
+  const socket = useContext(SocketContext)
+  const [gameRooms, setGameRooms] = useState(rooms)
+ 
+  useEffect(() => {
+    socket.on('UPDATE_LOBBY', (socketRooms) => {
+        const updatedRooms = rooms.map(room => {
+        let newRoom;
+        const match = socketRooms.find(item => item[room.roomName]?.roomName === room.roomName) 
+        match ? newRoom = match[room.roomName] : newRoom = room
+        return newRoom
+      })
+     setGameRooms(updatedRooms)
+    })
 
-  const rooms = ['Vibranium', 'Gold', 'Xenon', 'Mythril', 'Titanium', 'Adamantium'];
+    return () => {
+      socket.removeListener('UPDATE_LOBBY')
+      socket.emit('DISCONNECT')
+    }
+  }, [])
 
 
-  const roomsElements = rooms.map((room) => (
+  // need to took in the lobby data to see if there is data that exists for the room
+  // regardless of whether there is or isn't data, we need to pass a prop down
+ 
+  const roomsElements = gameRooms.map((room) => (
     
-    <li key={room} className={li}>
-      <Link to={`/lobby/${room}`}>
-        <Room room={room} />
+    <li  key={room.roomName} className={li}>
+      <Link to={`/lobby/${room.roomName}`}>
+        <Room {...room} />
       </Link>
     </li>
-  ))
+))
   
 
   return (
@@ -37,7 +60,7 @@ const outer = `
 
 const wrap = `
   max-w-screen-xl
-  mx-auto
+  sm:mx-auto
   bg-white
   rounded-xl
   sm:my-12
