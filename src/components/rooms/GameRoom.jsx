@@ -9,49 +9,10 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSession } from "../../state/SessionProvider";
 import { SocketContext } from "../../state/SocketProvider";
 import Scoring from '../game/Scoring';
-// import ScoringOptions from '../game/ScoringOptions';
-// import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
 import ResultsPage from "../results/ResultsPage";
 
 const GameRoom = () => {
-  // const { room } = useParams();
-  
-  // can remove this after game logic is complete
-  // const room = 'room1'
-  // const gameState = {
-  //   room1: {
-  //     ready: ['1', '2'],
-  //     currentPlayerIndex: 0,
-  //     players: ['1', '2'],
-  //     roomName: 'Room2',
-  //     rounds: 1,
-  //     targetScore: 5000,
-  //     firstUser: {
-  //       userName: 'user1',
-  //       userId: '1',
-  //       avatar: 'bear',
-  //       gameId: '78',
-  //       numberOfRounds: 1,
-  //       playerScore: 100,
-  //       roundScore: 50,
-  //       playerZilches: 3,
-  //       playerUberZilches: 1
-  //     }, 
-  //     secondUser: {
-  //       userName: 'user2',
-  //       userId: '2',
-  //       avatar: 'polar-bear',
-  //       gameId: '78',
-  //       numberOfRounds: 2,
-  //       playerScore: 1000,
-  //       roundScore: 200,
-  //       playerZilches: 6,
-  //       playerUberZilches: 2
-  //     }, 
-  //   }
-  // }
-
   const [results, setResults] = useState(false)
   const [gameState, setGameState] = useState({});
   const [currentPlayer, setCurrentPlayer] = useState("");
