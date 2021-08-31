@@ -1,30 +1,48 @@
 import React from 'react';
 
-const PlayerProgress = () => {
+const PlayerProgress = ({gameState}) => {
+  let firstPlayerPercentage
+  let secondPlayerPercentage
+
+  if(gameState.gameId){
+  const firstPlayerScore = gameState.firstUser.playerScore / gameState.targetScore
+  const secondPlayerScore = gameState.secondUser.playerScore / gameState.targetScore
+  
+  firstPlayerPercentage = Math.floor(firstPlayerScore * 100)
+  secondPlayerPercentage = Math.floor(secondPlayerScore * 100)
+  console.log(firstPlayerPercentage)
+  console.log(secondPlayerPercentage)
+  }
+
   return (
+  <>
+  {gameState.gameId ?
     <div>
       <div class="relative pt-1">
         <div className={stats}>
-          <div className={nameOne}>ScrumMast3r</div>
-          <div className={scoreOne}>6669</div>
+          <div className={nameOne}>{gameState.firstUser.userName}</div>
+          <div className={scoreOne}>{gameState.firstUser.playerScore}</div>
         </div>
         <div class="overflow-hidden h-2 text-xs flex bg-pink-200">
-          <div style={{ width: '60%' }} class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
+          <div style={{ width: `${firstPlayerPercentage}%` }} class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
         </div>
       </div>
       <div class="relative pt-1">
         <div class="overflow-hidden h-2 text-xs flex bg-purple-200">
-          <div style={{ width: '30%' }} class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"></div>
+          <div style={{ width: `${secondPlayerPercentage}%` }} class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"></div>
         </div>
         <div className={stats}>
-          <div className={nameTwo}>_UXgUrU_</div>
-          <div className={scoreTwo}>420</div>
+          <div className={nameTwo}>{gameState.secondUser.userName}</div>
+          <div className={scoreTwo}>{gameState.secondUser.playerScore}</div>
         </div>
       </div>
-      {/* <div className={goalDisplay}>
-        <p>Race to <span>6000 pts</span></p>
-      </div> */}
+      <div >
+        <p>Race to <span>{gameState.targetScore} pts</span></p>
+      </div>
     </div>
+    : null
+}
+</>
   )
 }
 
