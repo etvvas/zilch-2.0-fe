@@ -9,6 +9,10 @@ const Navigation = ({ isOpen }) => {
   const history = useHistory();
   const setSession = useSetSession();
 
+  const handleLeaderboard = () => {
+    history.push('/leaderboard')
+  }
+
   const handleLogout = () => {
     const yes = confirm('Are you sure you want to logout?')
     if(yes){ setSession(null)
@@ -26,7 +30,7 @@ const Navigation = ({ isOpen }) => {
       <ul className={ul}>
         <li className={li + selected}>Lobby</li>
         <li className={li}>Rules</li>
-        <li className={li}>Leaderboard</li>
+        <li className={li} onClick={handleLeaderboard}>Leaderboard</li>
         <li className={li} onClick={handleLogout}>Log Out</li>
       </ul>
     </nav>
