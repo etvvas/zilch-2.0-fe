@@ -40,8 +40,8 @@ const AuthForm = () => {
               />
           </label>
           <label className={label}>
-            <span className={span} type="password">Password</span>
-            <input 
+            <span className={span}>Password</span>
+            <input  type="password"
               className={input}
               placeholder="Password" 
               name="password"
