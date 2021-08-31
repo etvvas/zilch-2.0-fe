@@ -207,6 +207,7 @@ const GameRoom = () => {
 };
 
 const main = `
+  h-full
   relative
   flex
   flex-col
@@ -219,9 +220,8 @@ const wrap = `
   mx-auto
   p-4
   bg-white
-  h-full
   sm:rounded-lg
-  sm:my-8
+  sm:mt-12
   sm:p-12
 `;
 

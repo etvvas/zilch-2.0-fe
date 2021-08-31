@@ -42,24 +42,40 @@ const Lobby = () => {
   
 
   return (
-    <div className={wrap}>
-      <h1 className={h1}>Zilch Lobby</h1>
-      <ul className={ul}>
-        {roomsElements}
-      </ul>
+    <div className={outer}>
+      <div className={wrap}>
+        <h1 className={h1}><span className={span}>Zilch 2.0</span> Lobby</h1>
+        <ul className={ul}>
+          {roomsElements}
+        </ul>
+      </div>
     </div>
   )
 }
 
+const outer = `
+  flex
+  flex-col
+`;
+
 const wrap = `
   max-w-screen-xl
   mx-auto
+  bg-white
+  rounded-xl
+  sm:my-12
+  sm:py-12
 `;
 
 const h1 = `
   text-4xl
   text-center
-  mt-10
+  mt-4
+`;
+
+const span = `
+  font-black
+  text-indigo-500
 `;
 
 const ul = `
