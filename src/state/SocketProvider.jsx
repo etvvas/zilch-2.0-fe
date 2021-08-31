@@ -11,6 +11,4 @@ const socket = io(process.env.REACT_APP_HEROKU_URL)
     )
 }
 
-// export const socket = io('http://localhost:7890')
 
-// // export const SocketContext = createContext()
