@@ -9,9 +9,9 @@ import ScoringOptions from "../game/ScoringOptions";
 import { useHistory, useParams } from "react-router-dom";
 import { useSession } from "../../state/SessionProvider";
 import { SocketContext } from "../../state/SocketProvider";
-import Scoring from '../game/Scoring';
+// import Scoring from '../game/Scoring';
 // import ScoringOptions from '../game/ScoringOptions';
-import ResultsPage from '../results/ResultsPage';
+// import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
@@ -132,6 +132,7 @@ const GameRoom = () => {
 
     socket.on('GAME_OVER', (gameData) => {
       console.log(gameData)
+      setResults(gameData)
     })
 
     return () => socket.emit("DISCONNECT");

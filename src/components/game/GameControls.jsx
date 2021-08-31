@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
-import { useSession } from '../../state/SessionProvider';
+import React, {useContext} from 'react';
+
 import { SocketContext } from '../../state/SocketProvider';
 
 const GameControls = ({gameState, dice, isDisabled, rollDisabled, bankDisabled, isFreeRoll}) => {
@@ -68,10 +68,10 @@ const bankReady = `
   text-white
 `;
 
-const span = `
-  font-light
-  text-lg
-  tracking-normal
-`;
+// const span = `
+//   font-light
+//   text-lg
+//   tracking-normal
+// `;
 
 export default GameControls;

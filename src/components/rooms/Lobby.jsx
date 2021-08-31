@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { SocketContext } from '../../state/SocketProvider';
-import useLobby from '../../state/hooks/useLobby';
+// import useLobby from '../../state/hooks/useLobby';
 
 import Room from './Room';
 const rooms = [{roomName: 'Room1'}, {roomName: 'Room2'}, {roomName: 'Room3'}, {roomName: 'Room4'}, {roomName: 'Room5'}, {roomName: 'Room6'}];
