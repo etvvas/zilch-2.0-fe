@@ -133,6 +133,12 @@ const GameRoom = () => {
       console.log(gameData)
       setResults(gameData)
     })
+    socket.on("connect", () => {
+      console.log('GAMEROOM CONNECTED');
+    });
+    socket.on("disconnect", (reason) => {
+      console.log('GAMEROOM', reason);
+    });
 
     return () => socket.emit("DISCONNECT");
   }, []);

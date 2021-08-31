@@ -9,7 +9,7 @@ const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'},
 const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
- 
+ //
   useEffect(() => {
     socket.on('UPDATE_LOBBY', (socketRooms) => {
         const updatedRooms = rooms.map(room => {
@@ -20,21 +20,29 @@ const Lobby = () => {
       })
      setGameRooms(updatedRooms)
     })
-
+    socket.on("connect", () => {
+      console.log('LOBBY CONNECTED');
+    });
+    socket.on("disconnect", (reason) => {
+      console.log('LOBBY', reason);
+    });
     return () => {
       socket.removeListener('UPDATE_LOBBY')
       socket.emit('DISCONNECT')
     }
   }, [])
 
+const handleClick = () => {
+  socket.emit('DISCONNECT')
+}
 
-  // need to took in the lobby data to see if there is data that exists for the room
-  // regardless of whether there is or isn't data, we need to pass a prop down
  
   const roomsElements = gameRooms.map((room) => (
     
     <li  key={room.roomName} className={li}>
-      <Link to={`/lobby/${room.roomName}`}>
+      <Link 
+      onClick={handleClick}
+      to={`/lobby/${room.roomName}`}>
         <Room {...room} />
       </Link>
     </li>
