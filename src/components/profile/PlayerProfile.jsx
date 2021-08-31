@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from '../../state/SessionProvider';
 import avatars from '../../assets/avatars.svg';
 import { useParams } from 'react-router-dom';
-import { getPlayerGames, getPlayerWins, getPlayerZilches, getUser } from '../../services/profile';
+import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../services/profile';
 
 const PlayerProfile = () => {
   const session = useSession();
@@ -49,6 +49,35 @@ const PlayerProfile = () => {
       playerZilches: a.playerZilches + b.playerZilches
     }))
     setZilches(allZilches.playerZilches)
+
+    // const fetchedUberZilches = await getPlayerUberZilches(user.userId)
+    const fetchedUberZilches = [
+      {
+        userId: '1',
+        gameId: '1',
+        playerUberZilches: 18,
+        uberZilchId: '1',
+        username: 'username'
+      },
+      {
+        userId: '1',
+        gameId: '2',
+        playerUberZilches: 6,
+        uberZilchId: '2',
+        username: 'username'
+      },
+      {
+        userId: '1',
+        gameId: '3',
+        playerUberZilches: 4,
+        uberZilchId: '3',
+        username: 'username'
+      }
+    ]
+    const allUberZilches = fetchedUberZilches.reduce((a, b) => ({
+      playerUberZilches: a.playerUberZilches + b.playerUberZilches
+    }))
+    setUberZilches(allUberZilches.playerUberZilches)
   }, [])
 
   return (
@@ -62,7 +91,7 @@ const PlayerProfile = () => {
       <h2>wins: {wins}</h2>
       <h2>losses: {losses} </h2>
       <h2>zilches: {zilches} </h2>
-      <h2>uberZilches: </h2>
+      <h2>uberZilches: {uberZilches} </h2>
 
     </div>
     </>
