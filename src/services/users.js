@@ -10,5 +10,5 @@ export const getWins =  async (idArray) => {
       const wins = await idArray.map(id =>
          get(`/api/v1/users/${id}/wins`)
         )
-      return Promise.all(wins)
+      return Promise.all(wins.sort())
 }
