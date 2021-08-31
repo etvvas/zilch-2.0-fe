@@ -1,6 +1,5 @@
-import { Log } from '@tensorflow/tfjs';
 import React, {useContext, useEffect, useState} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SocketContext } from '../../state/SocketProvider';
 // import useLobby from '../../state/hooks/useLobby';
 
@@ -9,7 +8,6 @@ const rooms = [{roomName: 'Room1'}, {roomName: 'Room2'}, {roomName: 'Room3'}, {r
 const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
-  const history = useHistory()
  
   useEffect(() => {
     socket.on('UPDATE_LOBBY', (socketRooms) => {
