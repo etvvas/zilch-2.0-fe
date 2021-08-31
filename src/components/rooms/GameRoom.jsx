@@ -164,6 +164,7 @@ const GameRoom = () => {
         <Dice dice={dice} isRolled={isRolled} />
         <GameControls
           gameState={gameState}
+          dice={dice}
           currentPlayer={currentPlayer}
           scoringOptions={scoringOptions}
           rollDisabled={rollDisabled}
