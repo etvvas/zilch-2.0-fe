@@ -17,10 +17,17 @@ export const getPlayerGames = async (id) => {
   const games = await fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${id}/games`)
   
   const json = games.json()
-  console.log('losses', json)
   return json; 
 }
 
 //player zilches - /api/v1/users/user_id/zilches
+export const getPlayerZilches = async (id) => {
+  const zilches = await fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${id}/zilches`)
+  
+  const json = zilches.json()
+  console.log('zilches', json)
+  return json; 
+}
+
 
 //player uberZilches - /api/v1/users/user_id/uberZilches
