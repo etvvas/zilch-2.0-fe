@@ -1,5 +1,6 @@
 import {createContext} from 'react'
 import io from 'socket.io-client'
+import dotenv from 'dotenv';
 // const SocketContext = createContext();
 
 // export default function SocketProvider({children}) {
@@ -11,6 +12,6 @@ import io from 'socket.io-client'
 //     // )
 // }
 
-export const socket = io('https://zilch-v2-staging.herokuapp.com')
+export const socket = io(process.env.REACT_APP_HEROKU_URL)
 
 export const SocketContext = createContext()
