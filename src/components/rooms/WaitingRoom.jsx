@@ -12,6 +12,12 @@ const WaitingRoom = ({ results, onReady, ready }) => {
         onClick={onReady}
         disabled={ready.find((user) => user === session.userId)}
       >{results ? 'Back to Lobby' : 'Ready!'}</button>
+      <div className={readyMessage}>
+        {!results  
+            ? 'Game will start when both players are ready.'
+            : null
+        }
+      </div>
     </>
 
   )
@@ -37,6 +43,14 @@ const readyButton = `
   sm:text-2xl
   hover:bg-indigo-600
   hover:border-indigo-700
+`;
+
+const readyMessage = `
+  text-center
+  text-sm
+  text-gray-700
+  italic
+  mt-8
 `;
 
 export default WaitingRoom;
