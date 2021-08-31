@@ -1,55 +1,60 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const PlayerVersusPlayer = ({user1, user2, room, results}) => {
-  room = 'Titanium';
+const PlayerVersusPlayer = ({user1, user2, room, results, winner, }) => {
+  // room = 'Titanium';
   const avatar = 'dice';
-  const winner = user1.userName
+  // const winner = user1.userName
+  console.log('user1', user1)
 
-  return (
-    <>
-      <div className={outerWrap}>
-        {results
-          ? <h2>{winner} WINS!</h2>
-          : <h3 className={h3}>{room}</h3>
-        }
-        <div className={innerWrap}>
-          <div className={side}>
-            <p className={playerName}>{user1.userName}</p>
-            {user1 
-            ? (<svg className={svg + winning}>
-                <use href={avatars + `#${user1.avatar}`} />
-              </svg>)
-            : (<svg className={noPlayerSvg + winning}>
-                <use href={avatars + `#${avatar}`} />
-              </svg>)
-            }
-            {!results  
-              ? <p className={ready}>Ready!</p>
-              : null
-            }
-          </div>
-          <div className={vs}>
-            vs
-          </div>
-          <div className={side}>
-            <p className={playerName}>{user2.userName}</p>
-            {user2 
-            ? (<svg className={svg + winning}>
-                <use href={avatars + `#${user2.avatar}`} />
-              </svg>)
-            : (<svg className={noPlayerSvg + winning}>
-                <use href={avatars + `#${avatar}`} />
-              </svg>)
-            }
-            {!results  
-              ? <p className={ready}>Ready!</p>
-              : null
-            }
-          </div>
+    return (
+        <div className={outerWrap}>
+          {results
+            ? <h2>{winner} WINS!</h2>
+            : <h3 className={h3}>{room}</h3>
+          }
+          <div className={innerWrap}>
+            <div className={side}>
+              <p className={playerName}>{user1.userName}</p>
+              {user1 
+              ? (<svg className={svg + winning}>
+                  <use href={avatars + `#${user1.avatar}`} />
+                </svg>)
+              : (<svg className={noPlayerSvg + winning}>
+                  <use href={avatars + `#${avatar}`} />
+                </svg>)
+              }
+              {!results  
+                ? <p className={ready}>Ready!</p>
+                : null
+              }
+            </div>
+            <div className={vs}>
+              vs
+            </div>
+            <div className={side}>
+              {user2 
+              ? (<>
+                <p className={playerName}>{user2.userName}</p>
+                  <svg className={svg + winning}>
+                  <use href={avatars + `#${user2.avatar}`} />
+                </svg>
+                </>)
+              : (<>
+                <p className={playerName}>Waiting for Opponent</p>
+                <svg className={noPlayerSvg + winning}>
+                  <use href={avatars + `#${avatar}`} />
+                </svg>
+                </>)
+              }
+              {!results  
+                ? <p className={ready}>Ready!</p>
+                : null
+              }
+            </div>
+        </div>
       </div>
-    </>
-  )
+    )
 }
 
 const outerWrap = `

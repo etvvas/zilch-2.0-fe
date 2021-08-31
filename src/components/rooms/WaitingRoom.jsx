@@ -3,14 +3,13 @@ import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 import { useSession } from '../../state/SessionProvider';
 
 const WaitingRoom = ({results, user1, user2}) => {
-  
-  return(
+  if(user1) {
+    return(
     <>
       <PlayerVersusPlayer results={results} user1={user1} user2={user2}/>
       <button className={readyButton}>{results ? 'Back to Lobby' : 'Ready!'}</button>
-    </>
-
-  )
+    </>)
+  } else return null
 }
 
 const readyButton = `
