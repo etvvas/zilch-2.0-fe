@@ -36,7 +36,7 @@ console.log('results', results)
             }
           </div>
         </div>
-        <div className={readyMessage}>
+        {/* <div className={readyMessage}> */}
           {/* Case1: player joins, no other player has joined yet
             "waiting for opponent to join"
           */}
@@ -48,8 +48,8 @@ console.log('results', results)
               ? 'Game will start when both players are ready.'
               : null
           }
-        </div>
-      </div>
+        {/* </div> */}
+     
     </>
   )
 }
