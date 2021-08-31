@@ -28,6 +28,7 @@ const GameRoom = () => {
   const [bankDisabled, setBankDisabled] = useState(true)
   const [isDisabled, setIsDisabled] = useState(true)
   const [isRolled, setIsRolled] = useState(false);
+  const [isZilch, setIsZilch] = useState(false)
 
 
   useEffect(() => {
@@ -54,9 +55,21 @@ const GameRoom = () => {
 
     socket.on("READY", (gameState) => setGameState(gameState[room]));
 
+    socket.on('ZILCH', newCurrentPlayer => {
+        setIsZilch(true)
+        setCurrentPlayer(newCurrentPlayer)
+        setRollDisabled(false)
+        setBankDisabled(true)
+        setIsDisabled(!(session.userId === newCurrentPlayer))
+    })
+
     socket.on("ROLLED", (dice, scoringOptions) => {
       setIsRolled(true)
-
+      setRollDisabled(true)
+      setIsZilch(false)
+      
+      // indicate zilch on FE
+    
       setDice(dice);
       setTimeout(() => {
         setScoringOptions(
@@ -70,8 +83,9 @@ const GameRoom = () => {
         )
         setIsRolled(false)
       }, 500)
+    }
 
-    });
+    );
 
     socket.on("BANKED", (gameState, index, players) => {
       setGameState(gameState[room]);
@@ -87,6 +101,7 @@ const GameRoom = () => {
       setGameState(gameState)
       setScoringOptions(scoringOptions)
       setDice(dice)
+      setIsZilch(false)
 
       let matchingUser;
       console.log('CURRENT PLAYER', gameState.players[gameState.currentPlayerIndex]);
@@ -98,6 +113,7 @@ const GameRoom = () => {
       if (gameState[matchingUser].roundScore >= 300) {
         setBankDisabled(false)
       }
+      setRollDisabled(false)
       // setBankDisabled(false)
     })
 
@@ -152,6 +168,7 @@ const GameRoom = () => {
           bankDisabled={bankDisabled}
           isDisabled={isDisabled} />
         <ScoringOptions
+          isZilch={isZilch}
           scoringOptions={scoringOptions}
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}

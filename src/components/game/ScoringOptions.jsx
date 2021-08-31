@@ -1,12 +1,18 @@
 import React from "react";
 import { useSession } from "../../state/SessionProvider";
 
-const ScoringOptions = ({ scoringOptions, currentPlayer, onChange }) => {
+const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) => {
   const session = useSession();
 
   return (
+  <>
+    {isZilch
+     ?
+    <div className="zilch"> Zilch! </div>
+    :
     <form className={scoringOptionsForm}>
       {scoringOptions.map((option, i) => {
+        if(option.choice === 'ZILCH') return null;
         return (
           <>
             <input
@@ -25,6 +31,8 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange }) => {
         );
       })}
     </form>
+}
+    </>
   );
 };
 

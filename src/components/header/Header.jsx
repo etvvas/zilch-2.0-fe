@@ -71,7 +71,6 @@ const h1 = `
   text-purple-100
   font-bold
   text-2xl
-  zilch
 `;
 
 const h2 = `
