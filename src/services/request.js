@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config()
 //  Ryan Mehta with the alley-oop
 const request = async (path, method, body) => {
-    console.log(`${process.env.REACT_APP_LOCAL_URL}`)
-    const res = await fetch(`${process.env.REACT_APP_LOCAL_URL}${path}`, {
+    console.log(`${process.env.REACT_APP_HEROKU_URL}`)
+    const res = await fetch(`${process.env.REACT_APP_HEROKU_URL}${path}`, {
         method,
         headers: body
         ? {
