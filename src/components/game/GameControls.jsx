@@ -1,21 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react';
-import { useSession } from '../../state/SessionProvider';
+import React, {useContext} from 'react';
+
 import { SocketContext } from '../../state/SocketProvider';
 
-const GameControls = ({gameState, currentPlayer}) => {
-const [disabled, setDisabled] = useState(true)
-const {userId} = useSession()
+const GameControls = ({gameState, dice, isDisabled, rollDisabled, bankDisabled, isFreeRoll}) => {
+console.log(bankDisabled);
 const socket = useContext(SocketContext)
 
-
-useEffect(() => {
-    if(currentPlayer === userId) setDisabled(false)
-    else setDisabled(true)
- }, [currentPlayer])
+// if the sum of the users points < 300, disable bank button
  
-
 const handleRoll = () => {
-  socket.emit('ROLL')
+  socket.emit('ROLL', dice)
 }
 
 const handleBank = () => {
@@ -24,8 +18,15 @@ const handleBank = () => {
 
   return (
     <div className={diceControls}>
-      <button className={button + rollButton}>Roll</button>
-      <button className={button + bankReady} disabled>Bank <span className={span}>250</span></button>
+      <button 
+        disabled={isDisabled || rollDisabled}
+        className={button + rollButton}
+        onClick={handleRoll}>{isFreeRoll ? 'Free Roll!' : 'Roll'} </button>
+      <button 
+      disabled={isDisabled || bankDisabled}
+      className={button + bankReady}
+      onClick={handleBank} 
+      >Bank {gameState.firstUser?.roundScore ? gameState.firstUser?.roundScore : gameState.secondUser?.roundScore }</button>
     </div>
   )
 }
@@ -67,10 +68,10 @@ const bankReady = `
   text-white
 `;
 
-const span = `
-  font-light
-  text-lg
-  tracking-normal
-`;
+// const span = `
+//   font-light
+//   text-lg
+//   tracking-normal
+// `;
 
 export default GameControls;

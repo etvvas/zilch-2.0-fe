@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 export const SocketContext = createContext();
 
 export default function SocketProvider({children}) {
-const socket = io('https://zilch-v2-staging.herokuapp.com')
+const socket = io(process.env.REACT_APP_HEROKU_URL)
     return (
         <SocketContext.Provider value={socket}>
             {children}
@@ -11,6 +11,4 @@ const socket = io('https://zilch-v2-staging.herokuapp.com')
     )
 }
 
-// export const socket = io('http://localhost:7890')
 
-// // export const SocketContext = createContext()
