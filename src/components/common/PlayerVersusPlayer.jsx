@@ -18,7 +18,7 @@ console.log('results', results)
               <use href={avatars + `#${avatar}`} />
             </svg>
             {!results  
-              ? <p className={ready}>Ready</p>
+              ? <p className={ready}>Ready!</p>
               : null
             }
           </div>
@@ -31,17 +31,11 @@ console.log('results', results)
               <use href={avatars + `#${avatar}`} />
             </svg>
             {!results  
-              ? <p className={ready}>Ready</p>
+              ? <p className={ready}>Ready!</p>
               : null
             }
           </div>
       </div>
-        <div className={readyMessage}>
-          {!results  
-              ? 'Game will start when both players are ready.'
-              : null
-          }
-        </div>
     </>
   )
 }
@@ -79,8 +73,6 @@ const side = `
 
 const playerName = `
   text-center
-  text-xl
-  text-gray-700
   font-semibold
   italic
   tracking-wider
@@ -106,8 +98,6 @@ const svg = `
   md:h-12
   my-2
   mx-auto
-  border-4
-  border-transparent
 `;
 
 const noPlayerSvg = `
@@ -126,14 +116,6 @@ const ready = `
   text-green-500
   text-center
   tracking-wide
-`;
-
-const readyMessage = `
-  text-center
-  text-sm
-  text-gray-700
-  border-b
-  italic
 `;
 
 const playerOne = `
