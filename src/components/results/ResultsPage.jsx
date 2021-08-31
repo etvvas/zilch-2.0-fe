@@ -2,7 +2,7 @@ import React from 'react';
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 import Results from './Results';
 
-const ResultsPage = ({user1, user2, results}) => {
+const ResultsPage = ({user1, user2, results, onResultsClick}) => {
 
   return (
     <>
@@ -10,7 +10,7 @@ const ResultsPage = ({user1, user2, results}) => {
         <h1>Results Page</h1>
         <PlayerVersusPlayer results={results} user1={user1} user2={user2}/>
         <Results user1={user1} user2={user2}/>
-        <button className={readyButton}>{results ? 'Back to Lobby' : 'Ready!'}</button>
+        <button className={readyButton} onClick={onResultsClick}>{results ? 'Back to Lobby' : 'Ready!'}</button>
       </div>
     </>
   )

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 // import { useParams } from 'react-router-dom';
 // import ActiveScoreboard from '../game/ActiveScoreboard';
 // import Dice from '../game/Dice';
@@ -13,6 +14,9 @@ import WaitingRoom from './WaitingRoom';
 const GameRoom = () => {
   // const { room } = useParams();
   const [results, setResults] = useState(true);
+  const history = useHistory();
+  
+  // can remove this after game logic is complete
   const room = 'room1'
   const gameState = {
     room1: {
@@ -48,9 +52,13 @@ const GameRoom = () => {
   }
 
   useEffect (() => {
-    //CHANGE HERE FOR TESTING
+    //CHANGE HERE FOR TESTING - this can be removed after game logic is complete
     setResults(true);
   }, [])
+
+  const handleResultsClick = () => {
+    history.push('/lobby');
+  }
 
   return (
     <div className={main}>
@@ -65,7 +73,7 @@ const GameRoom = () => {
         <GameControls />
         <ScoringOptions /> */}
       
-      {results ? <ResultsPage results={results} user1={gameState[room].firstUser} user2={gameState[room].secondUser} room={room}/> : null}
+      {results ? <ResultsPage results={results} user1={gameState[room].firstUser} user2={gameState[room].secondUser} room={room} onResultsClick={handleResultsClick}/> : null}
       
       </div>
 
