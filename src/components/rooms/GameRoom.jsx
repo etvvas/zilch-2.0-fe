@@ -30,6 +30,7 @@ const GameRoom = () => {
   const [isRolled, setIsRolled] = useState(false);
   const [isZilch, setIsZilch] = useState(false)
   const [isFreeRoll, setIsFreeRoll] = useState(false)
+  const [pastScores, setPastScores] = useState([])
 
 
   useEffect(() => {
@@ -148,26 +149,12 @@ const GameRoom = () => {
         return { ...option, selected: true };
       else return option;
     });
-    // const updateState = scoringOptions.map(option => {
-
-    // })
+   
     setScoringOptions(updatedScoringOptions);
     const selectedScoringOption = updatedScoringOptions.filter(option => option.selected === true)
     socket.emit('UPDATE_SELECTED', selectedScoringOption)
   };
 
-
-  // if (gameState.ready && gameState.ready.length < 2) {
-  //   console.log(gameState.ready);
-  //   return (
-  //     <button
-  //       onClick={handleReady}
-  //       disabled={gameState.ready.find((user) => user === session.userId)}
-  //     >
-  //       READY
-  //     </button>
-  //   );
-  // }
 
   return (
     <div className={main}>
@@ -175,8 +162,10 @@ const GameRoom = () => {
       <div className={wrap}>
         {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> : null}
 
-        <PlayerProgress />
-        <ActiveScoreboard />
+        <PlayerProgress gameState={gameState}/>
+        <ActiveScoreboard 
+        gameState={gameState}
+        currentPlayer={currentPlayer}/>
         <Dice dice={dice} isRolled={isRolled} />
         <GameControls
           isFreeRoll={isFreeRoll}
