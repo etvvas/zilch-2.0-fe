@@ -8,10 +8,8 @@ const Leaderboard = () => {
 
     useEffect(async () => {
         const users = await getUsers();
-        setUsers(users)
         console.log(users)
-        const wins = getWins(users)
-        // setWinners(wins)
+        const wins = await getWins(users)
         console.log(wins)
     }, [])
 

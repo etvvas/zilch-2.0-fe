@@ -30,8 +30,8 @@ const Navigation = ({ isOpen }) => {
       <ul className={ul}>
         <li className={li + selected}>Lobby</li>
         <li className={li}>Profile</li>
-        <li className={li}>Leaderboard</li>
-        <li className={li}>Log Out</li>
+        <li className={li} onClick={handleLeaderboard}>Leaderboard</li>
+        <li className={li} onClick={handleLogout}>Log Out</li>
       </ul>
     </nav>
   )
