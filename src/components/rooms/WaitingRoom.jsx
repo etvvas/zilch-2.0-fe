@@ -1,10 +1,10 @@
 import React from 'react';
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 
-const WaitingRoom = ({results}) => {
+const WaitingRoom = ({results, user1, user2}) => {
   return(
     <>
-      <PlayerVersusPlayer results={results} />
+      <PlayerVersusPlayer results={results} user1={user1} user2={user2}/>
       <button className={readyButton}>{results ? 'Back to Lobby' : 'Ready!'}</button>
     </>
     

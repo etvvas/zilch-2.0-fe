@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 // import ActiveScoreboard from '../game/ActiveScoreboard';
 // import Dice from '../game/Dice';
 // import GameControls from '../game/GameControls';
@@ -49,7 +49,7 @@ const GameRoom = () => {
 
   useEffect (() => {
     //CHANGE HERE FOR TESTING
-    setResults(true);
+    setResults(false);
   }, [])
 
   return (
