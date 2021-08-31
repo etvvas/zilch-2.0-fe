@@ -11,6 +11,7 @@ const PlayerProfile = () => {
   // console.log('username', username)
   const [user, setUser] = useState('');
   const [wins, setWins] = useState('');
+  const [games, setGames] = useState([])
   const [losses, setLosses] = useState('');
   const [zilches, setZilches] = useState('');
   const [uberZilches, setUberZilches] = useState('');
@@ -25,6 +26,7 @@ const PlayerProfile = () => {
     
     // const fetchedGames = await getPlayerGames(user.userId);
     const fetchedGames = [...Array(18)]
+    setGames(fetchedGames);
     setLosses(fetchedGames.length - wins);
     
     // const fetchedZilches = await getPlayerZilches(user.userId);
@@ -92,6 +94,10 @@ const PlayerProfile = () => {
       <h2>losses: {losses} </h2>
       <h2>zilches: {zilches} </h2>
       <h2>uberZilches: {uberZilches} </h2>
+
+      <h1>Game History</h1>
+      {/* {games.map} */}
+
 
     </div>
     </>
