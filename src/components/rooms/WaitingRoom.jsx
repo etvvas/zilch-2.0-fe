@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
+import { useSession } from '../../state/SessionProvider';
 
 const WaitingRoom = ({results, user1, user2}) => {
   
@@ -8,7 +9,7 @@ const WaitingRoom = ({results, user1, user2}) => {
       <PlayerVersusPlayer results={results} user1={user1} user2={user2}/>
       <button className={readyButton}>{results ? 'Back to Lobby' : 'Ready!'}</button>
     </>
-    
+
   )
 }
 
@@ -32,6 +33,14 @@ const readyButton = `
   sm:text-2xl
   hover:bg-indigo-600
   hover:border-indigo-700
+`;
+
+const readyMessage = `
+  text-center
+  text-sm
+  text-gray-700
+  italic
+  mt-8
 `;
 
 export default WaitingRoom;

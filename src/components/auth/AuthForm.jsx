@@ -19,71 +19,86 @@ const AuthForm = () => {
 
 
   return (
-    <div className={wrap}>
-
-      { isSignUp
-        ? <h1 className={h1}>Sign up with Zilch</h1>
-        : <h1 className={h1}>Log in with Zilch</h1>
-      }
-      
-      <form className={form} onSubmit={handleSubmit}>        
-
-        <label className={label}>
-          <span className={span}>Username</span>
-          <input 
-            className={input}
-            placeholder="Username" 
-            name="username"
-            value={username}
-            onChange={handleChange}
-            />
-        </label>
-        <label className={label}>
-          <span className={span}>Password</span>
-          <input 
-            className={input}
-            placeholder="Password" 
-            name="password"
-            value={password}
-            onChange={handleChange}
-            />
-        </label>
-
-
-        { isSignUp && 
-          <Avatars onChange={handleChange} />
-        }
+    <div className={outer}>
+      <div className={wrap}>
 
         { isSignUp
-          ? <button className={button}>Sign up</button>
-          : <button className={button}>Log in</button>
+          ? <h1 className={h1}>Sign up with <span className={brand}>Zilch 2.0</span></h1>
+          : <h1 className={h1}>Log in with <span className={brand}>Zilch 2.0</span></h1>
         }
         
-      </form>
+        <form className={form} onSubmit={handleSubmit}>        
 
-      { isSignUp
-        ? <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Already have an account? Log in.</p>
-        : <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Don't have an account? Sign up.</p>
-      }
-      
+          <label className={label}>
+            <span className={span}>Username</span>
+            <input 
+              className={input}
+              placeholder="Username" 
+              name="username"
+              value={username}
+              onChange={handleChange}
+              />
+          </label>
+          <label className={label}>
+            <span className={span}>Password</span>
+            <input  type="password"
+              className={input}
+              placeholder="Password" 
+              name="password"
+              value={password}
+              onChange={handleChange}
+              />
+          </label>
 
-      { isSignUp &&
-        <div className="my-10 text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-      }
+          { isSignUp && 
+            <Avatars onChange={handleChange} />
+          }
+
+          { isSignUp
+            ? <button className={button}>Sign up</button>
+            : <button className={button}>Log in</button>
+          }
+          
+        </form>
+
+        { isSignUp
+          ? <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Already have an account? Log in.</p>
+          : <p  onClick={() => setIsSignUp(!isSignUp)} className={p}>Don't have an account? Sign up.</p>
+        }
+
+        { isSignUp &&
+          <div className="my-10 text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        }
+      </div>
     </div>
   )
 }
 
+const outer = `
+  flex
+  justify-center
+`
+
 const wrap = `
-  mx-auto
-  max-w-xs
+  max-w-screen-xs
+  bg-white
+  rounded-xl
+  w-full
+  py-12
+  px-12
+  sm:my-12
 `;
 
 const h1 = `
-  text-3xl
+  text-2xl
   text-center
   font-light
   my-10
+`;
+
+const brand = `
+  font-black
+  text-indigo-500
 `;
 
 const label = `
@@ -94,9 +109,9 @@ const label = `
 
 const span = `
   font-bold
-  uppercase
   text-sm
-  text-gray-700
+  text-indigo-700
+  tracking-wide
   mb-2
 `;
 

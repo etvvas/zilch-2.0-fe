@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { wordify } from '../../utils/dice.js';
 
-const Dice = () => {
+const Dice = ({dice, isRolled}) => {
+  useEffect(() => {
 
-  return (
+  }, [isRolled])
+  const diceElements = dice.map((eachDie, i) => {
+    return <i key={i} className={die + `fa-dice-${wordify(eachDie)} ${eachDie.held ? held : null } ${isRolled && !eachDie.held? 'roll' : null}`}></i>
+  })
+
+  return(
     <div className={diceDisplay}>
-      <i className={die + 'fa-dice-one roll'}></i>
-      <i className={die + 'fa-dice-two roll'}></i>
-      <i className={die + 'fa-dice-three roll' + held}></i>
-      <i className={die + 'fa-dice-four roll'}></i>
-      <i className={die + 'fa-dice-five roll' + held}></i>
-      <i className={die + 'fa-dice-six roll'}></i>
+      {diceElements}
     </div>
   )
 }
@@ -31,7 +33,15 @@ const die = `
 `;
 
 const held = `
-  text-blue-400
+text-blue-400
 `;
 
 export default Dice;
+
+// original code for reference
+//  <i className={die + 'fa-dice-one roll'}></i>
+// <i className={die + 'fa-dice-two roll'}></i>
+// <i className={die + 'fa-dice-three roll' + held}></i>
+// <i className={die + 'fa-dice-four roll'}></i>
+// <i className={die + 'fa-dice-five roll' + held}></i>
+// <i className={die + 'fa-dice-six roll'}></i> 

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { MenuIcon } from '@heroicons/react/solid';
 import avatars from '../../assets/avatars.svg';
 import Navigation from './Navigation';
+import { useSession } from '../../state/SessionProvider';
 
 const Header = () => {
-  const user = 'ZilchPlayer420';
-  const avatar = 'cobra';
+  const user = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -21,12 +21,15 @@ const Header = () => {
             </button>
             <h1 className={h1}>Zilch 2.0</h1>
           </div>
+          {user ?  
           <div className={wrap}>
-            <h2 className={h2}>{user}</h2>
+            <h2 className={h2}>{user.username}</h2>
               <svg className={svg}>
-                <use href={avatars + `#${avatar}`} />
+                <use href={avatars + `#${user.avatar}`} />
               </svg>
           </div>
+          : null
+          }
         </header>
       </div>
 
@@ -36,8 +39,7 @@ const Header = () => {
 }
 
 const header = `
-  col-span-12 
-  p-4
+  p-2
   flex
   gap-4
   items-center
@@ -67,8 +69,8 @@ const icon = `
 const h1 = `
   text-purple-100
   font-bold
-  text-2xl
-  zilch
+  text-xl
+  sm:text-2xl
 `;
 
 const h2 = `
@@ -83,6 +85,10 @@ const h2 = `
 const svg = `
   w-8
   h-8
+  border-4
+  border-black
+  border-opacity-10
+  rounded-full
 `
 
 const wrap = `
@@ -90,6 +96,7 @@ const wrap = `
   flex-row
   items-center
   gap-4
+  sm:gap-2
 `;
 
 export default Header;

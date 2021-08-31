@@ -21,7 +21,6 @@ const nav = `
   shadow-md
   bg-gray-800
   sm:block
-  sm:col-span-12
 `;
 
 const ul = `
@@ -31,19 +30,16 @@ const ul = `
   gap-2
   py-8
   px-2
-
-  sm:gap-2
   justify-evenly 
   sm:p-2
   max-w-screen-xl
 
   sm:flex-row
-  sm:gap-4
+  sm:gap-2
 `;
 
 const li = `
   rounded-md
-  px-4 
   tracking-wider
   text-purple-100 
   cursor-pointer
