@@ -10,7 +10,7 @@ import { useSession } from "../../state/SessionProvider";
 import { SocketContext } from "../../state/SocketProvider";
 import Scoring from '../game/Scoring';
 // import ScoringOptions from '../game/ScoringOptions';
-// import ResultsPage from '../results/ResultsPage';
+import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
@@ -29,6 +29,7 @@ const GameRoom = () => {
   const [isRolled, setIsRolled] = useState(false);
   const [isZilch, setIsZilch] = useState(false)
   const [isFreeRoll, setIsFreeRoll] = useState(false)
+  // const [pastScores, setPastScores] = useState([])
 
 
   useEffect(() => {
@@ -153,35 +154,24 @@ const GameRoom = () => {
         return { ...option, selected: true };
       else return option;
     });
-    // const updateState = scoringOptions.map(option => {
-
-    // })
+   
     setScoringOptions(updatedScoringOptions);
     const selectedScoringOption = updatedScoringOptions.filter(option => option.selected === true)
     socket.emit('UPDATE_SELECTED', selectedScoringOption)
   };
 
 
-  // if (gameState.ready && gameState.ready.length < 2) {
-  //   console.log(gameState.ready);
-  //   return (
-  //     <button
-  //       onClick={handleReady}
-  //       disabled={gameState.ready.find((user) => user === session.userId)}
-  //     >
-  //       READY
-  //     </button>
-  //   );
-  // }
-
   return (
     <div className={main}>
 
+        {results ? <ResultsPage socket={socket} results={results} /> : 
       <div className={wrap}>
-        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> : null}
-
-        <PlayerProgress />
-        <ActiveScoreboard />
+        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> 
+        : <>
+        <PlayerProgress gameState={gameState}/>
+        <ActiveScoreboard 
+        gameState={gameState}
+        currentPlayer={currentPlayer}/>
         <Dice dice={dice} isRolled={isRolled} />
         <GameControls
           isFreeRoll={isFreeRoll}
@@ -198,15 +188,18 @@ const GameRoom = () => {
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}
         />
+        </>
+  }
       </div>
 
+  }
       <div className={footer}>
         <Rules />
         <Scoring />
         <button className={button}>Leave</button>
       </div>
-      {/* 
-      {results ? <ResultsPage results={results} /> : null} */}
+       
+      
     </div>
   );
 };

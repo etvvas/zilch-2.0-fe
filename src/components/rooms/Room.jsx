@@ -2,28 +2,8 @@ import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
 const Room = ({roomName, firstUser, secondUser, }) => {
-  // console.log(props);
   const avatar = 'polar-bear';
-//   {
-//     "ready": [],
-//     "currentPlayerIndex": 0,
-//     "players": [
-//         "2"
-//     ],
-//     "roomName": "Room1",
-//     "rounds": 0,
-//     "targetScore": 5000,
-//     "firstUser": {
-//         "userName": "user2",
-//         "userId": "2",
-//         "avatar": "dog",
-//         "gameId": "",
-//         "numberOfRound": 0,
-//         "playerScore": 0,
-//         "playerZilches": 0,
-//         "playerUberZilches": 0
-//     }
-// }
+
   return (
     <>
       <div className={outerWrap}>
