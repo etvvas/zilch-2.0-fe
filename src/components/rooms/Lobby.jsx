@@ -76,7 +76,8 @@ const wrap = `
 `;
 
 const h1 = `
-  text-4xl
+  text-xl
+  sm:text-4xl
   text-center
   mt-4
 `;
