@@ -4,7 +4,7 @@ import { SocketContext } from '../../state/SocketProvider';
 // import useLobby from '../../state/hooks/useLobby';
 
 import Room from './Room';
-const rooms = [{roomName: 'Room1'}, {roomName: 'Room2'}, {roomName: 'Room3'}, {roomName: 'Room4'}, {roomName: 'Room5'}, {roomName: 'Room6'}];
+const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'}, {roomName: 'Mythril'}, {roomName: 'Titanium'}, {roomName: 'Adamantium'}];
 
 const Lobby = () => {
   const socket = useContext(SocketContext)
@@ -60,7 +60,7 @@ const outer = `
 
 const wrap = `
   max-w-screen-xl
-  mx-auto
+  sm:mx-auto
   bg-white
   rounded-xl
   sm:my-12
