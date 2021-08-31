@@ -5,7 +5,7 @@ import Room from './Room';
 
 const Lobby = () => {
 
-  const rooms = ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5', 'Room 6'];
+  const rooms = ['Vibranium', 'Gold', 'Xenon', 'Mythril', 'Titanium', 'Adamantium'];
 
 
   const roomsElements = rooms.map((room) => (
