@@ -11,7 +11,7 @@ import { useSession } from "../../state/SessionProvider";
 import { SocketContext } from "../../state/SocketProvider";
 // import Scoring from '../game/Scoring';
 // import ScoringOptions from '../game/ScoringOptions';
-// import ResultsPage from '../results/ResultsPage';
+import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
@@ -30,7 +30,7 @@ const GameRoom = () => {
   const [isRolled, setIsRolled] = useState(false);
   const [isZilch, setIsZilch] = useState(false)
   const [isFreeRoll, setIsFreeRoll] = useState(false)
-  const [pastScores, setPastScores] = useState([])
+  // const [pastScores, setPastScores] = useState([])
 
 
   useEffect(() => {
@@ -159,9 +159,9 @@ const GameRoom = () => {
   return (
     <div className={main}>
 
+        {results ? <ResultsPage results={results} /> : 
       <div className={wrap}>
         {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> : null}
-
         <PlayerProgress gameState={gameState}/>
         <ActiveScoreboard 
         gameState={gameState}
@@ -185,13 +185,14 @@ const GameRoom = () => {
         <Rules />
       </div>
 
+  }
       <div className={footer}>
         <Rules />
         {/* <Scoring /> */}
         <button className={button}>Leave</button>
       </div>
-      {/* 
-      {results ? <ResultsPage results={results} /> : null} */}
+       
+      
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 import Results from './Results';
 
@@ -21,15 +22,20 @@ import Results from './Results';
     // userId;
     // playerUberZilches;
 
-const ResultsPage = ({user1, user2, results}) => {
-  
+const ResultsPage = ({results}) => {
+  const history = useHistory()
+
+  const handleBackToLobby = () => {
+    history.push('/lobby')
+  }
+
   return (
     <>
       <div className={resultsPage}>
         <h1>Results Page</h1>
         <PlayerVersusPlayer results={results}/>
         <Results />
-        <button className={readyButton}>{results ? 'Back to Lobby' : 'Ready!'}</button>
+        <button className={readyButton} onClick={handleBackToLobby}>{results ? 'Back to Lobby' : 'Ready!'}</button>
       </div>
     </>
   )

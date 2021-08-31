@@ -7,7 +7,6 @@ import { Switch, Route } from 'react-router-dom';
 import Lobby from './components/rooms/Lobby';
 import GameRoom from './components/rooms/GameRoom';
 import SocketProvider from './state/SocketProvider';
-// import {SocketContext, socket} from './state/SocketProvider'
 import PrivateRoute from './components/common/PrivateRoute';
 
 function App() {
