@@ -9,7 +9,7 @@ const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'},
 const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
- 
+ //
   useEffect(() => {
     socket.on('UPDATE_LOBBY', (socketRooms) => {
         const updatedRooms = rooms.map(room => {
