@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 // import ActiveScoreboard from '../game/ActiveScoreboard';
 // import Dice from '../game/Dice';
 // import GameControls from '../game/GameControls';
@@ -10,34 +11,45 @@ import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
+  // const { room } = useParams();
   const [results, setResults] = useState(true);
-  
-  const [user1, setUser1] = useState({});
-  const [user2, setUser2] = useState({});
-  
+  const room = 'room1'
+  const gameState = {
+    room1: {
+      ready: ['1', '2'],
+      currentPlayerIndex: 0,
+      players: ['1', '2'],
+      roomName: 'Room2',
+      rounds: 1,
+      targetScore: 5000,
+      firstUser: {
+        userName: 'user1',
+        userId: '1',
+        avatar: 'bear',
+        gameId: '78',
+        numberOfRounds: 1,
+        playerScore: 100,
+        roundScore: 50,
+        playerZilches: 3,
+        playerUberZilches: 1
+      }, 
+      secondUser: {
+        userName: 'user2',
+        userId: '2',
+        avatar: 'polar-bear',
+        gameId: '78',
+        numberOfRounds: 2,
+        playerScore: 1000,
+        roundScore: 200,
+        playerZilches: 6,
+        playerUberZilches: 2
+      }, 
+    }
+  }
+
   useEffect (() => {
     //CHANGE HERE FOR TESTING
-    setResults(false);
-    setUser1({
-      userId: '1',
-      userName: "PlAyEr 1",
-      avatar: 'dog',
-      gameId: '1',
-      numberOfRounds: 10,
-      playerScore: 3000,
-      playerZilches: 3,
-      playerUberZilches: 1
-    })
-    setUser2({
-      userId: '2',
-      userName: "pLaYeR 2",
-      avatar: 'polar-bear',
-      gameId: '1',
-      numberOfRounds: 10,
-      playerScore: 5000,
-      playerZilches: 0,
-      playerUberZilches: 0
-  })
+    setResults(true);
   }, [])
 
   return (
@@ -45,7 +57,7 @@ const GameRoom = () => {
 
       <div className={wrap}>
 
-        {!results ? <WaitingRoom results={results} user1={user1} user2={user2}/> : null}
+        {!results ? <WaitingRoom results={results} user1={gameState[room].firstUser} user2={gameState[room].secondUser} room={room}/> : null}
 
         {/* <PlayerProgress />
         <ActiveScoreboard />
@@ -53,7 +65,7 @@ const GameRoom = () => {
         <GameControls />
         <ScoringOptions /> */}
       
-      {results ? <ResultsPage results={results} user1={user1} user2={user2} /> : null}
+      {results ? <ResultsPage results={results} user1={gameState[room].firstUser} user2={gameState[room].secondUser} room={room}/> : null}
       
       </div>
 
@@ -63,8 +75,6 @@ const GameRoom = () => {
         <button className={button}>Leave</button>
       </div>
 
-    
-      
     </div>
   )
 }

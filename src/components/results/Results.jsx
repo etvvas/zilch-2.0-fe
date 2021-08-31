@@ -1,26 +1,8 @@
 import React from 'react';
-
-// result
-//  resultId;
-//   gameId;
-//   userId;
-//   numberOfRounds;
-//   playerScore;
-
-// zilches
-// zilchId;
-//   gameId;
-//   userId;
-//   playerZilches;
-
-// uberZilches
-    // uberZilchId;
-    // gameId;
-    // userId;
-    // playerUberZilches;
+import avatars from '../../assets/avatars.svg'
 
 const Results = ({user1, user2}) => {
-  console.log('users', user1, user2)
+
   return(
     <>
     <h1>Results</h1>
@@ -36,23 +18,44 @@ const Results = ({user1, user2}) => {
       </thead>
       <tbody>
           <tr>
-              <td id="p1-name"></td>
-              <td id="p1-rounds"></td>
-              <td id="p1-score"></td>
-              <td id="p1-zilches"></td>
-              <td id="p1-uberzilches"></td>
+            <td id="avatar">
+              <svg className={svg}>
+                <use href={avatars + `#${user1.avatar}`} />
+              </svg>
+            </td>
+              <td id="name">{user1.userName}</td>
+              <td id="rounds">{user1.numberOfRounds}</td>
+              <td id="score">{user1.playerScore}</td>
+              <td id="zilches">{user1.playerZilches}</td>
+              <td id="uberzilches">{user1.playerUberZilches}</td>
           </tr>
           <tr>
-              <td id="p2-name"></td>
-              <td id="p2-rounds"></td>
-              <td id="p2-score"></td>
-              <td id="p2-zilches"></td>
-              <td id="p2-uberzilches"></td>
+              <td id="avatar">
+              <svg className={svg}>
+                <use href={avatars + `#${user2.avatar}`} />
+              </svg>
+            </td>
+              <td id="name">{user2.userName}</td>
+              <td id="rounds">{user2.numberOfRounds}</td>
+              <td id="score">{user2.playerScore}</td>
+              <td id="zilches">{user2.playerZilches}</td>
+              <td id="uberzilches">{user2.playerUberZilches}</td>
           </tr>
       </tbody>
     </table>
     </>
   )
 }
+
+const svg = `
+  w-12
+  h-12
+  md:w-12
+  md:h-12
+  my-2
+  mx-auto
+  border-4
+  border-transparent
+`;
 
 export default Results;
