@@ -27,84 +27,87 @@ const Scoring = () => {
             </button>
             <div className={modalInner}>
                 <h2 className={h2}>SCORING</h2>
-                <div className="scoring-modal-grid">
-                    <div className="scoring-modal-half">
+                <div className={container}>
+                    <div className={side}>
                         <h3 className={h3}>Single die</h3>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-one"></i><span>100 Points Each</span>
+                          <i className={die + 'fa-dice-one'}></i><span className={span}>100 Points Each</span>
                         </div>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-five"></i><span>50 Points Each</span>
+                          <i className={die + 'fa-dice-five'}></i><span className={span}>50 Points Each</span>
                         </div>
 
                         <h3 className={h3}>Three of a Kind</h3>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-one"></i>
-                            <i className="fas fa-dice-one"></i>
-                            <i className="fas fa-dice-one"></i><span>1000 Points</span>
+                          <i className={die + 'fa-dice-one'}></i>
+                          <i className={die + 'fa-dice-one'}></i>
+                          <i className={die + 'fa-dice-one'}></i><span className={span}>1000 Points</span>
                         </div>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-two"></i><span>200 Points</span>
+                          <i className={die + 'fa-dice-two'}></i>
+                          <i className={die + 'fa-dice-two'}></i>
+                          <i className={die + 'fa-dice-two'}></i><span className={span}>200 Points</span>
                         </div>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-three"></i>
-                            <i className="fas fa-dice-three"></i>
-                            <i className="fas fa-dice-three"></i><span>300 Points</span>
-                        </div>
-                        <div className="scoring-dice"><i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-four"></i><span>400Points</span>
+                          <i className={die + 'fa-dice-three'}></i>
+                          <i className={die + 'fa-dice-three'}></i>
+                          <i className={die + 'fa-dice-three'}></i><span className={span}>300 Points</span>
                         </div>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-five"></i><span>500 Points</span>
+                          <i className={die + 'fa-dice-four'}></i>
+                          <i className={die + 'fa-dice-four'}></i>
+                          <i className={die + 'fa-dice-four'}></i><span className={span}>400Points</span>
                         </div>
-                        <div className="scoring-dice"><i className="fas fa-dice-six"></i>
-                            <i className="fas fa-dice-six"></i>
-                            <i className="fas fa-dice-six"></i><span>600 Points</span>
+                        <div className="scoring-dice">
+                          <i className={die + 'fa-dice-five'}></i>
+                          <i className={die + 'fa-dice-five'}></i>
+                          <i className={die + 'fa-dice-five'}></i><span className={span}>500 Points</span>
+                        </div>
+                        <div className="scoring-dice">
+                          <i className={die + 'fa-dice-six'}></i>
+                          <i className={die + 'fa-dice-six'}></i>
+                          <i className={die + 'fa-dice-six'}></i><span className={span}>600 Points</span>
                         </div>
                     </div>
-                    <div className="scoring-modal-half">
-                        <h3 className={h3}> Four or More of a Kind:</h3> <div className="subtext">Every Extra Die Doubles the Three of a Kind Score</div>
+                    <div className={side}>
+                        <h3 className={h3}> Four or More of a Kind:</h3> 
+                        <div className={subtext}>Every extra die doubles the score.</div>
                         <div className="scoring-dice">
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i><span>600 Points</span>
+                                <i className={die + 'fa-dice-three'}></i>
+                                <i className={die + 'fa-dice-three'}></i>
+                                <i className={die + 'fa-dice-three'}></i>
+                                <i className={die + 'fa-dice-three'}></i><span className={span}>600 Points</span>
                         </div>
 
                         <div className="scoring-dice">
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i>
-                                <i className="fas fa-dice-three"></i><span>1200 Points</span>
+                                <i className={die + 'fa-dice-three'}></i>
+                                <i className={die + 'fa-dice-three'}></i>
+                                <i className={die + 'fa-dice-three'}></i>
+                                <i className={die + 'fa-dice-three'}></i>
+                                <i className={die + 'fa-dice-three'}></i><span className={span}>1200 Points</span>
                         </div>
 
                         <h3 className={h3}>Straight</h3>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-one"></i>
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-three"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-six"></i>
+                            <i className={die + 'fa-dice-one'}></i>
+                            <i className={die + 'fa-dice-two'}></i>
+                            <i className={die + 'fa-dice-three'}></i>
+                            <i className={die + 'fa-dice-four'}></i>
+                            <i className={die + 'fa-dice-five'}></i>
+                            <i className={die + 'fa-dice-six'}></i>
                         </div>
-                        <span>1500 Points</span>
+                        <span className={span}>1500 Points</span>
 
                         <h3 className={h3}>Any Three Pairs</h3>
                         <div className="scoring-dice">
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-two"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-four"></i>
-                            <i className="fas fa-dice-five"></i>
-                            <i className="fas fa-dice-five"></i>
+                            <i className={die + 'fa-dice-two'}></i>
+                            <i className={die + 'fa-dice-two'}></i>
+                            <i className={die + 'fa-dice-four'}></i>
+                            <i className={die + 'fa-dice-four'}></i>
+                            <i className={die + 'fa-dice-five'}></i>
+                            <i className={die + 'fa-dice-five'}></i>
                         </div>
-                        <span>1500 Points</span>
+                        <span className={span}>1500 Points</span>
                     </div>
                 </div>
                 {/* <button 
@@ -117,9 +120,24 @@ const Scoring = () => {
   )
 }
 
+const container = `
+  sm:grid
+  sm:grid-cols-2
+`;
+
+const side = `
+  
+`;
+
+const die = `
+  fas
+  text-2xl
+  text-gray-700
+`;
+
 const scoringButton = `
-text-indigo-500
-bg-gray-100
+  text-indigo-500
+  bg-gray-100
   sm:bg-purple-400
   sm:bg-opacity-50
   sm:text-white
@@ -142,6 +160,7 @@ const modal = `
   pt-20
   sm:pt-36
   pb-2
+  overflow-hidden
 `;
 
 const modalWrap = `
@@ -151,6 +170,7 @@ const modalWrap = `
   bg-white
   rounded
   pt-12
+  modal-wrap
 `;
 
 const modalInner = `
@@ -174,14 +194,24 @@ const h2 = `
   text-2xl
   text-center
   font-black
-  mt-8
+  mt-4
+  sm:mt-8
 `;
 
 const h3 = `
-  text-lg
+  text-md
+  sm:text-lg
   font-bold
   mt-4
   mb-1
+`;
+
+const subtext = `
+  text-sm
+`;
+
+const span = `
+  text-sm
 `;
 
 export default Scoring;

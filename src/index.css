@@ -46,3 +46,8 @@ input[type="checkbox"]:checked + label {
 button:disabled {
   opacity: 50%;
 }
+
+
+.modal-wrap {
+  height: 100%;
+}

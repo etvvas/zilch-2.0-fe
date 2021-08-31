@@ -82,6 +82,7 @@ const modalWrap = `
   bg-white
   rounded
   pt-12
+  modal-wrap
 `;
 
 const modalInner = `
