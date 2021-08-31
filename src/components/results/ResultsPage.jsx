@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 import Results from './Results';
 
@@ -22,11 +23,12 @@ import Results from './Results';
     // userId;
     // playerUberZilches;
 
-const ResultsPage = ({results}) => {
+const ResultsPage = ({results, socket}) => {
   const history = useHistory()
 
   const handleBackToLobby = () => {
     history.push('/lobby')
+    socket.emit('DISCONNECT')
   }
 
   return (

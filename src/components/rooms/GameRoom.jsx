@@ -164,9 +164,10 @@ const GameRoom = () => {
   return (
     <div className={main}>
 
-        {results ? <ResultsPage results={results} /> : 
+        {results ? <ResultsPage socket={socket} results={results} /> : 
       <div className={wrap}>
-        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> : null}
+        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> 
+        : <>
         <PlayerProgress gameState={gameState}/>
         <ActiveScoreboard 
         gameState={gameState}
@@ -187,6 +188,8 @@ const GameRoom = () => {
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}
         />
+        </>
+  }
       </div>
 
   }
