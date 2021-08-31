@@ -68,9 +68,10 @@ const wrap = `
 `;
 
 const h1 = `
-  text-4xl
+  text-3xl
+  sm:text-4xl
   text-center
-  mt-4
+  mt-8
 `;
 
 const span = `
