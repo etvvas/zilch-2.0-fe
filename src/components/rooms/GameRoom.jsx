@@ -3,13 +3,12 @@ import ActiveScoreboard from "../game/ActiveScoreboard";
 import Dice from "../game/Dice";
 import GameControls from "../game/GameControls";
 import PlayerProgress from "../game/PlayerProgress";
-// import Player from "../game/Players";
 import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import { useHistory, useParams } from "react-router-dom";
 import { useSession } from "../../state/SessionProvider";
 import { SocketContext } from "../../state/SocketProvider";
-// import Scoring from '../game/Scoring';
+import Scoring from '../game/Scoring';
 // import ScoringOptions from '../game/ScoringOptions';
 import ResultsPage from '../results/ResultsPage';
 import WaitingRoom from './WaitingRoom';
@@ -135,6 +134,12 @@ const GameRoom = () => {
       console.log(gameData)
       setResults(gameData)
     })
+    socket.on("connect", () => {
+      console.log('GAMEROOM CONNECTED');
+    });
+    socket.on("disconnect", (reason) => {
+      console.log('GAMEROOM', reason);
+    });
 
     return () => socket.emit("DISCONNECT");
   }, []);
@@ -182,13 +187,12 @@ const GameRoom = () => {
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}
         />
-        <Rules />
       </div>
 
   }
       <div className={footer}>
         <Rules />
-        {/* <Scoring /> */}
+        <Scoring />
         <button className={button}>Leave</button>
       </div>
        

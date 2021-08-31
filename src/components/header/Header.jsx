@@ -69,7 +69,8 @@ const icon = `
 const h1 = `
   text-purple-100
   font-bold
-  text-2xl
+  text-xl
+  sm:text-2xl
 `;
 
 const h2 = `
