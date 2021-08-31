@@ -178,8 +178,8 @@ const GameRoom = () => {
     <div className={main}>
 
       <div className={wrap}>
-        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> : null}
-
+        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> 
+        :<>
         <PlayerProgress />
         <ActiveScoreboard />
         <Dice dice={dice} isRolled={isRolled} />
@@ -198,6 +198,8 @@ const GameRoom = () => {
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}
         />
+        </>
+      }
       </div>
 
       <div className={footer}>
