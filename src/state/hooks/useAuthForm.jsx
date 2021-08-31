@@ -4,7 +4,7 @@ const useAuthForm = () => {
     const [isSignUp, setIsSignUp] = useState(false)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [avatar, setAvatar] = useState('')
+    const [avatar, setAvatar] = useState('bear')
 
     const handleChange = ({target}) => {
         if(target.name === 'username') setUsername(target.value)

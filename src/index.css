@@ -4,10 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (min-width: 640px) { 
+  body {
+    background: rgb(31,27,98);
+    background: linear-gradient(75deg, rgba(31,27,98,1) 0%, rgba(163,38,179,1) 33%, rgba(66,219,250,1) 100%);
+    background-attachment: fixed;    
+  }
+}
+
 body {
-  /* background: rgb(31,27,98);
-  background: linear-gradient(75deg, rgba(31,27,98,1) 0%, rgba(163,38,179,1) 33%, rgba(66,219,250,1) 100%);
-  background-attachment: fixed; */
   /* font-family: 'Open Sans', sans-serif; */
   font-family: 'Nunito', sans-serif;
 }
@@ -36,4 +41,8 @@ input[type="checkbox"]:checked + label {
   -o-transition:      -o-transform 500ms ease-out;
   -ms-transition:     -ms-transform 500ms ease-out;
   transition: transform 500ms cubic-bezier(0, 0.13, 0.92, 1.03);
+}
+
+button:disabled {
+  opacity: 50%;
 }

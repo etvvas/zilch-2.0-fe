@@ -4,13 +4,14 @@ const GameControls = () => {
   return (
     <div className={diceControls}>
       <button className={button + rollButton}>Roll</button>
-      <button className={button + bankReady}>Bank <span className={span}>250</span></button>
+      <button className={button + bankReady} disabled>Bank <span className={span}>250</span></button>
     </div>
   )
 }
 
 const button = `
-  py-4
+  py-2
+  sm:py-4
   text-center
   w-full
   rounded
@@ -32,6 +33,12 @@ const rollButton = `
   border-indigo-600
   text-white
 `;
+
+// const bankNotReady = `
+//   bg-gray-200
+//   border-gray-300
+//   text-gray-600
+// `;
 
 const bankReady = `
   bg-green-500
