@@ -111,6 +111,7 @@ const currentScoreboard = `
 
 const table = `
   w-full
+  scoreboard
 `;
 
 const thead = `
