@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from '../../state/SessionProvider';
 import avatars from '../../assets/avatars.svg';
 import { useParams } from 'react-router-dom';
-import { getPlayerWins, getUser } from '../../utils/profile.js';
+import { getPlayerGames, getPlayerWins, getUser } from '../../utils/profile.js';
 // import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../services/profile';
 
 const PlayerProfile = () => {
@@ -23,10 +23,9 @@ const PlayerProfile = () => {
     const fetchedWins = await getPlayerWins(user.userId)
     setWins(fetchedWins.length);
     
-  //   // const fetchedGames = await getPlayerGames(user.userId);
-  //   const fetchedGames = [...Array(18)]
-  //   setGames(fetchedGames);
-  //   setLosses(fetchedGames.length - wins);
+    const fetchedGames = await getPlayerGames(user.userId);
+    setGames(fetchedGames);
+    setLosses(fetchedGames.length - wins);
     
   //   // const fetchedZilches = await getPlayerZilches(user.userId);
   //   const fetchedZilches = [
@@ -90,8 +89,8 @@ const PlayerProfile = () => {
       </svg>
       <h2>user: {user.username}</h2>
       <h2>wins: {wins}</h2>
-      {/* <h2>losses: {losses} </h2>
-      <h2>zilches: {zilches} </h2>
+      <h2>losses: {losses} </h2>
+      {/* <h2>zilches: {zilches} </h2>
       <h2>uberZilches: {uberZilches} </h2>
 
       <h1>Game History</h1>
