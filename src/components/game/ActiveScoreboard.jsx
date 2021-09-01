@@ -2,11 +2,19 @@ import React from 'react';
 import avatars from '../../assets/avatars.svg';
 // import { useSession } from '../../state/SessionProvider';
 
-const ActiveScoreboard = ({gameState, currentPlayer}) => {
+const ActiveScoreboard = ({gameState, currentPlayer, roundScores}) => {
   // const session = useSession()
   let matchingUser
   let avatar1
-
+  const tableRows = roundScores.map((round) => {
+    console.log(round);
+    return (
+      <tr className={tr}>
+      <td className={td + 'w-full'}>{round.roundScore}</td>
+      <td className={td + 'w-20'}>{round.totalScore}</td>
+    </tr>
+    )
+  })
   if(gameState.gameId){
     (gameState?.firstUser.userId === currentPlayer) ? matchingUser = 'firstUser' : matchingUser = 'secondUser'
     avatar1 = gameState[matchingUser].avatar;
@@ -37,22 +45,7 @@ const ActiveScoreboard = ({gameState, currentPlayer}) => {
               </tr>
             </thead>
             <tbody className={tbody}>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>500</td>
-                <td className={td + 'w-20'}>4200</td>
-              </tr>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>Zilch!</td>
-                <td className={td + 'w-20'}>4200</td>
-              </tr>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>Zilch!</td>
-                <td className={td + 'w-20'}>4200</td>
-              </tr>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>Uberzilch! -500</td>
-                <td className={td + 'w-20'}>3700</td>
-              </tr>
+             {tableRows}
             </tbody>
           </table>
         </div>
@@ -154,3 +147,19 @@ const td = `
 `;
 
 export default ActiveScoreboard;
+/* <tr className={tr}>
+<td className={td + 'w-full'}>500</td>
+<td className={td + 'w-20'}>4200</td>
+</tr>
+<tr className={tr}>
+<td className={td + 'w-full'}>Zilch!</td>
+<td className={td + 'w-20'}>4200</td>
+</tr>
+<tr className={tr}>
+<td className={td + 'w-full'}>Zilch!</td>
+<td className={td + 'w-20'}>4200</td>
+</tr>
+<tr className={tr}>
+<td className={td + 'w-full'}>Uberzilch! -500</td>
+<td className={td + 'w-20'}>3700</td>
+</tr> */
