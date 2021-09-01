@@ -157,13 +157,13 @@ const GameRoom = () => {
     setScoringOptions(updatedScoringOptions);
     const selectedScoringOption = updatedScoringOptions.filter(option => option.selected === true)
     socket.emit('UPDATE_SELECTED', selectedScoringOption)
-  };
 
+  };
 
   return (
     <div className={main}>
 
-        {results ? <ResultsPage socket={socket} results={results} /> : 
+        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room} /> : 
       <div className={wrap}>
         {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
         : <>

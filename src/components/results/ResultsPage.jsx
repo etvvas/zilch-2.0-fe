@@ -23,7 +23,7 @@ import Results from './Results';
     // userId;
     // playerUberZilches;
 
-const ResultsPage = ({results, socket}) => {
+const ResultsPage = ({results, socket, user1, user2, room}) => {
   const history = useHistory()
 
   const handleBackToLobby = () => {
@@ -35,7 +35,7 @@ const ResultsPage = ({results, socket}) => {
     <>
       <div className={resultsPage}>
         <h1>Results Page</h1>
-        <PlayerVersusPlayer results={results}/>
+        <PlayerVersusPlayer results={results} user1={user1} user2={user2} room={room}/>
         <Results />
         <button className={readyButton} onClick={handleBackToLobby}>{results ? 'Back to Lobby' : 'Ready!'}</button>
       </div>
