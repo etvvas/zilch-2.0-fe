@@ -16,7 +16,8 @@ const PlayerProfile = () => {
   const [zilches, setZilches] = useState(0);
   const [uberZilches, setUberZilches] = useState(0);
 
-  useEffect(async() => {
+  useEffect(async () => {
+
     const fetchedUser = await getUser(username);
     setUser(fetchedUser);
 
@@ -40,6 +41,7 @@ const PlayerProfile = () => {
     const allUberZilches = Array.from(fetchedUberZilches).reduce((a, b) => a.playerUberZilches + b.playerUberZilches, 0)
     console.log(allUberZilches)
     setUberZilches(allUberZilches)
+
   }, [])
 
   // stats renders sometimes; not enough time to fetch
