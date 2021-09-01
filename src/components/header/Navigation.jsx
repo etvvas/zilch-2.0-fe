@@ -5,7 +5,7 @@ import { getLogout } from '../../services/auth';
 import { useSession, useSetSession } from '../../state/SessionProvider';
 
 
-const Navigation = ({ isOpen, setIsOpen }) => {
+const Navigation = ({ isOpen, setIsOpen, socket }) => {
   const history = useHistory();
   const session = useSession();
   const setSession = useSetSession();
@@ -16,11 +16,13 @@ const Navigation = ({ isOpen, setIsOpen }) => {
   }
   const handleProfile = () => {
     setIsOpen(!isOpen)
+    socket.emit('DISCONNECT')
     history.push(`/profile/${session.username}`)
   }
 
   const handleLeaderboard = () => {
      setIsOpen(!isOpen)
+     socket.emit('DISCONNECT')
     history.push('/leaderboard')
   }
 
