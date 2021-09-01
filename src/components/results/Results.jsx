@@ -1,24 +1,5 @@
 import React from 'react';
 
-// result
-//  resultId;
-//   gameId;
-//   userId;
-//   numberOfRounds;
-//   playerScore;
-
-// zilches
-// zilchId;
-//   gameId;
-//   userId;
-//   playerZilches;
-
-// uberZilches
-    // uberZilchId;
-    // gameId;
-    // userId;
-    // playerUberZilches;
-
 const Results = () => {
   return(
     <>
