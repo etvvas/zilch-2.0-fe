@@ -2,11 +2,11 @@ import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
 const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
-  console.log('user1', user1)
-  console.log('user2', user2)
+  // console.log('user1', user1)
+  // console.log('user2', user2)
   const avatar = 'dice';
   // add conditional styling (noPlayerSvg) if player does not exist
-console.log('results', results)
+// console.log('results', results)
   return (
     <>
       <div className={outerWrap}>
