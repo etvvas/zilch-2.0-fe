@@ -2,11 +2,11 @@ import React from 'react';
 import PlayerVersusPlayer from '../common/PlayerVersusPlayer';
 import { useSession } from '../../state/SessionProvider';
 
-const WaitingRoom = ({ results, onReady, ready }) => {
+const WaitingRoom = ({ results, onReady, ready, user1, user2, room }) => {
   const session = useSession()
   return (
     <>
-      <PlayerVersusPlayer results={results} />
+      <PlayerVersusPlayer results={results} user1={user1} user2={user2} room={room} />
       <button
         className={readyButton}
         onClick={onReady}

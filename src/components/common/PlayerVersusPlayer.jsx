@@ -1,8 +1,9 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const PlayerVersusPlayer = ({ results}) => {
-  const room = 'Room1';
+const PlayerVersusPlayer = ({results, user1, user2, room}) => {
+  console.log('user1', user1)
+  console.log('user2', user2)
   const avatar = 'dice';
   // add conditional styling (noPlayerSvg) if player does not exist
 console.log('results', results)
@@ -13,43 +14,45 @@ console.log('results', results)
         </div>
         <div className={innerWrap}>
           <div className={side}>
-            <p className={playerName + playerOne}>ScrumMast3r</p>
-            <svg className={noPlayerSvg + winning}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-            {!results[0]  
-              ? <p className={ready}>Ready!</p>
-              : null
+            {user1 
+            ? (<>
+              <p className={playerName + playerOne}>{user1.userName}</p>
+              <svg className={svg + winning}>
+                <use href={avatars + `#${user1.avatar}`} />
+              </svg>
+              </>)
+            : (<>
+            <div className={side}>
+              <p className={playerName + playerTwo}>Waiting..</p>
+              <svg className={noPlayerSvg}>
+                <use href={avatars + `#${avatar}`} />
+              </svg>
+            </div>
+            </>)
             }
           </div>
           <div className={vs}>
             vs
           </div>
-          <div className={side}>
-            <p className={playerName + playerTwo}>_UXgUrU_</p>
-            <svg className={svg}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-            {!results[0]  
-              ? <p className={ready}>Ready!</p>
-              : null
-            }
-          </div>
-        </div>
-        {/* <div className={readyMessage}> */}
-          {/* Case1: player joins, no other player has joined yet
-            "waiting for opponent to join"
-          */}
-          {/* Case2: player joins and hits ready button 
-            "waiting on opponent to be ready"
-          */}
-          {/*  */}
-          {!results[0]  
-              ? 'Game will start when both players are ready.'
-              : null
+          {user2 
+          ? (<>
+            <div className={side}>
+              <p className={playerName + playerTwo}>{user2.userName}</p>
+              <svg className={svg}>
+                <use href={avatars + `#${user2.avatar}`} />
+              </svg>
+            </div>
+            </>)
+          :(<>
+            <div className={side}>
+              <p className={playerName + playerTwo}>Waiting..</p>
+              <svg className={noPlayerSvg}>
+                <use href={avatars + `#${avatar}`} />
+              </svg>
+            </div>
+            </>)
           }
-        {/* </div> */}
-     
+        </div>
     </>
   )
 }
@@ -123,13 +126,6 @@ const noPlayerSvg = `
   mx-auto
   filter
   grayscale
-`;
-
-const ready = `
-  font-bold
-  text-green-500
-  text-center
-  tracking-wide
 `;
 
 const playerOne = `

@@ -165,7 +165,7 @@ const GameRoom = () => {
 
         {results ? <ResultsPage socket={socket} results={results} /> : 
       <div className={wrap}>
-        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> 
+        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
         : <>
         <PlayerProgress gameState={gameState}/>
         <ActiveScoreboard 
