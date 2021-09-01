@@ -16,7 +16,7 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) =>
       {/* <div className={message}>Roll remaining dice or bank your points.</div> */}
 
       {/* CASE: Before first roll of turn */}
-      {/* <div className={message}>Roll the dice to start your turn.</div> */}
+      {/* <div className={message}>PlayerName, roll the dice to start your turn.</div> */}
 
       {scoringOptions.map((option, i) => {
         if(option.choice === 'ZILCH') return null;
