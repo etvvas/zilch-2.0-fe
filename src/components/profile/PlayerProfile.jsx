@@ -36,7 +36,6 @@ const PlayerProfile = () => {
     const allZilches = fetchedZilches.reduce((a, b) => a + b.playerZilches, 0)
     setZilches(allZilches)
 
-    
     const fetchedUberZilches = await getPlayerUberZilches(fetchedUser.userId)
     const allUberZilches = fetchedUberZilches.reduce((a, b) => a + b.playerUberZilches, 0)
     setUberZilches(allUberZilches)
