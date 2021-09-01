@@ -42,7 +42,9 @@ const PlayerProfile = () => {
     setUberZilches(allUberZilches)
   }, [])
 
-  console.log(games)
+  // stats renders sometimes; not enough time to fetch
+
+  // global rank = take leaderboard (wins), match userId, and get index + 1
 
   return (
     <>
@@ -52,6 +54,7 @@ const PlayerProfile = () => {
         <svg className={svg}>
           <use href={avatars + `#${user.avatar}`} />
         </svg>
+        <h2>Global Rank #</h2>
         <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
         <GameHistory games={games}/>
