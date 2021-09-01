@@ -67,10 +67,11 @@ const handleClick = () => {
 const outer = `
   flex
   flex-col
+  sm:px-4
 `;
 
 const wrap = `
-  max-w-screen-xl
+  max-w-screen-lg
   sm:mx-auto
   bg-white
   rounded-xl

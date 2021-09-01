@@ -14,8 +14,6 @@ const ActiveScoreboard = ({gameState, currentPlayer}) => {
   
     return (
   
-      // use this for staying scrolled to the bottom of table when new values added https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
-  
       <div className={scoreBoard}>
         <div className={currentPlayer}>
           <div className={playerStats}>
@@ -104,9 +102,6 @@ const h2 = `
   overflow-ellipsis
 `;
 
-const currentPlayer = `
-`;
-
 const currentScoreboard = `
   flex
   flex-col
@@ -116,6 +111,7 @@ const currentScoreboard = `
 
 const table = `
   w-full
+  scoreboard
 `;
 
 const thead = `
