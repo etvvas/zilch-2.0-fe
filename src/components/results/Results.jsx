@@ -1,25 +1,8 @@
 import React from 'react';
+import avatars from '../../assets/avatars.svg';
 
-// result
-//  resultId;
-//   gameId;
-//   userId;
-//   numberOfRounds;
-//   playerScore;
+const Results = ({user1, user2}) => {
 
-// zilches
-// zilchId;
-//   gameId;
-//   userId;
-//   playerZilches;
-
-// uberZilches
-    // uberZilchId;
-    // gameId;
-    // userId;
-    // playerUberZilches;
-
-const Results = () => {
   return(
     <>
     <h1>Results</h1>
@@ -35,23 +18,61 @@ const Results = () => {
       </thead>
       <tbody>
           <tr>
-              <td id="p1-name"></td>
-              <td id="p1-rounds"></td>
-              <td id="p1-score"></td>
-              <td id="p1-zilches"></td>
-              <td id="p1-uberzilches"></td>
+            <td className={avatar}>
+              <svg className={svg}>
+                <use href={avatars + `#${user1.avatar}`} />
+              </svg>
+            </td>
+              <td className={username}>{user1.userName}</td>
+              <td className={rounds}>{user1.numberOfRounds}</td>
+              <td className={score}>{user1.playerScore}</td>
+              <td className={zilches}>{user1.playerZilches}</td>
+              <td className={uberZilches}>{user1.playerUberZilches}</td>
           </tr>
           <tr>
-              <td id="p2-name"></td>
-              <td id="p2-rounds"></td>
-              <td id="p2-score"></td>
-              <td id="p2-zilches"></td>
-              <td id="p2-uberzilches"></td>
+              <td className={avatar}>
+              <svg className={svg}>
+                <use href={avatars + `#${user2.avatar}`} />
+              </svg>
+            </td>
+              <td className={username}>{user2.userName}</td>
+              <td className={rounds}>{user2.numberOfRounds}</td>
+              <td className={score}>{user2.playerScore}</td>
+              <td className={zilches}>{user2.playerZilches}</td>
+              <td className={uberZilches}>{user2.playerUberZilches}</td>
           </tr>
       </tbody>
     </table>
     </>
   )
 }
+
+const svg = `
+  w-20
+  h-20
+  md:w-12
+  md:h-12
+  my-2
+  mx-auto
+`;
+
+const avatar = `
+
+`;
+const username = `
+
+`;
+const rounds = `
+
+`;
+const score = `
+
+`;
+const zilches = `
+
+`;
+const uberZilches = `
+
+`;
 
 export default Results;
