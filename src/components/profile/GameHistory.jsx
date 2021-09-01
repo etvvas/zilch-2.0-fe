@@ -21,13 +21,11 @@ const GameHistory = ({games}) => {
   //   const user1 = await getUserById(game.firstUserId)
   //   const user2 = await getUserById(game.secondUserId)
     
-    return (
-      <li key={i}>
+    // return (
+    //   <li key={i}>
         
-      </li>
-    )
-  })
-
+    //   </li>
+    // )
 
   return(
     <>
