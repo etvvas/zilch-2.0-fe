@@ -1,8 +1,9 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const PlayerVersusPlayer = ({user1, user2, room, results}) => {
-  room = 'Titanium';
+const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
+  console.log('user1', user1)
+  console.log('user2', user2)
   const avatar = 'dice';
   // add conditional styling (noPlayerSvg) if player does not exist
 console.log('results', results)
@@ -11,31 +12,51 @@ console.log('results', results)
       <div className={outerWrap}>
         <h3 className={h3}>{room} Room</h3>
         </div>
+        {winner
+        ? <h2>{winner} WINS!</h2>
+        : null
+        }
         <div className={innerWrap}>
           <div className={side}>
-            <p className={playerName + playerOne}>ScrumMast3r</p>
-            <svg className={noPlayerSvg + winning}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-            {!results  
-              ? <p className={ready}>Ready!</p>
-              : null
+            {user1 
+            ? (<>
+              <p className={playerName + playerOne}>{user1.userName}</p>
+              <svg className={svg + winning}>
+                <use href={avatars + `#${user1.avatar}`} />
+              </svg>
+              </>)
+            : (<>
+            <div className={side}>
+              <p className={playerName + playerTwo}>Waiting..</p>
+              <svg className={noPlayerSvg}>
+                <use href={avatars + `#${avatar}`} />
+              </svg>
+            </div>
+            </>)
             }
           </div>
           <div className={vs}>
             vs
           </div>
-          <div className={side}>
-            <p className={playerName + playerTwo}>_UXgUrU_</p>
-            <svg className={svg}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-            {!results  
-              ? <p className={ready}>Ready!</p>
-              : null
-            }
-          </div>
-      </div>
+          {user2 
+          ? (<>
+            <div className={side}>
+              <p className={playerName + playerTwo}>{user2.userName}</p>
+              <svg className={svg}>
+                <use href={avatars + `#${user2.avatar}`} />
+              </svg>
+            </div>
+            </>)
+          :(<>
+            <div className={side}>
+              <p className={playerName + playerTwo}>Waiting..</p>
+              <svg className={noPlayerSvg}>
+                <use href={avatars + `#${avatar}`} />
+              </svg>
+            </div>
+            </>)
+          }
+        </div>
     </>
   )
 }
@@ -109,13 +130,6 @@ const noPlayerSvg = `
   mx-auto
   filter
   grayscale
-`;
-
-const ready = `
-  font-bold
-  text-green-500
-  text-center
-  tracking-wide
 `;
 
 const playerOne = `

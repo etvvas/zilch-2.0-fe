@@ -3,7 +3,6 @@ import React, {useContext} from 'react';
 import { SocketContext } from '../../state/SocketProvider';
 
 const GameControls = ({gameState, dice, isDisabled, rollDisabled, bankDisabled, isFreeRoll}) => {
-console.log(bankDisabled);
 const socket = useContext(SocketContext)
 
 // if the sum of the users points < 300, disable bank button
