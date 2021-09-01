@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from '../../state/SessionProvider';
 import avatars from '../../assets/avatars.svg';
 import { useParams } from 'react-router-dom';
-import { getUser } from '../../utils/profile';
+import { getPlayerWins, getUser } from '../../utils/profile.js';
 // import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../services/profile';
 
 const PlayerProfile = () => {
@@ -18,13 +18,10 @@ const PlayerProfile = () => {
 
   useEffect(async() => {
     const fetchedUser = await getUser(username);
-    console.log('fetch', fetchedUser)
     setUser(fetchedUser);
-    console.log('main', user)
-    
-  //   // const fetchedWins = await getPlayerWins(user.userId)
-  //   const fetchedWins = [...Array(6)]
-  //   setWins(fetchedWins.length);
+
+    const fetchedWins = await getPlayerWins(user.userId)
+    setWins(fetchedWins.length);
     
   //   // const fetchedGames = await getPlayerGames(user.userId);
   //   const fetchedGames = [...Array(18)]
@@ -87,21 +84,19 @@ const PlayerProfile = () => {
   return (
     <>
     <h1>{user.username}'s Profile</h1>
-    {/* <div>
+    <div>
       <svg className={svg}>
-        <use href={avatars + `#${session.avatar}`} />
+        <use href={avatars + `#${user.avatar}`} />
       </svg>
       <h2>user: {user.username}</h2>
       <h2>wins: {wins}</h2>
-      <h2>losses: {losses} </h2>
+      {/* <h2>losses: {losses} </h2>
       <h2>zilches: {zilches} </h2>
       <h2>uberZilches: {uberZilches} </h2>
 
       <h1>Game History</h1>
-      {games.map}
-
-
-    </div> */}
+      {games.map} */}
+    </div>
     </>
   )
 }
