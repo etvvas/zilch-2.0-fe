@@ -1,27 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-import { io } from 'socket.io-client';
 
-io('https://zilch-v2-staging.herokuapp.com/')
+import './App.css';
+// import { io } from 'socket.io-client';
+import Header from './components/header/Header';
+import AuthForm from './components/auth/AuthForm';
+import { Switch, Route } from 'react-router-dom';
+import Lobby from './components/rooms/Lobby';
+import GameRoom from './components/rooms/GameRoom';
+import SocketProvider from './state/SocketProvider';
+import PrivateRoute from './components/common/PrivateRoute';
+import Leaderboard from './components/rooms/Leaderboard';
+import PlayerProfile from './components/profile/PlayerProfile';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+
+      <Switch>
+        <Route path="/" exact={true} component={AuthForm} />
+        <SocketProvider>
+          <PrivateRoute path="/lobby" exact component={Lobby} />
+          <PrivateRoute path="/lobby/:room" exact component={GameRoom} />
+          <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
+          <PrivateRoute path="/profile/:username" exact component={PlayerProfile} />
+        </SocketProvider>
+      </Switch>
+    </>
   );
 }
 
