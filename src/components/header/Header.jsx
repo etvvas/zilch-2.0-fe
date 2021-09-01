@@ -33,7 +33,7 @@ const Header = () => {
         </header>
       </div>
 
-      <Navigation isOpen={isOpen} />
+      <Navigation isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   )
 }

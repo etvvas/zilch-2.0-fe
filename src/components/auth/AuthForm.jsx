@@ -42,6 +42,7 @@ if(loading) return <h1>LOADING</h1>
           <label className={label}>
             <span className={span}>Username</span>
             <input 
+              required
               className={input}
               placeholder="Username" 
               name="username"
@@ -52,6 +53,7 @@ if(loading) return <h1>LOADING</h1>
           <label className={label}>
             <span className={span}>Password</span>
             <input  type="password"
+              required
               className={input}
               placeholder="Password" 
               name="password"

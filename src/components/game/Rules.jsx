@@ -49,8 +49,8 @@ const Rules = () => {
 }
 
 const rulesButton = `
-text-indigo-500
-bg-gray-100
+  text-indigo-500
+  bg-gray-100
   sm:bg-purple-400
   sm:bg-opacity-50
   sm:text-white
@@ -70,7 +70,7 @@ const modal = `
   right-0
   bottom-0
   px-2
-  pt-20
+  pt-16
   sm:pt-36
   pb-2
 `;

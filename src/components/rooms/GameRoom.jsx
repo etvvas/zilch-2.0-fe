@@ -217,13 +217,13 @@ else
 
 const main = `
   h-full
-  relative
   flex
   flex-col
   items-center
 `;
 
 const wrap = `
+  relative
   max-w-screen-sm
   w-full
   mx-auto

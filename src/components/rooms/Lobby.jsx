@@ -10,18 +10,21 @@ const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'},
 const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
+
   const loading = useVerificationLoading()
   const setLoading = useSetLoading()
   useEffect(() => {
     
     setLoading(true)
     socket.on('UPDATE_LOBBY', (socketRooms) => {
+
         const updatedRooms = rooms.map(room => {
         let newRoom;
         const match = socketRooms.find(item => item[room.roomName]?.roomName === room.roomName) 
         match ? newRoom = match[room.roomName] : newRoom = room
         return newRoom
       })
+      
      setGameRooms(updatedRooms)
     })
     socket.on("connect", () => {
@@ -47,7 +50,7 @@ const handleClick = () => {
       <Link 
       onClick={handleClick}
       to={`/lobby/${room.roomName}`}>
-        <Room {...room} />
+        <Room {...room}/>
       </Link>
     </li>
 ))
@@ -67,10 +70,11 @@ const handleClick = () => {
 const outer = `
   flex
   flex-col
+  sm:px-4
 `;
 
 const wrap = `
-  max-w-screen-xl
+  max-w-screen-lg
   sm:mx-auto
   bg-white
   rounded-xl
