@@ -11,3 +11,11 @@ export const getPlayerWins = async (id) => {
   const json = wins.json()
   return json;  
 }
+
+export const getPlayerGames = async (id) => {
+  const games = await fetch(`${process.env.REACT_APP_HEROKU_URL}/api/v1/users/${id}/games`)
+  
+  const json = games.json()
+  console.log('utils', json)
+  return json; 
+}
