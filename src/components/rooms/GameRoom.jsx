@@ -100,7 +100,7 @@ const GameRoom = () => {
     socket.on("BANKED", (gameState, index, players) => {
       setGameState(gameState[room]);
       setCurrentPlayer(players[index]);
-
+      setIsFreeRoll(false)
       // refactor to custom hook setting all pieces of state at once
       setRollDisabled(false)
       setBankDisabled(true)
