@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from '../../state/SessionProvider';
 import avatars from '../../assets/avatars.svg';
 import { useParams } from 'react-router-dom';
-import { getPlayerGames, getPlayerWins, getUser } from '../../utils/profile.js';
+import { getPlayerGames, getPlayerWins, getPlayerZilches, getUser } from '../../utils/profile.js';
 // import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../services/profile';
 
 const PlayerProfile = () => {
@@ -27,28 +27,10 @@ const PlayerProfile = () => {
     setGames(fetchedGames);
     setLosses(fetchedGames.length - wins);
     
-  //   // const fetchedZilches = await getPlayerZilches(user.userId);
-  //   const fetchedZilches = [
-  //     {
-  //       userId: '1',
-  //       gameId: '1',
-  //       playerZilches: 2
-  //     },
-  //     {
-  //       userId: '1',
-  //       gameId: '2',
-  //       playerZilches: 1
-  //     },
-  //     {
-  //       userId: '1',
-  //       gameId: '3',
-  //       playerZilches: 20
-  //     }
-  //   ]
-  //   const allZilches = fetchedZilches.reduce((a, b) => ({
-  //     playerZilches: a.playerZilches + b.playerZilches
-  //   }))
-  //   setZilches(allZilches.playerZilches)
+    const fetchedZilches = await getPlayerZilches(user.userId);
+    const allZilches = fetchedZilches.reduce((a, b) => a.playerZilches + b.playerZilches, 0)
+    setZilches(allZilches)
+
 
   //   // const fetchedUberZilches = await getPlayerUberZilches(user.userId)
   //   const fetchedUberZilches = [
@@ -90,8 +72,8 @@ const PlayerProfile = () => {
       <h2>user: {user.username}</h2>
       <h2>wins: {wins}</h2>
       <h2>losses: {losses} </h2>
-      {/* <h2>zilches: {zilches} </h2>
-      <h2>uberZilches: {uberZilches} </h2>
+      <h2>zilches: {zilches} </h2>
+      {/* <h2>uberZilches: {uberZilches} </h2>
 
       <h1>Game History</h1>
       {games.map} */}
