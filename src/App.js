@@ -14,11 +14,11 @@ import PlayerProfile from './components/profile/PlayerProfile';
 function App() {
   return (
     <>
-      <Header />
 
       <Switch>
         <Route path="/" exact={true} component={AuthForm} />
         <SocketProvider>
+          <Header />
           <PrivateRoute path="/lobby" exact component={Lobby} />
           <PrivateRoute path="/lobby/:room" exact component={GameRoom} />
           <PrivateRoute path="/leaderboard" exact component={Leaderboard} />
