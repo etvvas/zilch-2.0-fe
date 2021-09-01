@@ -29,6 +29,7 @@ const GameRoom = () => {
   const [isRolled, setIsRolled] = useState(false);
   const [isZilch, setIsZilch] = useState(false)
   const [isFreeRoll, setIsFreeRoll] = useState(false)
+  const [loading, setLoading] = useState (true)
   // const [pastScores, setPastScores] = useState([])
 
 
@@ -36,6 +37,7 @@ const GameRoom = () => {
     socket.emit("JOIN_ROOM", session, room);
     socket.on("ROOM_JOINED", (gameState) => {
       setGameState(gameState[room]);
+      setLoading(false)
     });
 
     socket.on("FULL_ROOM", () => {
@@ -100,7 +102,7 @@ const GameRoom = () => {
     socket.on("BANKED", (gameState, index, players) => {
       setGameState(gameState[room]);
       setCurrentPlayer(players[index]);
-
+      setIsFreeRoll(false)
       // refactor to custom hook setting all pieces of state at once
       setRollDisabled(false)
       setBankDisabled(true)
@@ -160,6 +162,8 @@ const GameRoom = () => {
     socket.emit('UPDATE_SELECTED', selectedScoringOption)
 
   };
+  if(loading) return <h1>Loading...</h1>
+else 
 
   return (
     <div className={main}>
