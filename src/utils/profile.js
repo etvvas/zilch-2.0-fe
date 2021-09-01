@@ -30,6 +30,5 @@ export const getPlayerUberZilches = async (id) => {
   const uberZilches = await fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${id}/uberZilches`)
   
   const json = uberZilches.json()
-  console.log('uberZilches', json)
   return json; 
 }
