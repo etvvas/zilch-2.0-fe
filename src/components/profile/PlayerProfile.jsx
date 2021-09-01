@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSession } from '../../state/SessionProvider';
 import avatars from '../../assets/avatars.svg';
 import { useParams } from 'react-router-dom';
 import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../utils/profile.js';
 import PlayerStats from './PlayerStats';
 import GameHistory from './GameHistory';
-// import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../services/profile';
 
 const PlayerProfile = () => {
   const {username} = useParams();
@@ -48,19 +46,25 @@ const PlayerProfile = () => {
 
   return (
     <>
-    <h1>{user.username}'s Profile</h1>
-    <div>
-      <svg className={svg}>
-        <use href={avatars + `#${user.avatar}`} />
-      </svg>
-      <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
+    <div className={profile}>
+      <h1>{user.username}'s Profile</h1>
+      <div>
+        <svg className={svg}>
+          <use href={avatars + `#${user.avatar}`} />
+        </svg>
+        <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
-      <GameHistory games={games}/>
-      
-    </div>
+        <GameHistory games={games}/>
+        
+      </div>
+      </div>
     </>
   )
 }
+
+const profile = `
+  bg-white
+`;
 
 const svg = `
   w-12

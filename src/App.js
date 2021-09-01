@@ -9,7 +9,7 @@ import GameRoom from './components/rooms/GameRoom';
 import SocketProvider from './state/SocketProvider';
 import PrivateRoute from './components/common/PrivateRoute';
 import Leaderboard from './components/rooms/Leaderboard';
-import PlayerProfile from './components/profile.jsx/PlayerProfile';
+import PlayerProfile from './components/profile/PlayerProfile';
 
 function App() {
   return (
