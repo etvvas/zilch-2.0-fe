@@ -8,7 +8,7 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) =>
   <>
     {isZilch
      ?
-    <div className="zilch"> Zilch! </div>
+    <div className="zilch animate"> Zilch! </div>
     :
     <form className={scoringOptionsForm}>
       {scoringOptions.map((option, i) => {
