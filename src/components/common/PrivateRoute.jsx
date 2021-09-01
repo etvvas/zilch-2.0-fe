@@ -4,8 +4,9 @@ import { useSession, useVerificationLoading } from '../../state/SessionProvider'
 
 const PrivateRoute = (props) => {
     const session = useSession()
+    const loading = useVerificationLoading();
 
-    if(!session) return <Redirect to="/" />
+    if(!session && !loading) return <Redirect to="/" />
     return <Route {...props} />
 }
 
