@@ -10,8 +10,8 @@ const PlayerProgress = ({gameState}) => {
   
   firstPlayerPercentage = Math.floor(firstPlayerScore * 100)
   secondPlayerPercentage = Math.floor(secondPlayerScore * 100)
-  console.log(firstPlayerPercentage)
-  console.log(secondPlayerPercentage)
+  // console.log(firstPlayerPercentage)
+  // console.log(secondPlayerPercentage)
   }
 
   return (
