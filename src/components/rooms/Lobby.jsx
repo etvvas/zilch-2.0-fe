@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import { useSetLoading, useVerificationLoading } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
 // import useLobby from '../../state/hooks/useLobby';
 
@@ -9,8 +10,11 @@ const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'},
 const Lobby = () => {
   const socket = useContext(SocketContext)
   const [gameRooms, setGameRooms] = useState(rooms)
- //
+  const loading = useVerificationLoading()
+  const setLoading = useSetLoading()
   useEffect(() => {
+    
+    setLoading(true)
     socket.on('UPDATE_LOBBY', (socketRooms) => {
         const updatedRooms = rooms.map(room => {
         let newRoom;
@@ -47,7 +51,6 @@ const handleClick = () => {
       </Link>
     </li>
 ))
-  
 
   return (
     <div className={outer}>
@@ -76,7 +79,8 @@ const wrap = `
 `;
 
 const h1 = `
-  text-4xl
+  text-xl
+  sm:text-4xl
   text-center
   mt-4
 `;

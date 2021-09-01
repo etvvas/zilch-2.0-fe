@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { useSession } from "../../state/SessionProvider";
+import { SocketContext } from "../../state/SocketProvider";
+import WaitingRoom from './WaitingRoom';
 import ActiveScoreboard from "../game/ActiveScoreboard";
 import Dice from "../game/Dice";
 import GameControls from "../game/GameControls";
 import PlayerProgress from "../game/PlayerProgress";
 import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
-import { useHistory, useParams } from "react-router-dom";
-import { useSession } from "../../state/SessionProvider";
-import { SocketContext } from "../../state/SocketProvider";
 import Scoring from '../game/Scoring';
 // import ScoringOptions from '../game/ScoringOptions';
 import ResultsPage from '../results/ResultsPage';
-import WaitingRoom from './WaitingRoom';
 
 const GameRoom = () => {
   const [results, setResults] = useState(false)
@@ -158,15 +158,15 @@ const GameRoom = () => {
     setScoringOptions(updatedScoringOptions);
     const selectedScoringOption = updatedScoringOptions.filter(option => option.selected === true)
     socket.emit('UPDATE_SELECTED', selectedScoringOption)
-  };
 
+  };
 
   return (
     <div className={main}>
 
-        {results ? <ResultsPage socket={socket} results={results} /> : 
+        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room} winner={gameState.winner}/> : 
       <div className={wrap}>
-        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} /> 
+        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
         : <>
         <PlayerProgress gameState={gameState}/>
         <ActiveScoreboard 
