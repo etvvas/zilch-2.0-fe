@@ -29,6 +29,7 @@ const GameRoom = () => {
   const [isZilch, setIsZilch] = useState(false)
   const [isFreeRoll, setIsFreeRoll] = useState(false)
   const [loading, setLoading] = useState (true)
+  const [roundScores, setRoundScores] = useState([])
   // const [pastScores, setPastScores] = useState([])
 
 
@@ -57,7 +58,8 @@ const GameRoom = () => {
 
     socket.on("READY", (gameState) => setGameState(gameState[room]));
 
-    socket.on('ZILCH', newCurrentPlayer => {
+    socket.on('ZILCH', (newCurrentPlayer, roundScores) => {
+
         setIsZilch(true)
         setCurrentPlayer(newCurrentPlayer)
         setRollDisabled(false)
@@ -65,9 +67,11 @@ const GameRoom = () => {
         setIsDisabled(!(session.userId === newCurrentPlayer))
         setDice([])
         setScoringOptions([])
+        setRoundScores(roundScores)
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
+
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -98,7 +102,10 @@ const GameRoom = () => {
 
     );
 
-    socket.on("BANKED", (gameState, index, players) => {
+    socket.on("BANKED", (gameState, index, players, roundScores) => {
+      console.log('ROUND SCORES', roundScores);
+      //prev state filter for optimization 
+      setRoundScores(roundScores)
       setGameState(gameState[room]);
       setCurrentPlayer(players[index]);
       setIsFreeRoll(false)
@@ -173,6 +180,7 @@ else
         : <>
         <PlayerProgress gameState={gameState}/>
         <ActiveScoreboard 
+        roundScores={roundScores}
         gameState={gameState}
         currentPlayer={currentPlayer}/>
         <Dice dice={dice} isRolled={isRolled} />
