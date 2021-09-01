@@ -1,8 +1,8 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const PlayerVersusPlayer = ({user1, user2, room, results}) => {
-  room = 'Titanium';
+const PlayerVersusPlayer = ({ results}) => {
+  const room = 'Room1';
   const avatar = 'dice';
   // add conditional styling (noPlayerSvg) if player does not exist
 console.log('results', results)
@@ -17,7 +17,7 @@ console.log('results', results)
             <svg className={noPlayerSvg + winning}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            {!results  
+            {!results[0]  
               ? <p className={ready}>Ready!</p>
               : null
             }
@@ -30,12 +30,26 @@ console.log('results', results)
             <svg className={svg}>
               <use href={avatars + `#${avatar}`} />
             </svg>
-            {!results  
+            {!results[0]  
               ? <p className={ready}>Ready!</p>
               : null
             }
           </div>
-      </div>
+        </div>
+        {/* <div className={readyMessage}> */}
+          {/* Case1: player joins, no other player has joined yet
+            "waiting for opponent to join"
+          */}
+          {/* Case2: player joins and hits ready button 
+            "waiting on opponent to be ready"
+          */}
+          {/*  */}
+          {!results[0]  
+              ? 'Game will start when both players are ready.'
+              : null
+          }
+        {/* </div> */}
+     
     </>
   )
 }

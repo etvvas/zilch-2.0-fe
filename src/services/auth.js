@@ -14,6 +14,10 @@ export function postLogin(username, password) {
     })
 }
 
+export function getLogout() {
+    return get('/api/v1/logout')
+}
+
 export function getVerify(){
     return get('/api/v1/verify')
 }

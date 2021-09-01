@@ -1,6 +1,26 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
+import { useHistory } from 'react-router';
+import { getLogout } from '../../services/auth';
+import { useSetSession } from '../../state/SessionProvider';
+
 
 const Navigation = ({ isOpen }) => {
+  const history = useHistory();
+  const setSession = useSetSession();
+
+  const handleLeaderboard = () => {
+    history.push('/leaderboard')
+  }
+
+  const handleLogout = () => {
+    const yes = confirm('Are you sure you want to logout?')
+    if(yes){ setSession(null)
+    getLogout();    
+    history.push("/") }
+    return
+  }
+
   console.log(isOpen);
   return (
     <nav className={
@@ -10,8 +30,8 @@ const Navigation = ({ isOpen }) => {
       <ul className={ul}>
         <li className={li + selected}>Lobby</li>
         <li className={li}>Profile</li>
-        <li className={li}>Leaderboard</li>
-        <li className={li}>Log Out</li>
+        <li className={li} onClick={handleLeaderboard}>Leaderboard</li>
+        <li className={li} onClick={handleLogout}>Log Out</li>
       </ul>
     </nav>
   )
