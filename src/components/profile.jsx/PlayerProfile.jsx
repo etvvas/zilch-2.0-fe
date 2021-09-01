@@ -3,6 +3,7 @@ import { useSession } from '../../state/SessionProvider';
 import avatars from '../../assets/avatars.svg';
 import { useParams } from 'react-router-dom';
 import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../utils/profile.js';
+import PlayerStats from './PlayerStats';
 // import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../services/profile';
 
 const PlayerProfile = () => {
@@ -10,11 +11,11 @@ const PlayerProfile = () => {
   console.log(username)
 
   const [user, setUser] = useState({});
-  const [wins, setWins] = useState('');
+  const [wins, setWins] = useState(0);
   const [games, setGames] = useState([])
-  const [losses, setLosses] = useState('');
-  const [zilches, setZilches] = useState('');
-  const [uberZilches, setUberZilches] = useState('');
+  const [losses, setLosses] = useState(0);
+  const [zilches, setZilches] = useState(0);
+  const [uberZilches, setUberZilches] = useState(0);
 
   useEffect(async() => {
     const fetchedUser = await getUser(username);
@@ -25,17 +26,19 @@ const PlayerProfile = () => {
     
     const fetchedGames = await getPlayerGames(user.userId);
     setGames(fetchedGames);
-    setLosses(fetchedGames.length - wins);
+    const losses = fetchedGames.length - wins 
+    setLosses(losses);
     
     const fetchedZilches = await getPlayerZilches(user.userId);
-    const allZilches = fetchedZilches.reduce((a, b) => a.playerZilches + b.playerZilches, 0)
+    const allZilches = Array.from(fetchedZilches).reduce((a, b) => a.playerZilches + b.playerZilches, 0)
     setZilches(allZilches)
 
-
+    
     const fetchedUberZilches = await getPlayerUberZilches(user.userId)
-    const allUberZilches = fetchedUberZilches.reduce((a, b) => a.playerUberZilches + b.playerUberZilches, 0)
+    const allUberZilches = Array.from(fetchedUberZilches).reduce((a, b) => a.playerUberZilches + b.playerUberZilches, 0)
     setUberZilches(allUberZilches)
   }, [])
+
 
   return (
     <>
@@ -44,11 +47,7 @@ const PlayerProfile = () => {
       <svg className={svg}>
         <use href={avatars + `#${user.avatar}`} />
       </svg>
-      <h2>user: {user.username}</h2>
-      <h2>wins: {wins}</h2>
-      <h2>losses: {losses} </h2>
-      <h2>zilches: {zilches} </h2>
-      <h2>uberZilches: {uberZilches} </h2>
+      <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
       {/* <h1>Game History</h1>
       {games.map} */}
