@@ -10,7 +10,11 @@ const ResultsPage = ({results, socket, user1, user2, room, winner}) => {
     history.push('/lobby')
     socket.emit('DISCONNECT')
   }
+  console.log('winner', winner)
+  return (
+    <>
       <div className={resultsPage}>
+        <h1>Results Page</h1>
         <PlayerVersusPlayer results={results} user1={user1} user2={user2} room={room} winner={winner}/>
         <Results user1={user1} user2={user2}/>
         <button className={readyButton} onClick={handleBackToLobby}>{results ? 'Back to Lobby' : 'Ready!'}</button>
