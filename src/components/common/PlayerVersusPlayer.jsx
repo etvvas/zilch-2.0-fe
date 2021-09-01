@@ -20,16 +20,16 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
           <div className={side}>
             {user1 
             ? (<>
-              <p className={playerName + playerOne}>{user1.userName}</p>
               <svg className={svg + winning}>
                 <use href={avatars + `#${user1.avatar}`} />
               </svg>
+              <p className={playerName + playerOne}>{user1.userName}</p>
               </>)
             : (<>
             <div className={side}>
-              <p className={playerName + playerTwo}>Waiting..</p>
               <svg className={noPlayerSvg}>
                 <use href={avatars + `#${avatar}`} />
+              <p className={playerName + playerTwo}>Waiting..</p>
               </svg>
             </div>
             </>)
@@ -41,18 +41,18 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
           {user2 
           ? (<>
             <div className={side}>
-              <p className={playerName + playerTwo}>{user2.userName}</p>
               <svg className={svg}>
                 <use href={avatars + `#${user2.avatar}`} />
               </svg>
+              <p className={playerName + playerTwo}>{user2.userName}</p>
             </div>
             </>)
           :(<>
             <div className={side}>
-              <p className={playerName + playerTwo}>Waiting..</p>
               <svg className={noPlayerSvg}>
                 <use href={avatars + `#${avatar}`} />
               </svg>
+              <p className={playerName + playerTwo}>Waiting..</p>
             </div>
             </>)
           }
@@ -88,8 +88,6 @@ const innerWrap = `
 `;
 
 const side = `
-  w-28
-  md:max-w-32
 `;
 
 const playerName = `
@@ -115,8 +113,8 @@ const vs = `
 const svg = `
   w-20
   h-20
-  md:w-12
-  md:h-12
+  md:w-32
+  md:h-32
   my-2
   mx-auto
 `;
