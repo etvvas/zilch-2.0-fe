@@ -34,7 +34,7 @@ export const getPlayerUberZilches = async (id) => {
 }
 
 export const getUserById = async (id) => {
-  const uberZilches = await fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/id/${id}`)
+  const uberZilches = await fetch(`${process.env.REACT_APP_HEROKU_URL}/api/v1/users/id/${id}`)
   
   const json = uberZilches.json()
   return json; 

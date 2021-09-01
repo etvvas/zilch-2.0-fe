@@ -5,19 +5,22 @@ import { getLogout } from '../../services/auth';
 import { useSession, useSetSession } from '../../state/SessionProvider';
 
 
-const Navigation = ({ isOpen }) => {
+const Navigation = ({ isOpen, setIsOpen }) => {
   const history = useHistory();
   const session = useSession();
   const setSession = useSetSession();
 
   const handleLobby = () => {
+    setIsOpen(!isOpen)
     history.push(`/lobby`)
   }
   const handleProfile = () => {
+    setIsOpen(!isOpen)
     history.push(`/profile/${session.username}`)
   }
 
   const handleLeaderboard = () => {
+     setIsOpen(!isOpen)
     history.push('/leaderboard')
   }
 
