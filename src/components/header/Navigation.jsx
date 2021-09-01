@@ -2,19 +2,11 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { getLogout } from '../../services/auth';
-<<<<<<< HEAD
-import { useSetSession } from '../../state/SessionProvider';
-=======
 import { useSession, useSetSession } from '../../state/SessionProvider';
->>>>>>> bdd6bf88b1088e90260a80da978331102946bb5b
 
 
 const Navigation = ({ isOpen }) => {
   const history = useHistory();
-<<<<<<< HEAD
-  const setSession = useSetSession();
-
-=======
   const session = useSession();
   const setSession = useSetSession();
 
@@ -25,7 +17,6 @@ const Navigation = ({ isOpen }) => {
     history.push(`/profile/${session.username}`)
   }
 
->>>>>>> bdd6bf88b1088e90260a80da978331102946bb5b
   const handleLeaderboard = () => {
     history.push('/leaderboard')
   }
@@ -45,13 +36,8 @@ const Navigation = ({ isOpen }) => {
         ? nav
         : nav + 'hidden'}>
       <ul className={ul}>
-<<<<<<< HEAD
-        <li className={li + selected}>Lobby</li>
-        <li className={li}>Profile</li>
-=======
         <li className={li + selected} onClick={handleLobby}>Lobby</li>
         <li className={li} onClick={handleProfile}>Profile</li>
->>>>>>> bdd6bf88b1088e90260a80da978331102946bb5b
         <li className={li} onClick={handleLeaderboard}>Leaderboard</li>
         <li className={li} onClick={handleLogout}>Log Out</li>
       </ul>
