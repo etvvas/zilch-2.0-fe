@@ -10,6 +10,9 @@ const Navigation = ({ isOpen }) => {
   const session = useSession();
   const setSession = useSetSession();
 
+  const handleLobby = () => {
+    history.push(`/lobby`)
+  }
   const handleProfile = () => {
     history.push(`/profile/${session.username}`)
   }
@@ -33,7 +36,7 @@ const Navigation = ({ isOpen }) => {
         ? nav
         : nav + 'hidden'}>
       <ul className={ul}>
-        <li className={li + selected}>Lobby</li>
+        <li className={li + selected} onClick={handleLobby}>Lobby</li>
         <li className={li} onClick={handleProfile}>Profile</li>
         <li className={li} onClick={handleLeaderboard}>Leaderboard</li>
         <li className={li} onClick={handleLogout}>Log Out</li>
