@@ -1,7 +1,7 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const PlayerVersusPlayer = ({results, user1, user2, room}) => {
+const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
   console.log('user1', user1)
   console.log('user2', user2)
   const avatar = 'dice';
@@ -12,6 +12,10 @@ console.log('results', results)
       <div className={outerWrap}>
         <h3 className={h3}>{room} Room</h3>
         </div>
+        {winner
+        ? <h2>{winner} WINS!</h2>
+        : null
+        }
         <div className={innerWrap}>
           <div className={side}>
             {user1 
