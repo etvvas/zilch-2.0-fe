@@ -79,3 +79,6 @@ button:disabled {
   opacity: .5;
 }
 
+.scoring-form {
+  min-height: 4rem;
+}
