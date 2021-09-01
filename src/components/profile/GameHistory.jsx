@@ -6,9 +6,11 @@ const GameHistory = ({games}) => {
   // fetch by id (user1, user2)
     //render username and avatar
   // fetch results by gameId
-    // should get 
+    // compare games to userId && gameId
   // fetch zilches by gameId
+    // compare games to userId && gameId
   // fetch uberzilches by gameId
+    // compare games to userId && gameId
 
 
 
