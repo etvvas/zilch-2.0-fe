@@ -6,10 +6,7 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) =>
 
   return (
   <>
-    {isZilch
-     ?
-    <div className="zilch"> Zilch! </div>
-    :
+    <div className={isZilch ? 'zilch animate' : 'zilch'}> Zilch! </div>
     <form className={scoringOptionsForm}>
       {scoringOptions.map((option, i) => {
         if(option.choice === 'ZILCH') return null;
@@ -31,7 +28,7 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) =>
         );
       })}
     </form>
-}
+
     </>
   );
 };
