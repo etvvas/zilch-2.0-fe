@@ -16,6 +16,12 @@ export const getPlayerGames = async (id) => {
   const games = await fetch(`${process.env.REACT_APP_HEROKU_URL}/api/v1/users/${id}/games`)
   
   const json = games.json()
-  console.log('utils', json)
+  return json; 
+}
+
+export const getPlayerZilches = async (id) => {
+  const zilches = await fetch(`${process.env.REACT_APP_LOCAL_URL}/api/v1/users/${id}/zilches`)
+  
+  const json = zilches.json()
   return json; 
 }
