@@ -64,10 +64,4 @@ export const displayLeaders = async (totalWins) => {
   return leaders
 }
 
-export const allLeaders = async () => {
-  const wins = await getWinsArray();
-  const order = await orderWins(wins)
-  const leaders = await displayLeaders(order)
-  return leaders
-}
 
