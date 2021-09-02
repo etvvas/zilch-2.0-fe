@@ -37,7 +37,6 @@ const Navigation = ({ isOpen, setIsOpen, socket }) => {
     return
   }
 
-  console.log(isOpen);
   return (
     <nav className={
       isOpen
