@@ -132,7 +132,7 @@ const GameRoom = () => {
       if (gameState[matchingUser].roundScore >= 300) {
         setBankDisabled(false)
       }
-    );
+    });
 
     socket.on("GAME_OVER", (gameData) => {
       setResults(gameData);
