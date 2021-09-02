@@ -4,14 +4,15 @@ import {getGameResults, getGameUberZilches, getGameZilches, getUserById, getWinn
 
 const GameHistory = ({user, games}) => {
   console.log('games', games)
-  const avatar = 'dice'
+
   const [game, setGame] = useState();
 
   // const gameHistory = games.map((game, i)=> {
   useEffect(()=> {
     Promise.all(games.map(async(game, i)=> {
-
-    // this page gets angry when you add async to the map function
+      console.log(games)
+    // grab target_score
+    const target = game.targetScore;
 
     // grab user profiles
     const user1 = await getUserById(game.firstUserId)
@@ -44,37 +45,16 @@ const GameHistory = ({user, games}) => {
       if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilches
     })
 
-    // // display win or loss
-    // // determine who's profile we are viewing and match with playerScore
-    // let userId;
-    // switch(userId) { 
-    //   case user.userId === user1.userId:
-    //     // user1 return
-    //     if(playerScore1 > playerScore2) {
-    //       return 'WIN'
-    //     } else {
-    //       return 'LOSE'
-    //     }
-    //     break;
-    //   case user.userId === user2.userId:
-    //     // user2 return
-    //     if(playerScore1 < playerScore2) {
-    //       return 'WIN'
-    //     } else {
-    //       return 'LOSE'
-    //     }
-    //     break;
-    //   default
-    //   }
-    // }
-
-    // get result based on user profile
+    // grab player result per game
     let result;
     result = getWinner(user, user1, user2, playerScore1, playerScore2, result)
       
     return(
       <li key={i}>
         <div className={wrapper}>
+          <div className={targetClass}>
+            Target: {target}
+          </div>
           <div className={userOne}>
             <div className={userInfo}>
               <span className={user1Name}>{user1.username}</span>
@@ -124,6 +104,10 @@ const GameHistory = ({user, games}) => {
 const wrapper = `
   flex
   border
+`;
+
+const targetClass = `
+ 
 `;
 
 const userOne = `
