@@ -85,6 +85,7 @@ const GameHistory = ({user, games}) => {
         </div>
       </li>
     )
+
   })
   ).then(setGame); 
 

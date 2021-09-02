@@ -4,6 +4,7 @@ import avatars from '../../assets/avatars.svg';
 import Navigation from './Navigation';
 import { useSession } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
+import { NavLink } from 'react-router-dom';
 
 
 const Header = () => {
@@ -26,10 +27,12 @@ const Header = () => {
           </div>
           {user ?  
           <div className={wrap}>
+            <NavLink to={`/profile/${user.username}`}>
             <h2 className={h2}>{user.username}</h2>
               <svg className={svg}>
                 <use href={avatars + `#${user.avatar}`} />
               </svg>
+            </NavLink>
           </div>
           : null
           }
