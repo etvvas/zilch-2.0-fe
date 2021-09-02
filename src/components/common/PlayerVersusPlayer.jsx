@@ -139,8 +139,8 @@ const svg = `
 const noPlayerSvg = `
   w-20
   h-20
-  md:w-12
-  md:h-12
+  md:w-32
+  md:h-32
   my-2
   mx-auto
   filter
