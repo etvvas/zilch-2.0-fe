@@ -30,7 +30,7 @@ const Results = ({user1, user2}) => {
               <td className={td + score + right}>{user1.playerScore}</td>
           </tr>
           <tr>
-              <td className={td + avatar}>
+              <td className={avatar}>
               <svg className={svg}>
                 <use href={avatars + `#${user2.avatar}`} />
               </svg>
