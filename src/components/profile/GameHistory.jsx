@@ -83,7 +83,7 @@ const GameHistory = ({user, games}) => {
               </div>
             </div>
             <svg className={svg}>
-              <use href={avatars + `#${avatar}`} />
+              <use href={avatars + `#${user1.avatar}`} />
             </svg>
           </div>
           <div class={winloss}>
@@ -91,7 +91,7 @@ const GameHistory = ({user, games}) => {
           </div>
           <div className={userTwo}>
             <svg className={svg}>
-              <use href={avatars + `#${avatar}`} />
+              <use href={avatars + `#${user2.avatar}`} />
             </svg>
             <div className={userInfo}>
               <h1 className={user2Name}>{user2.username}</h1>
