@@ -38,10 +38,10 @@ const GameHistory = ({user, games}) => {
     // grab player uber zilches
     const uberZilches = await getGameUberZilches(game.gameId)
        const uberZilches1 = uberZilches.map((uberZilch, i) => {
-      if(uberZilch.userId === user1.userId) return uberZilches.playerUberZilches
+      if(uberZilch.userId === user1.userId) return uberZilch.playerUberZilches
     })
     const uberZilches2 = uberZilches.map((uberZilch, i) => {
-      if(uberZilch.userId === user2.userId) return uberZilches.playerUberZilches
+      if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilches
     })
 
     // // display win or loss
