@@ -2,29 +2,34 @@ import React from 'react';
 import avatars from '../../assets/avatars.svg';
 // import { useSession } from '../../state/SessionProvider';
 
-const ActiveScoreboard = ({gameState, currentPlayer}) => {
+const ActiveScoreboard = ({gameState, currentPlayer, roundScores}) => {
   // const session = useSession()
   let matchingUser
   let avatar1
+
+  const tableRows = roundScores.map((round) => {
+    return (
+      <tr className={tr}>
+      <td className={td}>{round.roundScore}</td>
+      <td className={td}>{round.totalScore}</td>
+    </tr>
+    )
+  })
 
   if(gameState.gameId){
     (gameState?.firstUser.userId === currentPlayer) ? matchingUser = 'firstUser' : matchingUser = 'secondUser'
     avatar1 = gameState[matchingUser].avatar;
   
-  
     return (
   
-      // use this for staying scrolled to the bottom of table when new values added https://stackoverflow.com/questions/37620694/how-to-scroll-to-bottom-in-react
-  
       <div className={scoreBoard}>
-        <div className={currentPlayer}>
+        <div className={currentPlayer + ' py-4'}>
           <div className={playerStats}>
             <h2 className={h2}>{gameState[matchingUser].userName}</h2>
             <svg className={svg}>
               <use href={avatars + `#${avatar1}`} />
             </svg>
             <p className={tag}>You're up!</p>
-            {/* <p>6669 pts</p> */}
           </div>
         </div>
   
@@ -37,22 +42,7 @@ const ActiveScoreboard = ({gameState, currentPlayer}) => {
               </tr>
             </thead>
             <tbody className={tbody}>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>500</td>
-                <td className={td + 'w-20'}>4200</td>
-              </tr>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>Zilch!</td>
-                <td className={td + 'w-20'}>4200</td>
-              </tr>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>Zilch!</td>
-                <td className={td + 'w-20'}>4200</td>
-              </tr>
-              <tr className={tr}>
-                <td className={td + 'w-full'}>Uberzilch! -500</td>
-                <td className={td + 'w-20'}>3700</td>
-              </tr>
+             {tableRows}
             </tbody>
           </table>
         </div>
@@ -89,6 +79,7 @@ const svg = `
   w-16
   h-16
   my-2
+  sm:m-0
   border-2
   border-indigo-400
   rounded-full
@@ -99,12 +90,10 @@ const h2 = `
   font-bold
   text-indigo-600
   text-center
+  sm:text-xl
   w-full
   truncate
   overflow-ellipsis
-`;
-
-const currentPlayer = `
 `;
 
 const currentScoreboard = `
@@ -116,6 +105,7 @@ const currentScoreboard = `
 
 const table = `
   w-full
+  scoreboard
 `;
 
 const thead = `
@@ -128,6 +118,7 @@ const tbody = `
 
 const th = `
   font-black
+  text-gray-700
   text-right
   text-xs
   pt-3
@@ -143,7 +134,7 @@ const tr = `
 
 const td = `
   text-right
-  text-gray-700
+  text-gray-600
   text-xs
   font-semibold
   p-2
@@ -151,6 +142,10 @@ const td = `
   sm:py-2
   sm:px-6
   tracking-wider
+`;
+
+const active = `
+  text-gray-700
 `;
 
 export default ActiveScoreboard;

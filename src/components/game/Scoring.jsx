@@ -165,7 +165,7 @@ const modal = `
   right-0
   bottom-0
   px-2
-  pt-20
+  pt-16
   sm:pt-36
   pb-2
   overflow-hidden

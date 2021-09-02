@@ -6,11 +6,18 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) =>
 
   return (
   <>
-    {isZilch
-     ?
-    <div className="zilch"> Zilch! </div>
-    :
+    <div className={isZilch ? 'zilch animate' : 'zilch'}> Zilch! </div>
     <form className={scoringOptionsForm}>
+
+      {/* CASE: Zilch */}
+      {/* <div className={message}>Oof. Lose a turn.</div> */}
+
+      {/* CASE: User has selected all options and form is blank. */}
+      {/* <div className={message}>Roll remaining dice or bank your points.</div> */}
+
+      {/* CASE: Before first roll of turn */}
+      {/* <div className={message}>PlayerName, roll the dice to start your turn.</div> */}
+
       {scoringOptions.map((option, i) => {
         if(option.choice === 'ZILCH') return null;
         return (
@@ -31,7 +38,7 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) =>
         );
       })}
     </form>
-}
+
     </>
   );
 };
@@ -49,6 +56,14 @@ const scoringOptionsForm = `
   my-4
   bg-gray-200
   rounded-lg
+  scoring-form
+`;
+
+const message = `
+  text-center
+  text-sm
+  text-gray-700
+  font-semibold
 `;
 
 const scoringOption = `
