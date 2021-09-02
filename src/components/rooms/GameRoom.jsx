@@ -155,6 +155,11 @@ const GameRoom = () => {
     socket.emit("PLAYER_READY", room, session.userId);
   };
 
+  const handleLeave = () => {
+    history.push('/lobby')
+    socket.emit('DISCONNECT')
+  }
+
   const handleScoreSelect = ({ target }) => {
     const updatedScoringOptions = scoringOptions.map((option) => {
       if (option.choice === JSON.parse(target.value).choice)
@@ -206,7 +211,11 @@ else
       <div className={footer}>
         <Rules />
         <Scoring />
-        <button className={button}>Leave</button>
+        <button 
+        className={button} 
+        onClick={handleLeave}>
+          Leave
+          </button>
       </div>
        
       
