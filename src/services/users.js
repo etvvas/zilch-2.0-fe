@@ -17,13 +17,7 @@ export const getWinsArray = async () => {
             const users = await getUsers();
             const wins = await getWins(users);
             return Promise.all(wins);
-        }
-
-export const getWinsArray = async () => {
-            const users = await getUsers();
-            const wins = await getWins(users);
-            return Promise.all(wins);
-        }
+}
 
 export const orderWins = async (winsArray) => {
   const nonZeroWinners = winsArray.filter(n => n.length)
