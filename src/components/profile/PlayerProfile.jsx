@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getPlayerGames, getPlayerUberZilches, getPlayerWins, getPlayerZilches, getUser } from '../../utils/profile.js';
 import PlayerStats from './PlayerStats';
 import GameHistory from './GameHistory';
+import { allLeaders } from '../../services/users';
 
 const PlayerProfile = () => {
   const {username} = useParams();
@@ -15,6 +16,7 @@ const PlayerProfile = () => {
   const [losses, setLosses] = useState(0);
   const [zilches, setZilches] = useState(0);
   const [uberZilches, setUberZilches] = useState(0);
+  const [rank, setRank] = useState(0)
 
   useEffect(() => {
 
@@ -27,8 +29,9 @@ const PlayerProfile = () => {
     
     const fetchedGames = await getPlayerGames(fetchedUser.userId);
     setGames(fetchedGames);
-    const losses = fetchedGames.length - wins 
-    setLosses(losses);
+    const filteredGames = fetchedGames.filter(fetchedGame => fetchedGame.timestampEnd)
+    const filteredLosses = (filteredGames.length - fetchedWins.length) 
+    setLosses(filteredLosses);
     
     const fetchedZilches = await getPlayerZilches(fetchedUser.userId);
     const allZilches = fetchedZilches.reduce((a, b) => a + b.playerZilches, 0)
@@ -38,15 +41,16 @@ const PlayerProfile = () => {
     const allUberZilches = fetchedUberZilches.reduce((a, b) => a + b.playerUberZilches, 0)
     setUberZilches(allUberZilches)
 
+    const leaders = await allLeaders();
+    const index = leaders.findIndex(leader => leader.userId === fetchedUser.userId)
+    setRank(index+1)
+
     setLoading(false);
     }
 
     holder()
   }, [])
 
-  // stats renders sometimes; not enough time to fetch
-
-  // global rank = take leaderboard (wins), match userId, and get index + 1
   return (
     <div>
     {loading 
@@ -58,7 +62,7 @@ const PlayerProfile = () => {
             <svg className={svg}>
               <use href={avatars + `#${user.avatar}`} />
             </svg>
-            <h2>Global Rank #</h2>
+            <h2>Global Rank #{rank}</h2>
             <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
             <GameHistory user={user} games={games}/>

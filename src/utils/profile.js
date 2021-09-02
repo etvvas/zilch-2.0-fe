@@ -60,3 +60,23 @@ export const getGameUberZilches = async (gameId) => {
   const json = gameUberZilches.json()
   return json; 
 }
+
+export function getWinner(user, user1, user2, playerScore1, playerScore2, result) {
+  if(!playerScore1[0]) return result = "INCOMPLETE"
+  if(user.userId === user1.userId) {
+   // user1 return
+   if(playerScore1[0] < playerScore2[1]) {
+     return result = 'LOSE'
+   } else {
+     return result = 'WIN'
+   }
+  }
+  if(user.userId === user2.userId) {
+    // user2 return
+    if(playerScore1[0] > playerScore2[1]) {
+      return result = 'LOSE'
+    } else {
+      return result = 'WIN'
+    }
+  }  
+}

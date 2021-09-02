@@ -13,11 +13,15 @@ export const getWins =  async (idArray) => {
       return Promise.all(wins)
 }
 
+export const getWinsArray = async () => {
+            const users = await getUsers();
+            const wins = await getWins(users);
+            return Promise.all(wins);
+        }
 
 export const orderWins = async (winsArray) => {
-  const noneZeroWinners = winsArray.filter(n => n.length)
-  const totalWins = noneZeroWinners.map(wins => wins)
-  return totalWins.sort(function(a, b){
+  const nonZeroWinners = winsArray.filter(n => n.length)
+  return nonZeroWinners.sort(function(a, b){
     if (a > b) return -1;
     if (a < b) return 1;
     return 0
@@ -27,9 +31,19 @@ export const orderWins = async (winsArray) => {
 export const displayLeaders = async (totalWins) => {
   const leaders = totalWins.map((wins, i) => (
     {
+      userId: wins[0].userId,
+      avatar: wins[0].avatar,
       username: wins[0].username,
       wins: wins.length
     }
     ))
   return leaders
 }
+
+export const allLeaders = async () => {
+  const wins = await getWinsArray();
+  const order = await orderWins(wins)
+  const leaders = await displayLeaders(order)
+  return leaders
+}
+
