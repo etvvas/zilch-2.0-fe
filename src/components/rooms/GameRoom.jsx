@@ -2,25 +2,25 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSession } from "../../state/SessionProvider";
 import { SocketContext } from "../../state/SocketProvider";
-import WaitingRoom from './WaitingRoom';
+import WaitingRoom from "./WaitingRoom";
 import ActiveScoreboard from "../game/ActiveScoreboard";
 import Dice from "../game/Dice";
 import GameControls from "../game/GameControls";
 import PlayerProgress from "../game/PlayerProgress";
 import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
-import Scoring from '../game/Scoring';
-import ResultsPage from '../results/ResultsPage';
+import Scoring from "../game/Scoring";
+import ResultsPage from "../results/ResultsPage";
 const InitialDice = [
   { held: false, value: 1 },
   { held: false, value: 2 },
   { held: false, value: 3 },
   { held: false, value: 4 },
   { held: false, value: 5 },
-  { held: false, value: 6 }
-]
+  { held: false, value: 6 },
+];
 const GameRoom = () => {
-  const [results, setResults] = useState(false)
+  const [results, setResults] = useState(false);
   const [gameState, setGameState] = useState({});
   const [currentPlayer, setCurrentPlayer] = useState("");
   const [dice, setDice] = useState(InitialDice);
@@ -29,22 +29,21 @@ const GameRoom = () => {
   const session = useSession();
   const { room } = useParams();
   const socket = useContext(SocketContext);
-  const [rollDisabled, setRollDisabled] = useState(true)
-  const [bankDisabled, setBankDisabled] = useState(true)
-  const [isDisabled, setIsDisabled] = useState(true)
+  const [rollDisabled, setRollDisabled] = useState(true);
+  const [bankDisabled, setBankDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [isRolled, setIsRolled] = useState(false);
-  const [isZilch, setIsZilch] = useState(false)
-  const [isFreeRoll, setIsFreeRoll] = useState(false)
-  const [loading, setLoading] = useState (true)
-  const [roundScores, setRoundScores] = useState([])
+  const [isZilch, setIsZilch] = useState(false);
+  const [isFreeRoll, setIsFreeRoll] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [roundScores, setRoundScores] = useState([]);
   // const [pastScores, setPastScores] = useState([])
-
 
   useEffect(() => {
     socket.emit("JOIN_ROOM", session, room);
     socket.on("ROOM_JOINED", (gameState) => {
       setGameState(gameState[room]);
-      setLoading(false)
+      setLoading(false);
     });
 
     socket.on("FULL_ROOM", () => {
@@ -57,40 +56,38 @@ const GameRoom = () => {
       setCurrentPlayer(players[index]);
 
       // refactor to custom hook setting all pieces of state at once
-      setRollDisabled(!(session.userId === players[index]))
-      setBankDisabled(true)
-      setIsDisabled(!(session.userId === players[index]))
-
+      setRollDisabled(!(session.userId === players[index]));
+      setBankDisabled(true);
+      setIsDisabled(!(session.userId === players[index]));
     });
 
     socket.on("READY", (gameState) => setGameState(gameState[room]));
 
-    socket.on('ZILCH', (newCurrentPlayer, roundScores) => {
-
-        setIsZilch(true)
-        setCurrentPlayer(newCurrentPlayer)
-        setRollDisabled(false)
-        setBankDisabled(true)
-        setIsDisabled(!(session.userId === newCurrentPlayer))
-        setDice([])
-        setScoringOptions([])
-        setRoundScores(roundScores)
-    })
+    socket.on("ZILCH", (newCurrentPlayer, roundScores) => {
+      setIsZilch(true);
+      setCurrentPlayer(newCurrentPlayer);
+      setRollDisabled(false);
+      setBankDisabled(true);
+      setIsDisabled(!(session.userId === newCurrentPlayer));
+      setDice([]);
+      setScoringOptions([]);
+      setRoundScores(roundScores);
+    });
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
-      setIsRolled(true)
-      setRollDisabled(true)
-      setIsZilch(false)
-      setIsFreeRoll(false)
+      setIsRolled(true);
+      setRollDisabled(true);
+      setIsZilch(false);
+      setIsFreeRoll(false);
       // setIsFreeRoll(false)
-      if(isFreeRoll){
-        setIsFreeRoll(true)
-        setRollDisabled(false)
-        setIsZilch(true)
+      if (isFreeRoll) {
+        setIsFreeRoll(true);
+        setRollDisabled(false);
+        setIsZilch(true);
       }
-      
+
       // indicate zilch on FE
-    
+
       setDice(dice);
       setTimeout(() => {
         setScoringOptions(
@@ -100,24 +97,21 @@ const GameRoom = () => {
               selected: false,
             };
           })
-        )
-        setIsRolled(false)
-      }, 500)
-    }
-
-    );
+        );
+        setIsRolled(false);
+      }, 500);
+    });
 
     socket.on("BANKED", (gameState, index, players, roundScores) => {
-      console.log('ROUND SCORES', roundScores);
-      //prev state filter for optimization 
-      setRoundScores(roundScores)
+      //prev state filter for optimization
+      setRoundScores(roundScores);
       setGameState(gameState[room]);
       setCurrentPlayer(players[index]);
-      setIsFreeRoll(false)
+      setIsFreeRoll(false);
       // refactor to custom hook setting all pieces of state at once
-      setRollDisabled(false)
-      setBankDisabled(true)
-      setIsDisabled(!(session.userId === players[index]))
+      setRollDisabled(false);
+      setBankDisabled(true);
+      setIsDisabled(!(session.userId === players[index]));
     });
 
     socket.on('UPDATE_SCORING_OPTIONS', (dice, newScoringOptions, gameState) => {
@@ -138,25 +132,21 @@ const GameRoom = () => {
       if (gameState[matchingUser].roundScore >= 300) {
         setBankDisabled(false)
       }
-      setRollDisabled(false)
-      // setBankDisabled(false)
-    })
+    });
 
-    socket.on('GAME_OVER', (gameData) => {
-      console.log(gameData)
-      setResults(gameData)
-    })
+    socket.on("GAME_OVER", (gameData) => {
+      setResults(gameData);
+    });
     socket.on("connect", () => {
-      console.log('GAMEROOM CONNECTED');
+      console.log("GAMEROOM CONNECTED");
     });
     socket.on("disconnect", (reason) => {
-      console.log('GAMEROOM', reason);
+      console.log("GAMEROOM", reason);
     });
-    socket.on('OPPONENT_DISCONNECT', () => {
-      alert('Opponent has left the match, redirecting to Lobby')
-      history.push('/lobby')
-      
-    })
+    socket.on("OPPONENT_DISCONNECT", () => {
+      alert("Opponent has left the match, redirecting to Lobby");
+      history.push("/lobby");
+    });
 
     return () => socket.emit("DISCONNECT");
   }, []);
@@ -166,9 +156,9 @@ const GameRoom = () => {
   };
 
   const handleLeave = () => {
-    history.push('/lobby')
-    socket.emit('DISCONNECT')
-  }
+    history.push("/lobby");
+    socket.emit("DISCONNECT");
+  };
 
   const handleScoreSelect = ({ target }) => {
     const updatedScoringOptions = scoringOptions.map((option) => {
@@ -176,64 +166,79 @@ const GameRoom = () => {
         return { ...option, selected: true };
       else return option;
     });
-   
+
     setScoringOptions(updatedScoringOptions);
-    const selectedScoringOption = updatedScoringOptions.filter(option => option.selected === true)
-    socket.emit('UPDATE_SELECTED', selectedScoringOption)
-
+    const selectedScoringOption = updatedScoringOptions.filter(
+      (option) => option.selected === true
+    );
+    socket.emit("UPDATE_SELECTED", selectedScoringOption);
   };
-  if(loading) return <h1>Loading...</h1>
-else 
-
-  return (
-    <div className={main}>
-
-        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room} winner={gameState.winner}/> : 
-      <div className={wrap}>
-        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
-        : <>
-        <PlayerProgress gameState={gameState}/>
-        <ActiveScoreboard 
-        roundScores={roundScores}
-        gameState={gameState}
-        currentPlayer={currentPlayer}/>
-        <Dice dice={dice} isRolled={isRolled} />
-        <GameControls
-          isFreeRoll={isFreeRoll}
-          gameState={gameState}
-          dice={dice}
-          currentPlayer={currentPlayer}
-          scoringOptions={scoringOptions}
-          rollDisabled={rollDisabled}
-          bankDisabled={bankDisabled}
-          isDisabled={isDisabled} />
-        <ScoringOptions
-          isZilch={isZilch}
-          scoringOptions={scoringOptions}
-          currentPlayer={currentPlayer}
-          onChange={handleScoreSelect}
-          isFreeRoll={isFreeRoll}
-          rollDisabled={rollDisabled}
-          bankDisabled={bankDisabled}
-        />
-        </>
-  }
-      </div>
-
-  }
-      <div className={footer}>
-        <Rules />
-        <Scoring />
-        <button 
-        className={button} 
-        onClick={handleLeave}>
-          Leave
+  if (loading) return <h1>Loading...</h1>;
+  else
+    return (
+      <div className={main}>
+        {results ? (
+          <ResultsPage
+            socket={socket}
+            results={results}
+            ready={results.ready}
+            user1={results ? results.firstUser : gameState.firstUser}
+            user2={results ? results.secondUser : gameState.secondUser}
+            room={room}
+            winner={gameState.winner}
+          />
+        ) : (
+          <div className={wrap}>
+            {gameState.ready && gameState.ready.length < 2 ? (
+              <WaitingRoom
+                results={results}
+                onReady={handleReady}
+                ready={gameState.ready}
+                user1={gameState.firstUser}
+                user2={gameState.secondUser}
+                room={room}
+              />
+            ) : (
+              <>
+                <PlayerProgress gameState={gameState} />
+                <ActiveScoreboard
+                  roundScores={roundScores}
+                  gameState={gameState}
+                  currentPlayer={currentPlayer}
+                />
+                <Dice dice={dice} isRolled={isRolled} />
+                <GameControls
+                  isFreeRoll={isFreeRoll}
+                  gameState={gameState}
+                  dice={dice}
+                  currentPlayer={currentPlayer}
+                  scoringOptions={scoringOptions}
+                  rollDisabled={rollDisabled}
+                  bankDisabled={bankDisabled}
+                  isDisabled={isDisabled}
+                />
+                <ScoringOptions
+                  isZilch={isZilch}
+                  scoringOptions={scoringOptions}
+                  currentPlayer={currentPlayer}
+                  onChange={handleScoreSelect}
+                  isFreeRoll={isFreeRoll}
+                  rollDisabled={rollDisabled}
+                  bankDisabled={bankDisabled}
+                />
+              </>
+            )}
+          </div>
+        )}
+        <div className={footer}>
+          <Rules />
+          <Scoring />
+          <button className={button} onClick={handleLeave}>
+            Leave
           </button>
+        </div>
       </div>
-       
-      
-    </div>
-  );
+    );
 };
 
 const main = `
