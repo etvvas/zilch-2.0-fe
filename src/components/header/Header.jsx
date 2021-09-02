@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { MenuIcon } from '@heroicons/react/solid';
 import avatars from '../../assets/avatars.svg';
 import Navigation from './Navigation';
 import { useSession } from '../../state/SessionProvider';
+import { SocketContext } from '../../state/SocketProvider';
+
 
 const Header = () => {
   const user = useSession();
+  const socket = useContext(SocketContext)
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,7 +36,7 @@ const Header = () => {
         </header>
       </div>
 
-      <Navigation isOpen={isOpen} />
+      <Navigation isOpen={isOpen} setIsOpen={setIsOpen} socket={socket} />
     </>
   )
 }

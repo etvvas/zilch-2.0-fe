@@ -29,6 +29,7 @@ const GameRoom = () => {
   const [isZilch, setIsZilch] = useState(false)
   const [isFreeRoll, setIsFreeRoll] = useState(false)
   const [loading, setLoading] = useState (true)
+  const [roundScores, setRoundScores] = useState([])
   // const [pastScores, setPastScores] = useState([])
 
 
@@ -57,7 +58,8 @@ const GameRoom = () => {
 
     socket.on("READY", (gameState) => setGameState(gameState[room]));
 
-    socket.on('ZILCH', newCurrentPlayer => {
+    socket.on('ZILCH', (newCurrentPlayer, roundScores) => {
+
         setIsZilch(true)
         setCurrentPlayer(newCurrentPlayer)
         setRollDisabled(false)
@@ -65,9 +67,11 @@ const GameRoom = () => {
         setIsDisabled(!(session.userId === newCurrentPlayer))
         setDice([])
         setScoringOptions([])
+        setRoundScores(roundScores)
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
+
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -84,10 +88,9 @@ const GameRoom = () => {
       setDice(dice);
       setTimeout(() => {
         setScoringOptions(
-          scoringOptions.map((option, i) => {
+          scoringOptions.map((option) => {
             return {
               ...option,
-              id: i,
               selected: false,
             };
           })
@@ -98,7 +101,10 @@ const GameRoom = () => {
 
     );
 
-    socket.on("BANKED", (gameState, index, players) => {
+    socket.on("BANKED", (gameState, index, players, roundScores) => {
+      console.log('ROUND SCORES', roundScores);
+      //prev state filter for optimization 
+      setRoundScores(roundScores)
       setGameState(gameState[room]);
       setCurrentPlayer(players[index]);
       setIsFreeRoll(false)
@@ -149,9 +155,14 @@ const GameRoom = () => {
     socket.emit("PLAYER_READY", room, session.userId);
   };
 
+  const handleLeave = () => {
+    history.push('/lobby')
+    socket.emit('DISCONNECT')
+  }
+
   const handleScoreSelect = ({ target }) => {
     const updatedScoringOptions = scoringOptions.map((option) => {
-      if (option.id === JSON.parse(target.value).id)
+      if (option.choice === JSON.parse(target.value).choice)
         return { ...option, selected: true };
       else return option;
     });
@@ -173,6 +184,7 @@ else
         : <>
         <PlayerProgress gameState={gameState}/>
         <ActiveScoreboard 
+        roundScores={roundScores}
         gameState={gameState}
         currentPlayer={currentPlayer}/>
         <Dice dice={dice} isRolled={isRolled} />
@@ -199,7 +211,11 @@ else
       <div className={footer}>
         <Rules />
         <Scoring />
-        <button className={button}>Leave</button>
+        <button 
+        className={button} 
+        onClick={handleLeave}>
+          Leave
+          </button>
       </div>
        
       
@@ -209,13 +225,13 @@ else
 
 const main = `
   h-full
-  relative
   flex
   flex-col
   items-center
 `;
 
 const wrap = `
+  relative
   max-w-screen-sm
   w-full
   mx-auto

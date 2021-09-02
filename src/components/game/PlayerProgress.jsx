@@ -10,26 +10,26 @@ const PlayerProgress = ({gameState}) => {
   
   firstPlayerPercentage = Math.floor(firstPlayerScore * 100)
   secondPlayerPercentage = Math.floor(secondPlayerScore * 100)
-  console.log(firstPlayerPercentage)
-  console.log(secondPlayerPercentage)
+  // console.log(firstPlayerPercentage)
+  // console.log(secondPlayerPercentage)
   }
 
   return (
   <>
   {gameState.gameId ?
     <div>
-      <div class="relative pt-1">
+      <div className="relative pt-1">
         <div className={stats}>
           <div className={nameOne}>{gameState.firstUser.userName}</div>
           <div className={scoreOne}>{gameState.firstUser.playerScore}</div>
         </div>
-        <div class="overflow-hidden h-2 text-xs flex bg-pink-200">
-          <div style={{ width: `${firstPlayerPercentage}%` }} class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
+        <div className="overflow-hidden h-2 text-xs flex bg-pink-200">
+          <div style={{ width: `${firstPlayerPercentage}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
         </div>
       </div>
-      <div class="relative pt-1">
-        <div class="overflow-hidden h-2 text-xs flex bg-purple-200">
-          <div style={{ width: `${secondPlayerPercentage}%` }} class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"></div>
+      <div className="relative pt-1">
+        <div className="overflow-hidden h-2 text-xs flex bg-purple-200">
+          <div style={{ width: `${secondPlayerPercentage}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"></div>
         </div>
         <div className={stats}>
           <div className={nameTwo}>{gameState.secondUser.userName}</div>
@@ -37,7 +37,7 @@ const PlayerProgress = ({gameState}) => {
         </div>
       </div>
       <div >
-        <p>Race to <span>{gameState.targetScore} pts</span></p>
+        <p className={p}>Race to <span className={span}>{gameState.targetScore}</span> points</p>
       </div>
     </div>
     : null
@@ -47,8 +47,7 @@ const PlayerProgress = ({gameState}) => {
 }
 
 const stats = `
-  hidden
-  sm:flex
+  flex
   justify-between
 `;
 
@@ -76,6 +75,19 @@ const scoreTwo = `
   text-right
   text-purple-500
   italic
+`;
+
+const p = `
+  text-sm
+  text-center
+  text-gray-600
+  font-light
+  mt-2
+`;
+
+const span = `
+  font-bold
+  text-indigo-500
 `;
 
 export default PlayerProgress;

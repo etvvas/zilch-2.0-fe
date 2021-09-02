@@ -2,34 +2,36 @@ import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
 const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
-  console.log('user1', user1)
-  console.log('user2', user2)
+  // console.log('user1', user1)
+  // console.log('user2', user2)
   const avatar = 'dice';
+
+  // const winner = '_UXgUrU_';
   // add conditional styling (noPlayerSvg) if player does not exist
-console.log('results', results)
+// console.log('results', results)
   return (
     <>
       <div className={outerWrap}>
-        <h3 className={h3}>{room} Room</h3>
+        
         </div>
         {winner
-        ? <h2>{winner} WINS!</h2>
-        : null
+        ? <h1 className={h1}><span className={span}>{winner}</span> wins!</h1>
+        : <h3 className={h3}>{room} Room</h3>
         }
         <div className={innerWrap}>
           <div className={side}>
             {user1 
             ? (<>
-              <p className={playerName + playerOne}>{user1.userName}</p>
               <svg className={svg + winning}>
                 <use href={avatars + `#${user1.avatar}`} />
               </svg>
+              <p className={playerName + playerOne}>{user1.userName}</p>
               </>)
             : (<>
             <div className={side}>
-              <p className={playerName + playerTwo}>Waiting..</p>
               <svg className={noPlayerSvg}>
                 <use href={avatars + `#${avatar}`} />
+              <p className={playerName + playerTwo}>Waiting..</p>
               </svg>
             </div>
             </>)
@@ -41,18 +43,18 @@ console.log('results', results)
           {user2 
           ? (<>
             <div className={side}>
-              <p className={playerName + playerTwo}>{user2.userName}</p>
               <svg className={svg}>
                 <use href={avatars + `#${user2.avatar}`} />
               </svg>
+              <p className={playerName + playerTwo}>{user2.userName}</p>
             </div>
             </>)
           :(<>
             <div className={side}>
-              <p className={playerName + playerTwo}>Waiting..</p>
               <svg className={noPlayerSvg}>
                 <use href={avatars + `#${avatar}`} />
               </svg>
+              <p className={playerName + playerTwo}>Waiting</p>
             </div>
             </>)
           }
@@ -60,6 +62,21 @@ console.log('results', results)
     </>
   )
 }
+
+
+const h1 = `
+  text-3xl
+  sm:text-4xl
+  text-center
+  mt-4
+  mb-4
+  sm:mb-8
+`;
+
+const span = `
+  font-black
+  text-indigo-500
+`;
 
 const outerWrap = `
   flex
@@ -88,8 +105,6 @@ const innerWrap = `
 `;
 
 const side = `
-  w-28
-  md:max-w-32
 `;
 
 const playerName = `
@@ -115,8 +130,8 @@ const vs = `
 const svg = `
   w-20
   h-20
-  md:w-12
-  md:h-12
+  md:w-32
+  md:h-32
   my-2
   mx-auto
 `;
@@ -124,8 +139,8 @@ const svg = `
 const noPlayerSvg = `
   w-20
   h-20
-  md:w-12
-  md:h-12
+  md:w-32
+  md:h-32
   my-2
   mx-auto
   filter
