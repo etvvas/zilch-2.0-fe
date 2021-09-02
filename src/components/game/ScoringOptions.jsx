@@ -1,16 +1,54 @@
 import React from "react";
 import { useSession } from "../../state/SessionProvider";
 
-const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) => {
+const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch, isFreeRoll, rollDisabled, bankDisabled }) => {
   const session = useSession();
   let message = null;
+  console.log(scoringOptions)
 
-  if(isZilch && session.userId !== currentPlayer){
+  if(isZilch && session.userId !== currentPlayer && !isFreeRoll){
     message = 'Oof you lost your turn!'
   }
 
   if(isZilch && session.userId === currentPlayer){
     message = 'Roll the dice to start your turn!'
+  }
+
+  if(isZilch && session.userId !== currentPlayer && isFreeRoll){
+    message = 'Your opponent got a free roll! Womp Womp.'
+  }
+  
+  if(!isZilch && session.userId === currentPlayer && !rollDisabled && !scoringOptions[1]){
+      message = 'Roll the dice!'
+    }
+  
+  if(!isZilch && session.userId === currentPlayer && !rollDisabled && !scoringOptions[1] && !bankDisabled){
+      message = 'Roll or bank!'
+    }
+
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && !rollDisabled){
+    message = 'Roll or score!'
+  }
+
+  
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && bankDisabled && !rollDisabled){
+    message = 'Roll or score!'
+  }
+  
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && rollDisabled){
+    message = 'Score some points!'
+  }
+
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && !bankDisabled){
+    message = 'Score or bank!'
+  }
+  
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && !rollDisabled && !bankDisabled){
+    message = 'Roll, score, or bank!'
+  }
+
+  if(!isZilch && session.userId !== currentPlayer){
+    message = 'Your opponent is thinking.'
   }
 
   return (

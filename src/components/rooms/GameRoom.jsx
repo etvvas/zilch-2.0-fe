@@ -71,7 +71,7 @@ const GameRoom = () => {
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
-
+      console.log('SCORING OPTIONS AFTER ROLL', scoringOptions)
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -114,9 +114,9 @@ const GameRoom = () => {
       setIsDisabled(!(session.userId === players[index]))
     });
 
-    socket.on('UPDATE_SCORING_OPTIONS', (dice, scoringOptions, gameState) => {
+    socket.on('UPDATE_SCORING_OPTIONS', (dice, newScoringOptions, gameState) => {
       setGameState(gameState)
-      setScoringOptions(scoringOptions)
+      setScoringOptions(newScoringOptions)
       setDice(dice)
       setIsZilch(false)
       if(gameState.isFreeRoll){
@@ -124,17 +124,17 @@ const GameRoom = () => {
       }
 
       let matchingUser;
-      console.log('CURRENT PLAYER', gameState.players[gameState.currentPlayerIndex]);
-      console.log('FIRST USER ID', gameState.firstUser.userId);
+      
       gameState.firstUser.userId === gameState.players[gameState.currentPlayerIndex]
         ? (matchingUser = "firstUser")
         : (matchingUser = "secondUser");
-      console.log('GAMESTATE', gameState[matchingUser].roundScore);
+   
       if (gameState[matchingUser].roundScore >= 300) {
         setBankDisabled(false)
       }
       setRollDisabled(false)
       // setBankDisabled(false)
+      console.log('SCORING OPTIONS AFTER UPDATE', newScoringOptions)
     })
 
     socket.on('GAME_OVER', (gameData) => {
@@ -202,6 +202,9 @@ else
           scoringOptions={scoringOptions}
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}
+          isFreeRoll={isFreeRoll}
+          rollDisabled={rollDisabled}
+          bankDisabled={bankDisabled}
         />
         </>
   }
