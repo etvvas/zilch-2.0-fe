@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import avatars from '../../assets/avatars.svg'
 import {getGameResults, getGameUberZilches, getGameZilches, getUserById, getWinner} from '../../utils/profile.js'
 
@@ -62,17 +63,21 @@ const GameHistory = ({user, games}) => {
                 <h2 className={stat}>uberZilches: {uberZilches1}</h2>
               </div>
             </div>
-            <svg className={svg}>
-              <use href={avatars + `#${user1.avatar}`} />
-            </svg>
+            <Link to={`/profile/${user1.username}`}>
+              <svg className={svg}>
+                <use href={avatars + `#${user1.avatar}`} />
+              </svg>
+            </Link>
           </div>
           <div class={winloss}>
             {result}
           </div>
           <div className={userTwo}>
-            <svg className={svg}>
-              <use href={avatars + `#${user2.avatar}`} />
-            </svg>
+            <Link to={`/profile/${user2.username}`}>
+              <svg className={svg}>
+                <use href={avatars + `#${user2.avatar}`} />
+              </svg>
+            </Link>
             <div className={userInfo}>
               <h1 className={user2Name}>{user2.username}</h1>
               <div className={stats}>
