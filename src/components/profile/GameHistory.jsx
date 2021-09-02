@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import avatars from '../../assets/avatars.svg'
-import {getGameResults, getGameUberZilches, getGameZilches, getUserById} from '../../utils/profile.js'
+import {getGameResults, getGameUberZilches, getGameZilches, getUserById, getWinner} from '../../utils/profile.js'
 
 const GameHistory = ({user, games}) => {
   console.log('games', games)
@@ -67,9 +67,11 @@ const GameHistory = ({user, games}) => {
     //   default
     //   }
     // }
-    
 
-
+    // get result based on user profile
+    let result;
+    result = getWinner(user, user1, user2, playerScore1, playerScore2, result)
+      
     return(
       <li key={i}>
         <div className={wrapper}>
@@ -87,7 +89,7 @@ const GameHistory = ({user, games}) => {
             </svg>
           </div>
           <div class={winloss}>
-            WIN
+            {result}
           </div>
           <div className={userTwo}>
             <svg className={svg}>
