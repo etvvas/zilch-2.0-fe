@@ -23,13 +23,11 @@ const PlayerProfile = () => {
     setUser(fetchedUser);
 
     const fetchedWins = await getPlayerWins(fetchedUser.userId)
-    console.log('wins', fetchedWins)
     setWins(fetchedWins.length);
     
     const fetchedGames = await getPlayerGames(fetchedUser.userId);
     setGames(fetchedGames);
     const losses = fetchedGames.length - wins 
-    console.log('losses', losses)
     setLosses(losses);
     
     const fetchedZilches = await getPlayerZilches(fetchedUser.userId);
