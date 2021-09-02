@@ -58,34 +58,76 @@ const PlayerProfile = () => {
     {loading 
       ? <h1>Loading...</h1> 
       : <>
-        <div className={profile}>
-          <h1>{user.username}'s Profile</h1>
-          <div>
+
+        <div className={outer}>
+          <div className={wrap}>
+            <h1 className={h1}><span className={span}>{user.username}</span>'s Profile</h1>
             <svg className={svg}>
               <use href={avatars + `#${user.avatar}`} />
             </svg>
-            <h2>Global Rank #{rank}</h2>
-            <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
-
-            <GameHistory user={user} games={games}/>
-            
+            <div class={title}>
+              <h2>Global Rank</h2>
+              <div className={rankDiv}>#{rank}</div>  
+            </div>
+            <div>
+              <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
+              <GameHistory user={user} games={games}/>
+            </div>
           </div>
-          </div>
-        </>
+        </div>
+      </>
     }
     </div>
   )
 }
 
-const profile = `
+const outer = `
+  flex
+  flex-col
+  sm:px-4
+  leaderboard
+`;
+
+const wrap = `
+  max-w-screen-md
+  sm:mx-auto
   bg-white
+  rounded-xl
+  p-4
+  sm:my-12
+  sm:p-12
+  w-full
+`;
+
+const title = `
+  text-center
+`;
+
+const rankDiv = `
+  text-5xl
+  font-black
+  text-pink-500
+  `;
+
+const h1 = `
+  text-xl
+  sm:text-4xl
+  text-center
+  mt-4
+  mb-4
+  sm:mb-8
+`;
+
+const span = `
+  font-black
+  text-indigo-500
 `;
 
 const svg = `
-  w-12
-  h-12
-  md:w-12
-  md:h-12
+  w-40
+  h-40
+  md:w-40
+  md:h-40
   my-2
   mx-auto
   border-4
