@@ -23,7 +23,7 @@ const Avatars = ({onChange}) => {
           </svg>
         </label>
         <label>
-          <input type="radio" name="avatar" className="hidden" value="polarBear" 
+          <input type="radio" name="avatar" className="hidden" value="polar-bear" 
             onChange={onChange}
           />
           <svg className={svg}>
@@ -31,7 +31,7 @@ const Avatars = ({onChange}) => {
           </svg>
         </label>
         <label>
-          <input type="radio" name="avatar" className="hidden" value="pufferFish" 
+          <input type="radio" name="avatar" className="hidden" value="puffer-fish" 
             onChange={onChange}
           />
           <svg className={svg}>
