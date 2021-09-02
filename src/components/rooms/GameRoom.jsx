@@ -88,10 +88,9 @@ const GameRoom = () => {
       setDice(dice);
       setTimeout(() => {
         setScoringOptions(
-          scoringOptions.map((option, i) => {
+          scoringOptions.map((option) => {
             return {
               ...option,
-              id: i,
               selected: false,
             };
           })
@@ -156,9 +155,14 @@ const GameRoom = () => {
     socket.emit("PLAYER_READY", room, session.userId);
   };
 
+  const handleLeave = () => {
+    history.push('/lobby')
+    socket.emit('DISCONNECT')
+  }
+
   const handleScoreSelect = ({ target }) => {
     const updatedScoringOptions = scoringOptions.map((option) => {
-      if (option.id === JSON.parse(target.value).id)
+      if (option.choice === JSON.parse(target.value).choice)
         return { ...option, selected: true };
       else return option;
     });
@@ -207,7 +211,11 @@ else
       <div className={footer}>
         <Rules />
         <Scoring />
-        <button className={button}>Leave</button>
+        <button 
+        className={button} 
+        onClick={handleLeave}>
+          Leave
+          </button>
       </div>
        
       

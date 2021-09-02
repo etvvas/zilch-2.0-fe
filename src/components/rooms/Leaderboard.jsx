@@ -17,6 +17,14 @@ const Leaderboard = () => {
         return placeholderFunc()
     }, [])
 
+    const leaderElements = leaderboard.map((leader, i) => (
+        <tr>
+                      <td className={td + standing}>{i + 1}</td>
+                      <td className={td + player}>{leader.username}</td>
+                      <td className={td + score}>{leader.wins}</td>
+                  </tr>
+    ))
+
     return (
       <div className={outer}>
         <div className={wrap}>
@@ -30,7 +38,8 @@ const Leaderboard = () => {
                   </tr>
               </thead>
               <tbody>
-                  <tr>
+              {leaderElements}
+                  {/* <tr>
                       <td className={td + standing}>1</td>
                       <td className={td + player}>ScrumMast3r</td>
                       <td className={td + score}>666</td>
@@ -44,7 +53,7 @@ const Leaderboard = () => {
                       <td className={td + standing}>3</td>
                       <td className={td + player}>t3chW1Z</td>
                       <td className={td + score}>69</td>
-                  </tr>
+                  </tr> */}
               </tbody>
           </table>
         </div>
