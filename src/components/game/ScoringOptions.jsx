@@ -3,12 +3,21 @@ import { useSession } from "../../state/SessionProvider";
 
 const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) => {
   const session = useSession();
+  let message = null;
+
+  if(isZilch && session.userId !== currentPlayer){
+    message = 'Oof you lost your turn!'
+  }
+
+  if(isZilch && session.userId === currentPlayer){
+    message = 'Roll the dice to start your turn!'
+  }
 
   return (
   <>
     <div className={isZilch ? 'zilch animate' : 'zilch'}> Zilch! </div>
     <form className={scoringOptionsForm}>
-
+      <div>{message}</div>
       {/* CASE: Zilch */}
       {/* <div className={message}>Oof. Lose a turn.</div> */}
 
