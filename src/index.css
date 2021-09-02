@@ -6,6 +6,7 @@
 
 
 .zilch {
+  font-family: 'Open Sans', sans-serif;
   opacity: 0;
   font-size: 2px;
 }
@@ -40,12 +41,11 @@
   .zilch.animate {
     font-size: 100px;
     left: 190px;
-    top: 163px;
+    top: 140px;
   }
 }
 
 body {
-  /* font-family: 'Open Sans', sans-serif; */
   font-family: 'Nunito', sans-serif;
 }
 
