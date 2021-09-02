@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import avatars from '../../assets/avatars.svg';
 import { allLeaders } from "../../services/users";
 
 const Leaderboard = () => {
@@ -18,7 +19,10 @@ const Leaderboard = () => {
   const leaderElements = leaderboard.map((leader, i) => (
     <tr>
       <td className={td + standing}>{i + 1}</td>
-      <td className={td + player}>{leader.username}</td>
+      
+      <td className={td + player}><svg className={svg}>
+                <use href={avatars + `#${leader.avatar}`} />
+              </svg>{leader.username} </td>
       <td className={td + score}>{leader.wins}</td>
     </tr>
   ));
@@ -66,6 +70,11 @@ const Leaderboard = () => {
   );
 };
 
+// const tr = `
+// flex
+// flex-
+// `
+
 const outer = `
   flex
   flex-col
@@ -82,6 +91,15 @@ const wrap = `
   sm:my-12
   sm:p-12
   w-full
+`;
+
+const svg = `
+  w-8
+  h-8
+  border-4
+  border-black
+  border-opacity-10
+  rounded-full
 `;
 
 const h1 = `
