@@ -5,16 +5,18 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
   // console.log('user1', user1)
   // console.log('user2', user2)
   const avatar = 'dice';
+
+  // const winner = '_UXgUrU_';
   // add conditional styling (noPlayerSvg) if player does not exist
 // console.log('results', results)
   return (
     <>
       <div className={outerWrap}>
-        <h3 className={h3}>{room} Room</h3>
+        
         </div>
         {winner
-        ? <h2>{winner} WINS!</h2>
-        : null
+        ? <h1 className={h1}><span className={span}>{winner}</span> wins!</h1>
+        : <h3 className={h3}>{room} Room</h3>
         }
         <div className={innerWrap}>
           <div className={side}>
@@ -52,7 +54,7 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
               <svg className={noPlayerSvg}>
                 <use href={avatars + `#${avatar}`} />
               </svg>
-              <p className={playerName + playerTwo}>Waiting..</p>
+              <p className={playerName + playerTwo}>Waiting</p>
             </div>
             </>)
           }
@@ -60,6 +62,21 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
     </>
   )
 }
+
+
+const h1 = `
+  text-3xl
+  sm:text-4xl
+  text-center
+  mt-4
+  mb-4
+  sm:mb-8
+`;
+
+const span = `
+  font-black
+  text-indigo-500
+`;
 
 const outerWrap = `
   flex
