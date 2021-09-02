@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import avatars from '../../assets/avatars.svg';
+
 import { allLeaders } from "../../services/users";
 
 const Leaderboard = () => {
@@ -20,9 +21,12 @@ const Leaderboard = () => {
     <tr>
       <td className={td + standing}>{i + 1}</td>
       
-      <td className={td + player}><svg className={svg}>
-                <use href={avatars + `#${leader.avatar}`} />
-              </svg>{leader.username} </td>
+      <td className={td + player}>
+        <svg className={svg}>
+           <use href={avatars + `#${leader.avatar}`} />
+        </svg>{leader.username} 
+       </td>
+
       <td className={td + score}>{leader.wins}</td>
     </tr>
   ));
@@ -49,7 +53,7 @@ const Leaderboard = () => {
         </div>
       </div>
     );
-  return (
+ return (
     <div className={outer}>
       <div className={wrap}>
         <h1 className={h1}>
@@ -69,11 +73,6 @@ const Leaderboard = () => {
     </div>
   );
 };
-
-// const tr = `
-// flex
-// flex-
-// `
 
 const outer = `
   flex
