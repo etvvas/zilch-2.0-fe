@@ -88,10 +88,9 @@ const GameRoom = () => {
       setDice(dice);
       setTimeout(() => {
         setScoringOptions(
-          scoringOptions.map((option, i) => {
+          scoringOptions.map((option) => {
             return {
               ...option,
-              id: i,
               selected: false,
             };
           })
@@ -158,7 +157,7 @@ const GameRoom = () => {
 
   const handleScoreSelect = ({ target }) => {
     const updatedScoringOptions = scoringOptions.map((option) => {
-      if (option.id === JSON.parse(target.value).id)
+      if (option.choice === JSON.parse(target.value).choice)
         return { ...option, selected: true };
       else return option;
     });
