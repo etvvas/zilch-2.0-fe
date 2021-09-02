@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { getUserById } from '../../utils/profile';
+import React from 'react';
 import avatars from '../../assets/avatars.svg'
 
 const GameHistory = ({user, games}) => {
@@ -8,13 +7,15 @@ const GameHistory = ({user, games}) => {
 
   const gameHistory = games.map((game, i)=> {
 
+  // const gameHistory = Promise.all(games.map(async(game, i)=> {
+
     // this page gets angry when you add async to the map function
 
     // grab user profiles
     // const user1 = await getUserById(game.firstUserId)
     // const user2 = await getUserById(game.secondUserId)
 
-    //grab player score
+    // // grab player score
     // const results = await getGameResults(game.gameId)
     // const playerScore1 = results.map(result, i => {
     //   if(result.userId === user1.userId) return result.playerScore
@@ -24,7 +25,7 @@ const GameHistory = ({user, games}) => {
     //     result.playerScore
     // })
 
-    // grab player zilches
+    // // grab player zilches
     // const zilches = await getGameZilches(game.gameId)
     // const zilches1 = zilches.map(zilch, i => {
     //   if(zilch.userId === user1.userId) return zilch.playerZilch
@@ -33,7 +34,7 @@ const GameHistory = ({user, games}) => {
     //   if(zilch.userId === user2.userId) return zilch.playerZilch
     // })
   
-    // grab player uber zilches
+    // // grab player uber zilches
     // const uberZilches = await getGameUberZilches(game.gameId)
     //    const uberZilches1 = uberZilches.map(uberZilch, i => {
     //   if(uberZilch.userId === user1.userId) return uberZilch.playerUberZilch
@@ -42,8 +43,8 @@ const GameHistory = ({user, games}) => {
     //   if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilch
     // })
 
-    // display win or loss
-    // determine who's profile we are viewing and match with playerScore
+    // // display win or loss
+    // // determine who's profile we are viewing and match with playerScore
     // if(user.userId === user1.userId) {
     //   // user1 return
     //   if(playerScore1 > playerScore2) {
@@ -60,7 +61,6 @@ const GameHistory = ({user, games}) => {
     //   }
     // }
 
-    
     return(
       <li key={i}>
         <div className={wrapper}>
@@ -96,7 +96,8 @@ const GameHistory = ({user, games}) => {
         </div>
       </li>
     )
-  });
+  })
+  // )
 
   return(
     <>
