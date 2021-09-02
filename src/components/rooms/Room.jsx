@@ -55,6 +55,12 @@ const outerWrap = `
   bg-gray-800
   text-purple-100
   rounded-lg
+
+  transition
+  duration-300
+  ease-in-out
+  transform
+  hover:scale-105
 `;
 
 const h3 = `
