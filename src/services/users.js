@@ -13,12 +13,11 @@ export const getWins =  async (idArray) => {
       return Promise.all(wins)
 }
 
-
 export const getWinsArray = async () => {
             const users = await getUsers();
             const wins = await getWins(users);
             return Promise.all(wins);
-        }
+}
 
 export const orderWins = async (winsArray) => {
   const nonZeroWinners = winsArray.filter(n => n.length)
@@ -57,9 +56,12 @@ export const displayLeaders = async (totalWins) => {
   const leaders = totalWins.map((wins, i) => (
     {
       userId: wins[0].userId,
+      avatar: wins[0].avatar,
       username: wins[0].username,
       wins: wins.length
     }
     ))
   return leaders
 }
+
+
