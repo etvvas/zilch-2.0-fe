@@ -85,10 +85,9 @@ const GameHistory = ({user, games}) => {
         </div>
       </li>
     )
-  })
-  ).then(setGame); 
+  })).then(setGame); 
 
-}, [])
+  }, [])
   
 
   return(
