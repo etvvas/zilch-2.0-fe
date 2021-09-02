@@ -18,6 +18,10 @@ const PlayerProgress = ({gameState}) => {
   <>
   {gameState.gameId ?
     <div>
+      <div className="flex flex-row justify-center gap-2">
+        <h1 className={h3}>{gameState.roomName} Room</h1>
+        <p className={points}>{gameState.targetScore} points</p>
+      </div>
       <div className="relative pt-1">
         <div className={stats}>
           <div className={nameOne}>{gameState.firstUser.userName}</div>
@@ -36,15 +40,28 @@ const PlayerProgress = ({gameState}) => {
           <div className={scoreTwo}>{gameState.secondUser.playerScore}</div>
         </div>
       </div>
-      <div >
-        <p className={p}>Race to <span className={span}>{gameState.targetScore}</span> points</p>
-      </div>
     </div>
     : null
 }
 </>
   )
 }
+
+
+const h3 = `
+  text-sm
+  text-center
+  text-indigo-500
+  font-bold
+  tracking-wide
+  rounded-t-lg
+`;
+
+const points = `
+  text-sm
+  text-gray-600
+  font-bold
+`;
 
 const stats = `
   flex
