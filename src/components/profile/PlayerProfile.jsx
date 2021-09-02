@@ -61,7 +61,7 @@ const PlayerProfile = () => {
             <h2>Global Rank #</h2>
             <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
-            <GameHistory games={games}/>
+            <GameHistory user={user} games={games}/>
             
           </div>
           </div>
