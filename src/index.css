@@ -71,6 +71,10 @@ input[type="checkbox"]:checked + label {
   border-color: #EC4899;
 }
 
+input[type="checkbox"]:disabled + label {
+  opacity: .5;
+}
+
 .roll {
   transform: rotate(3600deg);
   -webkit-transition: -webkit-transform 500ms ease-out;

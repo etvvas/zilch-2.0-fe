@@ -11,19 +11,12 @@ import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import Scoring from '../game/Scoring';
 import ResultsPage from '../results/ResultsPage';
-const InitialDice = [
-  { held: false, value: 1 },
-  { held: false, value: 2 },
-  { held: false, value: 3 },
-  { held: false, value: 4 },
-  { held: false, value: 5 },
-  { held: false, value: 6 }
-]
+
 const GameRoom = () => {
   const [results, setResults] = useState(false)
   const [gameState, setGameState] = useState({});
   const [currentPlayer, setCurrentPlayer] = useState("");
-  const [dice, setDice] = useState(InitialDice);
+  const [dice, setDice] = useState([]);
   const [scoringOptions, setScoringOptions] = useState([]);
   const history = useHistory();
   const session = useSession();
@@ -78,6 +71,7 @@ const GameRoom = () => {
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
+
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -120,9 +114,9 @@ const GameRoom = () => {
       setIsDisabled(!(session.userId === players[index]))
     });
 
-    socket.on('UPDATE_SCORING_OPTIONS', (dice, newScoringOptions, gameState) => {
+    socket.on('UPDATE_SCORING_OPTIONS', (dice, scoringOptions, gameState) => {
       setGameState(gameState)
-      setScoringOptions(newScoringOptions)
+      setScoringOptions(scoringOptions)
       setDice(dice)
       setIsZilch(false)
       if(gameState.isFreeRoll){
@@ -130,11 +124,12 @@ const GameRoom = () => {
       }
 
       let matchingUser;
-      
+      console.log('CURRENT PLAYER', gameState.players[gameState.currentPlayerIndex]);
+      console.log('FIRST USER ID', gameState.firstUser.userId);
       gameState.firstUser.userId === gameState.players[gameState.currentPlayerIndex]
         ? (matchingUser = "firstUser")
         : (matchingUser = "secondUser");
-   
+      console.log('GAMESTATE', gameState[matchingUser].roundScore);
       if (gameState[matchingUser].roundScore >= 300) {
         setBankDisabled(false)
       }
@@ -152,11 +147,6 @@ const GameRoom = () => {
     socket.on("disconnect", (reason) => {
       console.log('GAMEROOM', reason);
     });
-    socket.on('OPPONENT_DISCONNECT', () => {
-      alert('Opponent has left the match, redirecting to Lobby')
-      history.push('/lobby')
-      
-    })
 
     return () => socket.emit("DISCONNECT");
   }, []);
@@ -212,9 +202,6 @@ else
           scoringOptions={scoringOptions}
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}
-          isFreeRoll={isFreeRoll}
-          rollDisabled={rollDisabled}
-          bankDisabled={bankDisabled}
         />
         </>
   }

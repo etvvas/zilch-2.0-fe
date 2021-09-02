@@ -53,6 +53,7 @@ const Leaderboard = () => {
         </div>
       </div>
     );
+    
   return (
     <div className={outer}>
       <div className={wrap}>
@@ -73,11 +74,6 @@ const Leaderboard = () => {
     </div>
   );
 };
-
-// const tr = `
-// flex
-// flex-
-// `
 
 const outer = `
   flex

@@ -25,7 +25,7 @@ const handleBank = () => {
       disabled={isDisabled || bankDisabled}
       className={button + bankReady}
       onClick={handleBank} 
-      >Bank {gameState.firstUser?.roundScore ? gameState.firstUser?.roundScore : gameState.secondUser?.roundScore }</button>
+      >Bank <span className={span}>{gameState.firstUser?.roundScore ? gameState.firstUser?.roundScore : gameState.secondUser?.roundScore }</span></button>
     </div>
   )
 }
@@ -55,22 +55,16 @@ const rollButton = `
   text-white
 `;
 
-// const bankNotReady = `
-//   bg-gray-200
-//   border-gray-300
-//   text-gray-600
-// `;
-
 const bankReady = `
   bg-green-500
   border-green-600
   text-white
 `;
 
-// const span = `
-//   font-light
-//   text-lg
-//   tracking-normal
-// `;
+const span = `
+  font-light
+  text-lg
+  tracking-normal
+`;
 
 export default GameControls;
