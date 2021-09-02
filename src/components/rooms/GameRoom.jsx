@@ -114,29 +114,23 @@ const GameRoom = () => {
       setIsDisabled(!(session.userId === players[index]));
     });
 
-    socket.on(
-      "UPDATE_SCORING_OPTIONS",
-      (dice, newScoringOptions, gameState) => {
-        setGameState(gameState);
-        setScoringOptions(newScoringOptions);
-        setDice(dice);
-        setIsZilch(false);
-        if (gameState.isFreeRoll) {
-          setIsFreeRoll(true);
-        }
+    socket.on('UPDATE_SCORING_OPTIONS', (dice, newScoringOptions, gameState) => {
+      setGameState(gameState)
+      setScoringOptions(newScoringOptions)
+      setDice(dice)
+      setIsZilch(false)
+      if(gameState.isFreeRoll){
+        setIsFreeRoll(true)
+      }
 
-        let matchingUser;
-
-        gameState.firstUser.userId ===
-        gameState.players[gameState.currentPlayerIndex]
-          ? (matchingUser = "firstUser")
-          : (matchingUser = "secondUser");
-
-        if (gameState[matchingUser].roundScore >= 300) {
-          setBankDisabled(false);
-        }
-        setRollDisabled(false);
-        // setBankDisabled(false)
+      let matchingUser;
+      
+      gameState.firstUser.userId === gameState.players[gameState.currentPlayerIndex]
+        ? (matchingUser = "firstUser")
+        : (matchingUser = "secondUser");
+   
+      if (gameState[matchingUser].roundScore >= 300) {
+        setBankDisabled(false)
       }
     );
 

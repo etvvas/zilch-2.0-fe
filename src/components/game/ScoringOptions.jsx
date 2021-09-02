@@ -4,7 +4,6 @@ import { useSession } from "../../state/SessionProvider";
 const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch, isFreeRoll, rollDisabled, bankDisabled }) => {
   const session = useSession();
   let message = null;
-  console.log(scoringOptions)
 
   if(isZilch && session.userId !== currentPlayer && !isFreeRoll){
     message = 'Oof you lost your turn!'
@@ -29,7 +28,6 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch, isFr
   if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && !rollDisabled){
     message = 'Roll or score!'
   }
-
   
   if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && bankDisabled && !rollDisabled){
     message = 'Roll or score!'
