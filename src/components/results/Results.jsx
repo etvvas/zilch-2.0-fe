@@ -1,6 +1,6 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
-
+//comment
 const Results = ({user1, user2}) => {
 
   return(
