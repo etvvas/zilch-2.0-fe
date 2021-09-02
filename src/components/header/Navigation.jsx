@@ -14,6 +14,7 @@ const Navigation = ({ isOpen, setIsOpen, socket }) => {
 
   const handleLobby = () => {
     setIsOpen(!isOpen)
+    socket.emit('DISCONNECT')
     history.push(`/lobby`)
   }
   const handleProfile = () => {
