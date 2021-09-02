@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect} from 'react';
-import { displayLeaders, getUsers, getWins, orderWins } from '../../services/users';
+import { allLeaders, displayLeaders, getUsers, getWins, getWinsArray, orderWins } from '../../services/users';
 
 const Leaderboard = () => {
     const [leaderboard, setLeaderboard] = useState([]);
@@ -8,10 +8,7 @@ const Leaderboard = () => {
 
     useEffect(() => {
         const placeholderFunc = async () => {
-            const users = await getUsers();
-            const wins = await getWins(users)
-            const order = await orderWins(wins)
-            const leaders = await displayLeaders(order)
+            const leaders = await allLeaders();
             await setLeaderboard(leaders)
             setLoading(false)
         }
