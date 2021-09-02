@@ -6,7 +6,10 @@ const Room = ({roomName, currentPlayerIndex, players, firstUser, secondUser, isG
   return (
     <>
       <div className={outerWrap}>
-        <h3 className={h3}>{roomName}</h3>
+        <div className={title}>
+          <h3 className={h3}>{roomName}</h3>
+          <div className={goal}>5000 pts</div>
+        </div>
         <div className={innerWrap}>
           <div className={side}>
             <p className={playerName}>{firstUser?.userName ? firstUser.userName : 'Open'}</p>
@@ -36,10 +39,9 @@ const Room = ({roomName, currentPlayerIndex, players, firstUser, secondUser, isG
             <svg className={noPlayerSvg}>
               <use href={avatars + `#${'dice'}`} />
             </svg>
-        }
+            }
             <p className={score}>{secondUser?.playerScore || secondUser?.playerScore === 0 ? secondUser.playerScore : null}</p>
           </div>
-
         </div>
       </div>
     </>
@@ -59,11 +61,24 @@ const h3 = `
   text-lg
   text-center
   font-bold
-  bg-gray-700
-  p-2
   text-gray-300
   tracking-wider
+`;
+
+const title = `
+  flex
+  flex-row
+  justify-between
+  items-center
+  py-2
+  px-4
   rounded-t-lg
+  bg-gray-700
+`;
+
+const goal = `
+  text-sm
+  text-gray-400
 `;
 
 const innerWrap = `
@@ -126,6 +141,12 @@ const noPlayerSvg = `
   mx-auto
   filter
   grayscale
+`;
+
+const span = `
+  font-light
+  tracking-normal
+  text-sm
 `;
 
 export default Room;
