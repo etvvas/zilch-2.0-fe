@@ -71,7 +71,6 @@ const GameRoom = () => {
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
-      console.log('SCORING OPTIONS AFTER ROLL', scoringOptions)
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -134,7 +133,6 @@ const GameRoom = () => {
       }
       setRollDisabled(false)
       // setBankDisabled(false)
-      console.log('SCORING OPTIONS AFTER UPDATE', newScoringOptions)
     })
 
     socket.on('GAME_OVER', (gameData) => {
