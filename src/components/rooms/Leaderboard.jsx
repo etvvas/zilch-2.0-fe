@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect} from 'react';
-import { displayLeaders, displayWins, getUsers, getWins, orderWins } from '../../services/users';
+import { displayLeaders, getUsers, getWins, orderWins } from '../../services/users';
 
 const Leaderboard = () => {
     const [leaderboard, setLeaderboard] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const placeholderFunc = async () => {
@@ -12,7 +13,7 @@ const Leaderboard = () => {
             const order = await orderWins(wins)
             const leaders = await displayLeaders(order)
             await setLeaderboard(leaders)
-            console.log(leaders)
+            setLoading(false)
         }
         return placeholderFunc()
     }, [])
@@ -25,6 +26,25 @@ const Leaderboard = () => {
                   </tr>
     ))
 
+        if(loading) return (
+            <div className={outer}>
+        <div className={wrap}>
+          <h1 className={h1}><span className={span}>Zilch 2.0</span> Leaderboard</h1>
+          <table className={table}>
+              <thead>
+                  <tr>
+                      <th className={td + firstTh}>#</th>
+                      <th className={td + secondTh}>Player</th>
+                      <th className={td + lastTh}>Wins</th>
+                  </tr>
+              </thead>
+              <tbody>
+              <h1>LOADING...</h1>
+              </tbody>
+          </table>
+        </div>
+      </div>
+        )
     return (
       <div className={outer}>
         <div className={wrap}>
@@ -39,21 +59,6 @@ const Leaderboard = () => {
               </thead>
               <tbody>
               {leaderElements}
-                  {/* <tr>
-                      <td className={td + standing}>1</td>
-                      <td className={td + player}>ScrumMast3r</td>
-                      <td className={td + score}>666</td>
-                  </tr>
-                  <tr>
-                      <td className={td + standing}>2</td>
-                      <td className={td + player}>_UXgUrU_</td>
-                      <td className={td + score}>420</td>
-                  </tr>
-                  <tr>
-                      <td className={td + standing}>3</td>
-                      <td className={td + player}>t3chW1Z</td>
-                      <td className={td + score}>69</td>
-                  </tr> */}
               </tbody>
           </table>
         </div>
