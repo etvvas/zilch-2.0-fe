@@ -3,14 +3,12 @@ import avatars from '../../assets/avatars.svg'
 import {getGameResults, getGameUberZilches, getGameZilches, getUserById, getWinner} from '../../utils/profile.js'
 
 const GameHistory = ({user, games}) => {
-  console.log('games', games)
-
   const [game, setGame] = useState();
 
-  // const gameHistory = games.map((game, i)=> {
   useEffect(()=> {
+
     Promise.all(games.map(async(game, i)=> {
-      console.log(games)
+
     // grab target_score
     const target = game.targetScore;
 

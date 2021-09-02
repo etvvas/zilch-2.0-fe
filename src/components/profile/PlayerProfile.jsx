@@ -41,9 +41,7 @@ const PlayerProfile = () => {
     setUberZilches(allUberZilches)
 
     const leaders = await allLeaders();
-    console.log('leaders', leaders)
-      const index = leaders.findIndex(leader => leader.userId === fetchedUser.userId)
-      console.log('index', index)
+    const index = leaders.findIndex(leader => leader.userId === fetchedUser.userId)
     setRank(index+1)
 
     setLoading(false);
