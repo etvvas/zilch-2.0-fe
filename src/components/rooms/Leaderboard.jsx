@@ -22,11 +22,11 @@ const Leaderboard = () => {
       <td className={td + standing}>{i + 1}</td>
       
       <Link to={`/profile/${leader.username}`}>
-      <td className={td + player}>
-        <svg className={svg}>
-          <use href={avatars + `#${leader.avatar}`} />
-        </svg>{leader.username} </td>
-      <td className={td + score}>{leader.wins}</td>
+        <td className={td + player}>
+          <svg className={svg}>
+            <use href={avatars + `#${leader.avatar}`} />
+          </svg>{leader.username} </td>
+        <td className={td + score}>{leader.wins}</td>
       </Link>
     </tr>
   ));
