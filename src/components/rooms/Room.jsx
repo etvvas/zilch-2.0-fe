@@ -8,25 +8,8 @@ const Room = ({roomName, currentPlayerIndex, players, firstUser, secondUser, isG
       <div className={outerWrap}>
         <h3 className={h3}>{roomName}</h3>
         <div className={innerWrap}>
-        {/* {roomData.firstUser ?
           <div className={side}>
-            <p className={playerName}>{roomData.firstUser.username}</p>
-            <svg className={svg + winning}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-            <p className={score}>1837 pts</p>
-          </div>
-          :  
-          <div className={side}>
-            <p className={playerName}>ScrumMast3r</p>
-            <svg className={svg + winning}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-            <p className={score}>1837 pts</p>
-          </div>
-        } */}
-          <div className={side}>
-            <p className={playerName}>{firstUser?.userName ? firstUser.userName : 'Waiting...'}</p>
+            <p className={playerName}>{firstUser?.userName ? firstUser.userName : 'Open'}</p>
             {firstUser ?
             <svg className={svg + `${(players[currentPlayerIndex] === firstUser.userId) ? currentTurn : null }`}>
               <use href={avatars + `#${firstUser.avatar}`} />
@@ -35,14 +18,16 @@ const Room = ({roomName, currentPlayerIndex, players, firstUser, secondUser, isG
             <svg className={noPlayerSvg}>
               <use href={avatars + `#${'dice'}`} />
             </svg>
-      }
-            <p className={score}>{firstUser?.playerScore || firstUser?.playerScore === 0 ? firstUser.playerScore : null}</p>
+            }
+            <p className={
+              firstUser?.playerScore || firstUser?.playerScore === 0 ? score : score + 'opacity-0'
+            }>{firstUser?.playerScore || firstUser?.playerScore === 0 ? firstUser.playerScore : '0'}</p>
           </div>
           <div className={vs}>
             vs
           </div>
           <div className={side}>
-            <p className={playerName}>{secondUser?.userName ? secondUser.userName : 'Waiting...'}</p>
+            <p className={playerName}>{secondUser?.userName ? secondUser.userName : 'Open'}</p>
             {secondUser ?
             <svg className={svg + `${(players[currentPlayerIndex] === secondUser.userId) ? currentTurn : null }`}>
               <use href={avatars + `#${secondUser.avatar}`} />
@@ -73,6 +58,7 @@ const outerWrap = `
 const h3 = `
   text-lg
   text-center
+  font-bold
   bg-gray-700
   p-2
   text-gray-300
