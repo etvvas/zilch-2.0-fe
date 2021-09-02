@@ -23,13 +23,11 @@ const PlayerProfile = () => {
     setUser(fetchedUser);
 
     const fetchedWins = await getPlayerWins(fetchedUser.userId)
-    console.log('wins', fetchedWins)
     setWins(fetchedWins.length);
     
     const fetchedGames = await getPlayerGames(fetchedUser.userId);
     setGames(fetchedGames);
     const losses = fetchedGames.length - wins 
-    console.log('losses', losses)
     setLosses(losses);
     
     const fetchedZilches = await getPlayerZilches(fetchedUser.userId);
@@ -63,7 +61,7 @@ const PlayerProfile = () => {
             <h2>Global Rank #</h2>
             <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
-            <GameHistory games={games}/>
+            <GameHistory user={user} games={games}/>
             
           </div>
           </div>

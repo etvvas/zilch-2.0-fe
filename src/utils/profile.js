@@ -39,3 +39,24 @@ export const getUserById = async (id) => {
   const json = uberZilches.json()
   return json; 
 }
+
+export const getGameResults = async (gameId) => {
+  const gameResults = await fetch(`${process.env.REACT_APP_HEROKU_URL}/api/v1/games/${gameId}/results`)
+  
+  const json = gameResults.json()
+  return json; 
+}
+
+export const getGameZilches = async (gameId) => {
+  const gameZilches = await fetch(`${process.env.REACT_APP_HEROKU_URL}/api/v1/games/${gameId}/zilches`)
+  
+  const json = gameZilches.json()
+  return json; 
+}
+
+export const getGameUberZilches = async (gameId) => {
+  const gameUberZilches = await fetch(`${process.env.REACT_APP_HEROKU_URL}/api/v1/games/${gameId}/uberZilches`)
+  
+  const json = gameUberZilches.json()
+  return json; 
+}
