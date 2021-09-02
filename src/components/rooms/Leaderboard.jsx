@@ -95,9 +95,8 @@ const span = `
 
 const table = `
     w-full
-    rounded
+    rounded-lg
     bg-gray-800
-    rounded-t-lg
     text-gray-100
     text-sm
 `;

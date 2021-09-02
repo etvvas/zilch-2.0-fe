@@ -43,7 +43,6 @@ const handleClick = () => {
   socket.emit('DISCONNECT')
 }
 
- 
   const roomsElements = gameRooms.map((room) => (
     
     <li  key={room.roomName} className={li}>
@@ -54,6 +53,8 @@ const handleClick = () => {
       </Link>
     </li>
 ))
+
+console.log(gameRooms)
 
   return (
     <div className={outer}>
@@ -86,7 +87,7 @@ const h1 = `
   text-xl
   sm:text-4xl
   text-center
-  mt-4
+  mt-6
 `;
 
 const span = `
@@ -99,8 +100,9 @@ const ul = `
   flex-wrap
   justify-evenly
   p-4
-  md:p-10
+  md:p-12
 `;
+
 
 const li = `
   w-full
