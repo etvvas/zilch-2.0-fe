@@ -10,21 +10,13 @@ import PlayerProgress from "../game/PlayerProgress";
 import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import Scoring from '../game/Scoring';
-// import ScoringOptions from '../game/ScoringOptions';
 import ResultsPage from '../results/ResultsPage';
-const InitialDice = [
-  { held: false, value: 1 },
-  { held: false, value: 2 },
-  { held: false, value: 3 },
-  { held: false, value: 4 },
-  { held: false, value: 5 },
-  { held: false, value: 6 }
-]
+
 const GameRoom = () => {
   const [results, setResults] = useState(false)
   const [gameState, setGameState] = useState({});
   const [currentPlayer, setCurrentPlayer] = useState("");
-  const [dice, setDice] = useState(InitialDice);
+  const [dice, setDice] = useState([]);
   const [scoringOptions, setScoringOptions] = useState([]);
   const history = useHistory();
   const session = useSession();
@@ -79,6 +71,7 @@ const GameRoom = () => {
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
+      console.log('SCORING OPTIONS AFTER ROLL', scoringOptions)
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -141,6 +134,7 @@ const GameRoom = () => {
       }
       setRollDisabled(false)
       // setBankDisabled(false)
+      console.log('SCORING OPTIONS')
     })
 
     socket.on('GAME_OVER', (gameData) => {
@@ -153,11 +147,6 @@ const GameRoom = () => {
     socket.on("disconnect", (reason) => {
       console.log('GAMEROOM', reason);
     });
-    socket.on('OPPONENT_DISCONNECT', () => {
-      alert('Opponent has left the match, redirecting to Lobby')
-      history.push('/lobby')
-      
-    })
 
     return () => socket.emit("DISCONNECT");
   }, []);
@@ -186,39 +175,17 @@ const GameRoom = () => {
   if(loading) return <h1>Loading...</h1>
 else 
 
-return (
-  <div className={main}>
+  return (
+    <div className={main}>
 
-      {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room} winner={gameState.winner}/> : 
-    <div className={wrap}>
-      {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
-      : <>
-      <PlayerProgress gameState={gameState}/>
-      <ActiveScoreboard 
-      roundScores={roundScores}
-      gameState={gameState}
-      currentPlayer={currentPlayer}/>
-      <Dice dice={dice} isRolled={isRolled} />
-      <GameControls
-        isFreeRoll={isFreeRoll}
+        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room} winner={gameState.winner}/> : 
+      <div className={wrap}>
+        {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
+        : <>
+        <PlayerProgress gameState={gameState}/>
+        <ActiveScoreboard 
+        roundScores={roundScores}
         gameState={gameState}
-<<<<<<< HEAD
-        dice={dice}
-        currentPlayer={currentPlayer}
-        scoringOptions={scoringOptions}
-        rollDisabled={rollDisabled}
-        bankDisabled={bankDisabled}
-        isDisabled={isDisabled} />
-      <ScoringOptions
-        isZilch={isZilch}
-        scoringOptions={scoringOptions}
-        currentPlayer={currentPlayer}
-        onChange={handleScoreSelect}
-      />
-      </>
-}
-    </div>
-=======
         currentPlayer={currentPlayer}/>
         <Dice dice={dice} isRolled={isRolled} />
         <GameControls
@@ -242,22 +209,21 @@ return (
         </>
   }
       </div>
->>>>>>> 9448826fcc39edc4d66a1aa87c3643078116b1e1
 
-}
-    <div className={footer}>
-      <Rules />
-      <Scoring />
-      <button 
-      className={button} 
-      onClick={handleLeave}>
-        Leave
-        </button>
+  }
+      <div className={footer}>
+        <Rules />
+        <Scoring />
+        <button 
+        className={button} 
+        onClick={handleLeave}>
+          Leave
+          </button>
+      </div>
+       
+      
     </div>
-     
-    
-  </div>
-);
+  );
 };
 
 const main = `
