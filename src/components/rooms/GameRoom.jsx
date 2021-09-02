@@ -147,6 +147,11 @@ const GameRoom = () => {
     socket.on("disconnect", (reason) => {
       console.log('GAMEROOM', reason);
     });
+    socket.on('OPPONENT_DISCONNECT', () => {
+      alert('Opponent has left the match, redirecting to Lobby')
+      history.push('/lobby')
+      
+    })
 
     return () => socket.emit("DISCONNECT");
   }, []);
