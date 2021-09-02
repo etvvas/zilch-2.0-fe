@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { getLogout } from '../../services/auth';
 import { useSession, useSetSession } from '../../state/SessionProvider';
 
@@ -9,6 +9,8 @@ const Navigation = ({ isOpen, setIsOpen, socket }) => {
   const history = useHistory();
   const session = useSession();
   const setSession = useSetSession();
+  const slug = useLocation()
+  
 
   const handleLobby = () => {
     setIsOpen(!isOpen)
@@ -41,9 +43,9 @@ const Navigation = ({ isOpen, setIsOpen, socket }) => {
         ? nav
         : nav + 'hidden'}>
       <ul className={ul}>
-        <li className={li + selected} onClick={handleLobby}>Lobby</li>
-        <li className={li} onClick={handleProfile}>Profile</li>
-        <li className={li} onClick={handleLeaderboard}>Leaderboard</li>
+        <li className={li + `${slug.pathname === '/lobby' ? selected : null}`} onClick={handleLobby}>Lobby</li>
+        <li className={li + `${session && slug.pathname === `/profile/${session.username}` ? selected : null}`} onClick={handleProfile}>Profile</li>
+        <li className={li + `${slug.pathname === '/leaderboard' ? selected : null}`} onClick={handleLeaderboard}>Leaderboard</li>
         <li className={li} onClick={handleLogout}>Log Out</li>
       </ul>
     </nav>
