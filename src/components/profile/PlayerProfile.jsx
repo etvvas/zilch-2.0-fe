@@ -49,7 +49,7 @@ const PlayerProfile = () => {
     }
 
     holder()
-  }, [])
+  }, [username])
 
   return (
     <div>
@@ -65,6 +65,7 @@ const PlayerProfile = () => {
             <h2>Global Rank #{rank}</h2>
             <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
+            <h1>Game History</h1>
             <GameHistory user={user} games={games}/>
             
           </div>
