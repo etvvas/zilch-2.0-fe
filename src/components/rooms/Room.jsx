@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const Room = ({roomName, currentPlayerIndex, players, firstUser, secondUser, isGameStarted }) => {
+const Room = ({roomName, currentPlayerIndex, players, firstUser, secondUser, targetScore, targetPoints }) => {
 
   return (
     <>
       <div className={outerWrap}>
         <div className={title}>
           <h3 className={h3}>{roomName}</h3>
-          <div className={goal}>5000 pts</div>
+          <div className={goal}>{targetScore ? targetScore : targetPoints} PTS</div>
         </div>
         <div className={innerWrap}>
           <div className={side}>

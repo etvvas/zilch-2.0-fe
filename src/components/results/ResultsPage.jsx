@@ -17,7 +17,7 @@ const ResultsPage = ({results, socket, user1, user2, room, winner}) => {
         <div className={wrap}>
           <div className={resultsPage}>
             <PlayerVersusPlayer results={results} user1={user1} user2={user2} room={room} winner={winner}/>
-            <Results user1={user1} user2={user2}/>
+            <Results user1={user1} user2={user2} results={results}/>
             <button className={readyButton} onClick={handleBackToLobby}>{results ? 'Back to Lobby' : 'Ready!'}</button>
           </div>
         </div>
