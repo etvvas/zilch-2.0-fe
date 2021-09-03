@@ -5,7 +5,7 @@ const Avatars = ({onChange}) => {
   return (
     <>
       <h3 className="text-sm font-bold mt-10 uppercase">Choose an avatar</h3>
-      <div className="flex flex-wrap gap-4 justify-center my-10">
+      <div className="flex flex-wrap gap-2 sm:gap-4 justify-center my-10">
         <label>
           <input type="radio" name="avatar" className="hidden" defaultChecked value="bear" 
             onChange={onChange}
@@ -85,8 +85,10 @@ const Avatars = ({onChange}) => {
 
 const svg = `
   bg-white
-  w-24
-  h-24
+  w-20
+  h-20
+  sm:w-24
+  sm:h-24
   border-8
   border-gray-100
   rounded-full 
