@@ -27,7 +27,8 @@ Zilch 2.0 is an interactive multiplayer browser game of chance and skill; based 
 ## Tech Highlights
 
 - [React](https://reactjs.org/)
-- SQL[socket.io](https://socket.io/)
+- SQL
+- [socket.io](https://socket.io/)
 - [Redis](https://redis.io/)
 - [TailwindCSS](https://tailwindcss.com/)
 
