@@ -98,6 +98,7 @@ const ul = `
   flex
   flex-wrap
   justify-evenly
+  sm:justify-start
   p-4
   md:p-12
 `;
