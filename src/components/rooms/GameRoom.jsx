@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { useSession } from "../../state/SessionProvider";
+import React, { useContext } from "react";
 import { SocketContext } from "../../state/SocketProvider";
 import WaitingRoom from './WaitingRoom';
 import ActiveScoreboard from "../game/ActiveScoreboard";
@@ -11,177 +9,30 @@ import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import Scoring from '../game/Scoring';
 import ResultsPage from '../results/ResultsPage';
-import rooms from '../../roomData.js'
+import useGameLogic from "../../state/hooks/useGameLogic";
 
 const GameRoom = () => {
-  const [results, setResults] = useState(false)
-  const [gameState, setGameState] = useState({});
-  const [currentPlayer, setCurrentPlayer] = useState("");
-  const [dice, setDice] = useState([]);
-  const [scoringOptions, setScoringOptions] = useState([]);
-  const history = useHistory();
-  const session = useSession();
-  const { room } = useParams();
   const socket = useContext(SocketContext);
-  const [rollDisabled, setRollDisabled] = useState(true)
-  const [bankDisabled, setBankDisabled] = useState(true)
-  const [isDisabled, setIsDisabled] = useState(true)
-  const [isRolled, setIsRolled] = useState(false);
-  const [isZilch, setIsZilch] = useState(false)
-  const [isFreeRoll, setIsFreeRoll] = useState(false)
-  const [loading, setLoading] = useState (true)
-  const [roundScores, setRoundScores] = useState([])
-  // const [pastScores, setPastScores] = useState([])
-
-  const findMatchingRoom = room => {
-    return rooms.find(lobbyRoom => lobbyRoom.roomName === room)
-  }
-
-  useEffect(() => {
-    const targetScore = findMatchingRoom(room)
-    socket.emit("JOIN_ROOM", session, room, targetScore);
-    socket.on("ROOM_JOINED", (gameState) => {
-      console.log(gameState)
-      setGameState(gameState[room]);
-      setLoading(false)
-    });
-
-    socket.on("FULL_ROOM", () => {
-      history.push("/lobby");
-      setTimeout(() => alert("Room Full"), 300);
-    });
-
-    socket.on("START_GAME", (gameState, index, players) => {
-      setGameState(gameState[room]);
-      setCurrentPlayer(players[index]);
-
-      // refactor to custom hook setting all pieces of state at once
-      setRollDisabled(!(session.userId === players[index]))
-      setBankDisabled(true)
-      setIsDisabled(!(session.userId === players[index]))
-
-    });
-
-    socket.on("READY", (gameState) => setGameState(gameState[room]));
-
-    socket.on('ZILCH', (newCurrentPlayer, roundScores) => {
-
-        setIsZilch(true)
-        setCurrentPlayer(newCurrentPlayer)
-        setRollDisabled(false)
-        setBankDisabled(true)
-        setIsDisabled(!(session.userId === newCurrentPlayer))
-        setDice([])
-        setScoringOptions([])
-        setRoundScores(roundScores)
-    })
-
-    socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
-      setIsRolled(true)
-      setRollDisabled(true)
-      setIsZilch(false)
-      setIsFreeRoll(false)
-      // setIsFreeRoll(false)
-      if(isFreeRoll){
-        setIsFreeRoll(true)
-        setRollDisabled(false)
-        setIsZilch(true)
-      }
-      
-      // indicate zilch on FE
-    
-      setDice(dice);
-      setTimeout(() => {
-        setScoringOptions(
-          scoringOptions.map((option) => {
-            return {
-              ...option,
-              selected: false,
-            };
-          })
-        )
-        setIsRolled(false)
-      }, 500)
-    }
-
-    );
-
-    socket.on("BANKED", (gameState, index, players, roundScores) => {
-      console.log('ROUND SCORES', roundScores);
-      //prev state filter for optimization 
-      setRoundScores(roundScores)
-      setGameState(gameState[room]);
-      setCurrentPlayer(players[index]);
-      setIsFreeRoll(false)
-      // refactor to custom hook setting all pieces of state at once
-      setRollDisabled(false)
-      setBankDisabled(true)
-      setIsDisabled(!(session.userId === players[index]))
-    });
-
-    socket.on('UPDATE_SCORING_OPTIONS', (dice, newScoringOptions, gameState) => {
-      setGameState(gameState)
-      setScoringOptions(newScoringOptions)
-      setDice(dice)
-      setIsZilch(false)
-      if(gameState.isFreeRoll){
-        setIsFreeRoll(true)
-      }
-
-      let matchingUser;
-      console.log('CURRENT PLAYER', gameState.players[gameState.currentPlayerIndex]);
-      console.log('FIRST USER ID', gameState.firstUser.userId);
-      gameState.firstUser.userId === gameState.players[gameState.currentPlayerIndex]
-        ? (matchingUser = "firstUser")
-        : (matchingUser = "secondUser");
-      console.log('GAMESTATE', gameState[matchingUser].roundScore);
-      if (gameState[matchingUser].roundScore >= 300) {
-        setBankDisabled(false)
-      }
-      setRollDisabled(false)
-      // setBankDisabled(false)
-    })
-
-    socket.on('GAME_OVER', (gameData) => {
-      console.log(gameData)
-      setResults(gameData)
-    })
-    socket.on("connect", () => {
-      console.log('GAMEROOM CONNECTED');
-    });
-    socket.on("disconnect", (reason) => {
-      console.log('GAMEROOM', reason);
-    });
-
-    socket.on('OPPONENT_DISCONNECT', () => {
-      alert('Other player has disconnected, redirecting to Lobby')
-      history.push('/lobby')
-    })
-
-    return () => socket.emit("DISCONNECT");
-  }, []);
-
-  const handleReady = () => {
-    socket.emit("PLAYER_READY", room, session.userId);
-  };
-
-  const handleLeave = () => {
-    history.push('/lobby')
-    socket.emit('DISCONNECT')
-  }
-
-  const handleScoreSelect = ({ target }) => {
-    const updatedScoringOptions = scoringOptions.map((option) => {
-      if (option.choice === JSON.parse(target.value).choice)
-        return { ...option, selected: true };
-      else return option;
-    });
-   
-    setScoringOptions(updatedScoringOptions);
-    const selectedScoringOption = updatedScoringOptions.filter(option => option.selected === true)
-    socket.emit('UPDATE_SELECTED', selectedScoringOption)
-
-  };
+  const [
+    room,
+    results,
+    gameState,
+    currentPlayer,
+    dice,
+    scoringOptions,
+    rollDisabled,
+    bankDisabled,
+    isDisabled,
+    isRolled,
+    isZilch,
+    isFreeRoll,
+    loading,
+    roundScores,
+    handleReady,
+    handleLeave,
+    handleScoreSelect,
+  ] = useGameLogic(socket)
+ 
   if(loading) return <h1>Loading...</h1>
 else 
 
