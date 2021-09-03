@@ -27,7 +27,9 @@ const useGameLogic = (socket) => {
 
   useEffect(() => {
     const targetScore = findMatchingRoom(room)
+
     socket.emit("JOIN_ROOM", session, room, targetScore);
+
     socket.on("ROOM_JOINED", (gameState) => {
       setGameState(gameState[room]);
       setLoading(false);
@@ -69,7 +71,6 @@ const useGameLogic = (socket) => {
         setRollDisabled(false);
         setIsZilch(true);
       }
-
       setDice(dice);
       setTimeout(() => {
         setScoringOptions(
@@ -94,22 +95,6 @@ const useGameLogic = (socket) => {
       setIsDisabled(!(session.userId === players[index]));
     });
 
-    socket.on("UPDATE_SCORING_OPTIONS", (dice, scoringOptions, gameState) => {
-      setGameState(gameState);
-      setScoringOptions(scoringOptions);
-      setDice(dice);
-      setIsZilch(false);
-      if (gameState.isFreeRoll) {
-        setIsFreeRoll(true);
-      }
-      const matchingUser = identifyUser(gameState);
-
-      if (gameState[matchingUser].roundScore >= 300) {
-        setBankDisabled(false);
-      }
-      setRollDisabled(false);
-    });
-
     socket.on("GAME_OVER", (gameData) => {
       setResults(gameData);
     });
@@ -124,6 +109,22 @@ const useGameLogic = (socket) => {
     socket.on("OPPONENT_DISCONNECT", () => {
       alert("Other player has disconnected, redirecting to Lobby");
       history.push("/lobby");
+    });
+
+    socket.on("UPDATE_SCORING_OPTIONS", (dice, scoringOptions, gameState) => {
+      setGameState(gameState);
+      setScoringOptions(scoringOptions);
+      setDice(dice);
+      setIsZilch(false);
+      if (gameState.isFreeRoll) {
+        setIsFreeRoll(true);
+      }
+      const matchingUser = identifyUser(gameState);
+
+      if (gameState[matchingUser].roundScore >= 300) {
+        setBankDisabled(false);
+      }
+      setRollDisabled(false);
     });
 
     return () => socket.emit("DISCONNECT");
