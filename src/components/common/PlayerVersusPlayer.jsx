@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import avatars from '../../assets/avatars.svg';
 
 const PlayerVersusPlayer = ({results, user1, user2, room, winner, ready}) => {
   // console.log('user1', user1)
   // console.log('user2', user2)
   const avatar = 'dice';
+  useEffect(() => {
+console.log(ready)
+  }, [ready])
 
   // const [ready1, setReady1] = useState(false);
   // const [ready2, setReady2] = useState(false);
@@ -47,7 +50,7 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner, ready}) => {
             </div>
             </>)
             }
-            {ready.includes(user1.userId)
+            {!results && ready.includes(user1.userId)
             ? <div className={readyDisplay}>READY!</div>
             : null
             }
@@ -72,7 +75,7 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner, ready}) => {
             </div>
           </>)
           }
-          {user2 && ready.includes(user2.userId)
+          {!results && user2 && ready.includes(user2.userId)
             ? <div className={readyDisplay}>READY!</div>
             : null
           }

@@ -11,10 +11,7 @@ import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import Scoring from '../game/Scoring';
 import ResultsPage from '../results/ResultsPage';
-<<<<<<< HEAD
-=======
 import rooms from '../../roomData.js'
->>>>>>> e9ddceaf91b0b5a6548a1758208e652ef8261d7e
 
 const GameRoom = () => {
   const [results, setResults] = useState(false)
