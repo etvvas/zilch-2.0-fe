@@ -72,7 +72,10 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner, ready}) => {
             </div>
           </>)
           }
-          <div className={readyDisplay}>READY!</div>
+          {user2 && ready.includes(user2.userId)
+            ? <div className={readyDisplay}>READY!</div>
+            : null
+          }
         </div>
       </div>
     </>
@@ -175,7 +178,6 @@ const readyDisplay = `
   text-center
   text-green-500
   font-bold
-  mt-4
 `;
 
 export default PlayerVersusPlayer;
