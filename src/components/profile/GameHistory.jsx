@@ -5,6 +5,7 @@ import {getGameResults, getGameUberZilches, getGameZilches, getUserById, getWinn
 
 const GameHistory = ({user, games}) => {
   const [game, setGame] = useState();
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=> {
 
@@ -19,28 +20,28 @@ const GameHistory = ({user, games}) => {
 
     // grab player score
     const results = await getGameResults(game.gameId)
-    const playerScore1 = results.map((result, i) => {
+    const playerScore1 = results.map((result) => {
       if(result.userId === user1.userId) return result.playerScore
     })
-    const playerScore2 = results.map((result, i) => {
+    const playerScore2 = results.map((result) => {
       if(result.userId === user2.userId) return result.playerScore
     })
 
     // grab player zilches
     const zilches = await getGameZilches(game.gameId)
-    const zilches1 = await zilches.map((zilch, i) => {
+    const zilches1 = await zilches.map((zilch) => {
       if(zilch.userId === user1.userId) return zilch.playerZilches
     })
-    const zilches2 = zilches.map((zilch, i) => {
+    const zilches2 = zilches.map((zilch) => {
       if(zilch.userId === user2.userId) return zilch.playerZilches; 
     })
   
     // grab player uber zilches
     const uberZilches = await getGameUberZilches(game.gameId)
-       const uberZilches1 = uberZilches.map((uberZilch, i) => {
+       const uberZilches1 = uberZilches.map((uberZilch) => {
       if(uberZilch.userId === user1.userId) return uberZilch.playerUberZilches
     })
-    const uberZilches2 = uberZilches.map((uberZilch, i) => {
+    const uberZilches2 = uberZilches.map((uberZilch) => {
       if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilches
     })
 
@@ -90,15 +91,18 @@ const GameHistory = ({user, games}) => {
         </div>
       </li>
     )
-  })).then(setGame); 
-
-  }, [])
+  })).then(setGame).finally(() => setLoading(false));
+  }, [games])
   
 
   return(
     <>
-    <h1>Game History</h1>
-    <ul>{game}</ul>
+    {loading 
+      ? <h1>Loading...</h1>
+      : <>
+      <ul>{game}</ul>
+      </>
+    }
     </>
   )
 }
