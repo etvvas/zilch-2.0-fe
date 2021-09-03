@@ -11,6 +11,7 @@ import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import Scoring from '../game/Scoring';
 import ResultsPage from '../results/ResultsPage';
+import rooms from '../../roomData.js'
 
 const GameRoom = () => {
   const [results, setResults] = useState(false)
@@ -32,10 +33,15 @@ const GameRoom = () => {
   const [roundScores, setRoundScores] = useState([])
   // const [pastScores, setPastScores] = useState([])
 
+  const findMatchingRoom = room => {
+    return rooms.find(lobbyRoom => lobbyRoom.roomName === room)
+  }
 
   useEffect(() => {
-    socket.emit("JOIN_ROOM", session, room);
+    const targetScore = findMatchingRoom(room)
+    socket.emit("JOIN_ROOM", session, room, targetScore);
     socket.on("ROOM_JOINED", (gameState) => {
+      console.log(gameState)
       setGameState(gameState[room]);
       setLoading(false)
     });
@@ -114,9 +120,9 @@ const GameRoom = () => {
       setIsDisabled(!(session.userId === players[index]))
     });
 
-    socket.on('UPDATE_SCORING_OPTIONS', (dice, scoringOptions, gameState) => {
+    socket.on('UPDATE_SCORING_OPTIONS', (dice, newScoringOptions, gameState) => {
       setGameState(gameState)
-      setScoringOptions(scoringOptions)
+      setScoringOptions(newScoringOptions)
       setDice(dice)
       setIsZilch(false)
       if(gameState.isFreeRoll){
@@ -147,6 +153,11 @@ const GameRoom = () => {
     socket.on("disconnect", (reason) => {
       console.log('GAMEROOM', reason);
     });
+
+    socket.on('OPPONENT_DISCONNECT', () => {
+      alert('Other player has disconnected, redirecting to Lobby')
+      history.push('/lobby')
+    })
 
     return () => socket.emit("DISCONNECT");
   }, []);

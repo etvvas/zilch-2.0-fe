@@ -2,10 +2,9 @@ import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSetLoading, useVerificationLoading } from '../../state/SessionProvider';
 import { SocketContext } from '../../state/SocketProvider';
-// import useLobby from '../../state/hooks/useLobby';
-
+import rooms from '../../roomData.js'
 import Room from './Room';
-const rooms = [{roomName: 'Vibranium'}, {roomName: 'Gold'}, {roomName: 'Xenon'}, {roomName: 'Mythril'}, {roomName: 'Titanium'}, {roomName: 'Adamantium'}];
+
 
 const Lobby = () => {
   const socket = useContext(SocketContext)
@@ -99,6 +98,7 @@ const ul = `
   flex
   flex-wrap
   justify-evenly
+  sm:justify-start
   p-4
   md:p-12
 `;
