@@ -20,14 +20,17 @@ const Leaderboard = () => {
   const leaderElements = leaderboard.map((leader, i) => (
     <tr>
       <td className={td + standing}>{i + 1}</td>
-      
-      <Link to={`/profile/${leader.username}`}>
-        <td className={td + player}>
-          <svg className={svg}>
-            <use href={avatars + `#${leader.avatar}`} />
-          </svg>{leader.username} </td>
-        <td className={td + score}>{leader.wins}</td>
-      </Link>
+      <td className={td + player}>
+        <Link to={`/profile/${leader.username}`}>
+          <div className={playerDiv}>
+            <svg className={svg}>
+              <use href={avatars + `#${leader.avatar}`} />
+            </svg>
+            <h3>{leader.username}</h3>
+          </div>
+        </Link>
+      </td>
+      <td className={td + score}>{leader.wins}</td>
     </tr>
   ));
 
@@ -96,10 +99,19 @@ const wrap = `
 const svg = `
   w-8
   h-8
+  sm:w-12
+  sm:h-12
   border-4
   border-black
   border-opacity-10
   rounded-full
+`;
+
+const playerDiv = `
+  flex
+  flex-row
+  gap-2
+  items-center
 `;
 
 const h1 = `

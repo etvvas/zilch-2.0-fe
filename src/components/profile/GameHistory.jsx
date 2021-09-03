@@ -45,48 +45,63 @@ const GameHistory = ({user, games}) => {
       if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilches
     })
 
-    // grab player result per game
+    // grab player result per game/*  */
     let result;
     result = getWinner(user, user1, user2, playerScore1, playerScore2, result)
       
     return(
-      <li key={i}>
+      <li key={i} className={li}>
         <div className={wrapper}>
           <div className={targetClass}>
-            Target: {target}
-          </div>
-          <div className={userOne}>
-            <div className={userInfo}>
-              <span className={user1Name}>{user1.username}</span>
-              <div className={stats}>
-                <h1 className={stat}>score: {playerScore1}</h1>
-                <h2 className={stat}>zilches: {zilches1}</h2>
-                <h2 className={stat}>uberZilches: {uberZilches1}</h2>
-              </div>
-            </div>
-            <Link to={`/profile/${user1.username}`}>
-              <svg className={svg}>
-                <use href={avatars + `#${user1.avatar}`} />
-              </svg>
-            </Link>
+            <div className="text-green-300">{result}</div>
+            <div>Goal: {target}</div>
           </div>
           <div class={winloss}>
-            {result}
-          </div>
-          <div className={userTwo}>
-            <Link to={`/profile/${user2.username}`}>
-              <svg className={svg}>
-                <use href={avatars + `#${user2.avatar}`} />
-              </svg>
-            </Link>
-            <div className={userInfo}>
-              <h1 className={user2Name}>{user2.username}</h1>
-              <div className={stats}>
-                <h1 className={stat}>score: {playerScore2}</h1>
-                <h2 className={stat}>zilches: {zilches2}</h2>
-                <h2 className={stat}>uberZilches: {uberZilches2}</h2>
+            <Link to={`/profile/${user1.username}`}>
+              <div className={side}>
+                  <svg className={svg}>
+                    <use href={avatars + `#${user1.avatar}`} />
+                  </svg>
+                  <h3 className={user1Name}>{user1.username}</h3>
+                <div className={stats}>
+                  <div className={stat + statText}>
+                    <span className={points}>{playerScore1}</span> 
+                    <span className={text}> pts</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={points}>{zilches1}</span>
+                    <span className={text}> zilches</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={stat}>{uberZilches1}</span>
+                    <span className={text}> uberZilches</span>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Link>
+            <span className={vs}>vs</span>
+            <Link to={`/profile/${user2.username}`}>
+              <div className={side}>
+                <svg className={svg}>
+                  <use href={avatars + `#${user2.avatar}`} />
+                </svg>
+                <h3 className={user2Name}>{user2.username}</h3>
+                <div className={stats}>
+                  <div className={stat + statText}>
+                    <span className={points}>{playerScore2}</span> 
+                    <span className={text}> pts</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={points}>{zilches2}</span>
+                    <span className={text}> zilches</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={stat}>{uberZilches2}</span>
+                    <span className={text}> uberZilches</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </li>
@@ -100,69 +115,120 @@ const GameHistory = ({user, games}) => {
     {loading 
       ? <h1>Loading...</h1>
       : <>
-      <ul>{game}</ul>
-      </>
+        <h1 className={h1}>Game History</h1>
+          <ul className={ul}>{game}</ul>
+        </>
     }
     </>
   )
 }
 
+const ul = `
+  flex
+  flex-wrap
+  justify-evenly
+  flex-col
+  sm:flex-row 
+`;
+
+const li = `
+  sm:w-1/2
+  w-full
+  p-1
+`;
+
+const h1 = `
+  text-lg
+  text-gray-600
+  sm:text-lg
+  font-semibold
+`;
+
 const wrapper = `
   flex
-  border
+  flex-col
+  bg-gray-800
+  rounded-lg
 `;
 
 const targetClass = `
- 
+  bg-gray-700
+  rounded-t-lg
+  text-gray-300
+  text-xs
+  font-semibold
+  tracking-wide
+  text-center
+  p-2
+  flex
+  flex-row
+  justify-between
 `;
 
-const userOne = `
-flex
-justify-center
-items-center
-m-2
+const side = `
+  flex
+  flex-col
+  w-24
+  items-center
+  justify-center
 `;
 
-const userTwo = `
-flex
-justify-center
-items-center
-m-2
-`;
-
-const userInfo = `
-flex
-flex-col
+const vs = `
+  text-gray-400
+  text-2xl
+  font-light
+  mt-4
 `;
 
 const user1Name = `
-text-right
-m-1
+  text-purple-400
+  font-semibold
+  tracking-wide
+  my-2
 `;
 
 const user2Name = `
-m-1
+  text-pink-400
+  font-semibold
+  tracking-wide
+  my-2
 `;
 
 const svg = `
-  w-20
-  h-20
+  w-12
+  h-12
 `;
 
 const stats = `
   flex
+  flex-col
   text-center
 `;
 
+const text = `
+  text-gray-400
+  text-xs
+`;
+
+const points = `
+  text-gray-200
+`;
+
+const statText = `
+  text-sm
+  font-light
+  text-white
+`;
+
 const stat = `
-  m-1
+  text-xs
 `;
 
 const winloss = `
   flex
   justify-center
-  items-center
-  p-2
+  gap-4
+  my-4
 `;
 
 
