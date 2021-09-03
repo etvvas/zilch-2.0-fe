@@ -1,14 +1,25 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 
-const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
+const PlayerVersusPlayer = ({results, user1, user2, room, winner, ready}) => {
   // console.log('user1', user1)
   // console.log('user2', user2)
   const avatar = 'dice';
 
-  // const winner = '_UXgUrU_';
-  // add conditional styling (noPlayerSvg) if player does not exist
-// console.log('results', results)
+  // const [ready1, setReady1] = useState(false);
+  // const [ready2, setReady2] = useState(false);
+
+  // console.log('ready', ready)
+  // console.log('user1', user1)
+  // const avatar = 'dice';
+  // useEffect(()=> {
+  //   if(ready.includes(user1.userId)) setReady1(true);
+  //   if(ready.includes(user2.userId)) setReady2(true);
+  // },[ready])
+
+  // console.log('ready1', ready1)
+  // console.log('ready2', ready2)
+
   return (
     <>
       <div className={outerWrap}>
@@ -36,18 +47,18 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
             </div>
             </>)
             }
+            <div className={readyDisplay}>READY!</div>
           </div>
           <div className={vs}>
             vs
           </div>
+          <div className={side}>
           {user2 
           ? (<>
-            <div className={side}>
               <svg className={svg}>
                 <use href={avatars + `#${user2.avatar}`} />
               </svg>
               <p className={playerName + playerTwo}>{user2.userName}</p>
-            </div>
             </>)
           :(<>
             <div className={side}>
@@ -56,9 +67,11 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner}) => {
               </svg>
               <p className={playerName + playerTwo}>Waiting</p>
             </div>
-            </>)
+          </>)
           }
+          <div className={readyDisplay}>READY!</div>
         </div>
+      </div>
     </>
   )
 }
@@ -153,6 +166,13 @@ const playerOne = `
 
 const playerTwo = `
   text-pink-500
+`;
+
+const readyDisplay = `
+  text-center
+  text-green-500
+  font-bold
+  mt-4
 `;
 
 export default PlayerVersusPlayer;
