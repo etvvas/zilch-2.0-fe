@@ -59,13 +59,15 @@ const PlayerProfile = () => {
 
         <div className={outer}>
           <div className={wrap}>
-            <h1 className={h1}><span className={span}>{user.username}</span>'s Profile</h1>
-            <svg className={svg}>
-              <use href={avatars + `#${user.avatar}`} />
-            </svg>
-            <div class={title}>
-              <h2>Global Rank</h2>
-              <div className={rankDiv}>#{rank}</div>  
+            <div class={header}>
+              <svg className={svg}>
+                <use href={avatars + `#${user.avatar}`} />
+              </svg>
+              <div className={title}>
+                <h1 className={h1}><span className={span}>{user.username}</span></h1>
+                <div className={rankDiv}>#{rank}</div>  
+                <h2 className={rankLabel}>Global Rank</h2>
+              </div>
             </div>
             <div>
               <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
@@ -97,37 +99,49 @@ const wrap = `
   w-full
 `;
 
+const header = `
+  flex
+  flex-row
+  items-center
+  gap-4
+`;
+
 const title = `
-  text-center
+  flex
+  flex-col
 `;
 
 const rankDiv = `
-  text-5xl
-  font-black
+  text-4xl
+  sm:text-5xl
+  font-semibold
   text-pink-500
-  `;
+`;
+
+const rankLabel = `
+  font-semibold
+  text-sm
+  text-pink-400
+`;
 
 const h1 = `
-  text-xl
+  text-2xl
   sm:text-4xl
-  text-center
-  mt-4
-  mb-4
-  sm:mb-8
+  truncate
 `;
 
 const span = `
   font-black
   text-indigo-500
+  truncate
 `;
 
 const svg = `
-  w-40
-  h-40
+  w-24
+  h-24
   md:w-40
   md:h-40
   my-2
-  mx-auto
   border-4
   border-transparent
 `;

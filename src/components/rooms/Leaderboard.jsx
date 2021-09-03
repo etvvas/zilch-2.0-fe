@@ -21,11 +21,11 @@ const Leaderboard = () => {
     <tr>
       <td className={td + standing}>{i + 1}</td>
       
-      <td className={td + player}>
+      <td className={td + player + 'flex flex-row items-center gap-2'}>
         <svg className={svg}>
            <use href={avatars + `#${leader.avatar}`} />
         </svg>{leader.username} 
-       </td>
+      </td>
 
       <td className={td + score}>{leader.wins}</td>
     </tr>
@@ -95,6 +95,8 @@ const wrap = `
 const svg = `
   w-8
   h-8
+  sm:w-12
+  sm:h-12
   border-4
   border-black
   border-opacity-10

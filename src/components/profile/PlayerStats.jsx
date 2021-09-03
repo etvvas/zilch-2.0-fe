@@ -2,15 +2,82 @@ import React from 'react';
 
 const PlayerStats = ({user, wins, losses, zilches, uberZilches}) => {
   return(
-    <>
-    <h1>Player Stats</h1>
-    <h2>user: {user.username}</h2>
-    <h2>wins: {wins}</h2>
-    <h2>losses: {losses} </h2>
-    <h2>zilches: {zilches} </h2>
-    <h2>uberZilches: {uberZilches} </h2>
-    </>
+    <div className={wrap}>
+      <h1 className={h1}>Player Stats</h1>
+
+      <div className={outer}>
+        <div className={inner}>
+          <div className={stat + 'text-green-500'}>
+            {wins}
+          </div>
+          <div className={label}>
+            Wins
+          </div>
+        </div>
+        <div className={inner}>
+          <div className={stat + 'text-pink-500'}>
+          {losses}
+          </div>
+          <div className={label}>
+            Losses
+          </div>
+        </div>
+        <div className={inner}>
+          <div className={stat + 'text-blue-500'}>
+          {zilches}
+          </div>
+          <div className={label}>
+            Zilches
+          </div>
+        </div>
+        <div className={inner}>
+          <div className={stat + 'text-purple-500'}>
+          {uberZilches}
+          </div>
+          <div className={label}>
+            UberZilches
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
+
+const wrap = `
+  bg-gray-100
+  rounded-lg
+  p-4
+`;
+
+const outer = `
+  grid
+  grid-cols-4
+`;
+
+const inner = `
+  flex
+  flex-col
+  items-center
+`;
+
+const h1 = `
+  text-sm
+  text-gray-600
+  sm:text-lg
+  font-semibold
+  mb-4
+`;
+
+const stat = `
+  text-2xl
+  font-semibold
+`;
+
+const label = `
+  text-xs
+  text-gray-500
+  tracking-wide
+  font-semibold
+`;
 
 export default PlayerStats;

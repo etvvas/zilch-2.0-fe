@@ -94,11 +94,20 @@ const GameHistory = ({user, games}) => {
 
   return(
     <>
-    <h1>Game History</h1>
+    <h1 className={h1}>Game History</h1>
     <ul>{game}</ul>
     </>
   )
 }
+
+const h1 = `
+  text-lg
+  text-gray-600
+  sm:text-lg
+  font-semibold
+  my-4
+  border-b-2
+`;
 
 const wrapper = `
   flex
