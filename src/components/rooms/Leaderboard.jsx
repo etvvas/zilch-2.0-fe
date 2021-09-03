@@ -22,9 +22,12 @@ const Leaderboard = () => {
       <td className={td + standing}>{i + 1}</td>
       <td className={td + player}>
         <Link to={`/profile/${leader.username}`}>
-          <svg className={svg}>
-            <use href={avatars + `#${leader.avatar}`} />
-          </svg>{leader.username} 
+          <div className={playerDiv}>
+            <svg className={svg}>
+              <use href={avatars + `#${leader.avatar}`} />
+            </svg>
+            <h3>{leader.username}</h3>
+          </div>
         </Link>
       </td>
       <td className={td + score}>{leader.wins}</td>
@@ -102,6 +105,13 @@ const svg = `
   border-black
   border-opacity-10
   rounded-full
+`;
+
+const playerDiv = `
+  flex
+  flex-row
+  gap-2
+  items-center
 `;
 
 const h1 = `
