@@ -66,7 +66,7 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch, isFr
               type="checkbox"
               id={`input${(i + 1).toString()}`}
               className="hidden"
-              value={JSON.stringify(option)}
+              value={i}
             />
             <label htmlFor={`input${(i + 1).toString()}`} className={scoringOption}>
               {option.choice}

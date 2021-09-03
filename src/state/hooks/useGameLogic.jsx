@@ -140,13 +140,13 @@ const useGameLogic = (socket) => {
   };
 
   const handleScoreSelect = ({ target }) => {
-    const updatedScoringOptions = scoringOptions.map((option) => {
-      if (option.choice === JSON.parse(target.value).choice)
+    const updatedScoringOptions = scoringOptions.map((option, i) => {
+      if (i === target.value)
         return { ...option, selected: true };
       else return option;
     });
 
-    setScoringOptions(updatedScoringOptions);
+    // setScoringOptions(updatedScoringOptions);
     const selectedScoringOption = updatedScoringOptions.filter(
       (option) => option.selected === true
     );
