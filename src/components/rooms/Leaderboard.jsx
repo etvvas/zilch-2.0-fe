@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import avatars from '../../assets/avatars.svg';
-
 import { allLeaders } from "../../services/users";
 
 const Leaderboard = () => {
@@ -20,13 +20,13 @@ const Leaderboard = () => {
   const leaderElements = leaderboard.map((leader, i) => (
     <tr>
       <td className={td + standing}>{i + 1}</td>
-      
-      <td className={td + player + 'flex flex-row items-center gap-2'}>
-        <svg className={svg}>
-           <use href={avatars + `#${leader.avatar}`} />
-        </svg>{leader.username} 
+      <td className={td + player}>
+        <Link to={`/profile/${leader.username}`}>
+          <svg className={svg}>
+            <use href={avatars + `#${leader.avatar}`} />
+          </svg>{leader.username} 
+        </Link>
       </td>
-
       <td className={td + score}>{leader.wins}</td>
     </tr>
   ));
@@ -53,7 +53,8 @@ const Leaderboard = () => {
         </div>
       </div>
     );
- return (
+    
+  return (
     <div className={outer}>
       <div className={wrap}>
         <h1 className={h1}>
