@@ -63,10 +63,14 @@ if(loading) return <h1>LOADING</h1>
               />
           </label>
 
+          {error && 
+          <div className={errMsg}>{error.message}</div>
+          }
+
           { isSignUp && 
             <Avatars onChange={handleChange} />
           }
-
+          
           { isSignUp
             ? <button className={button}>Sign up</button>
             : <button className={button}>Log in</button>
@@ -83,9 +87,6 @@ if(loading) return <h1>LOADING</h1>
           <div className="my-10 text-xs text-center text-gray-400">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         }
       </div>
-      {error && 
-      <div>{error.message}</div>
-      }
     </div>
   )
 }
@@ -161,6 +162,11 @@ const p = `
   text-center
   cursor-pointer
   hover:text-indigo-600
+`;
+
+const errMsg = `
+  text-red-500
+  text-center
 `;
 
 export default AuthForm;

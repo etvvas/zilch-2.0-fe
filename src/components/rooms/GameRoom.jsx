@@ -154,6 +154,11 @@ const GameRoom = () => {
       console.log('GAMEROOM', reason);
     });
 
+    socket.on('OPPONENT_DISCONNECT', () => {
+      alert('Other player has disconnected, redirecting to Lobby')
+      history.push('/lobby')
+    })
+
     return () => socket.emit("DISCONNECT");
   }, []);
 
@@ -184,7 +189,9 @@ else
   return (
     <div className={main}>
 
-        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room} winner={gameState.winner}/> : 
+        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} 
+        user1={results ? results.firstUser : gameState.firstUser} 
+        user2={results ? results.secondUser : gameState.secondUser} room={room} winner={gameState.winner}/> : 
       <div className={wrap}>
         {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
         : <>
