@@ -6,7 +6,7 @@ const WaitingRoom = ({ results, onReady, ready, user1, user2, room }) => {
   const session = useSession()
   return (
     <>
-      <PlayerVersusPlayer results={results} user1={user1} user2={user2} room={room} />
+      <PlayerVersusPlayer results={results} user1={user1} user2={user2} room={room} ready={ready}/>
       <button
         className={readyButton}
         onClick={onReady}

@@ -38,12 +38,16 @@ Zilch 2.0 is an interactive multiplayer browser game of chance and skill; based 
 
 ### Deployed
 
-Frontend: https://zilch-v2.netlify.app/ <br>
+Frontend: https://zilch-v2.netlify.app/<br>
 Server: https://zilch-v2.herokuapp.com/
 
 ### Repos
 
-Frontend: https://github.com/etvvas/zilch-2.0-fe <br>
+Frontend: https://github.com/etvvas/zilch-2.0-fe<br>
 Server: https://github.com/etvvas/zilch-2.0-be
+
+### Planning
+
+Miro: https://miro.com/app/board/o9J_l1OKI9s=/
 
 ---
