@@ -77,7 +77,6 @@ const GameRoom = () => {
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
-
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -215,6 +214,9 @@ else
           scoringOptions={scoringOptions}
           currentPlayer={currentPlayer}
           onChange={handleScoreSelect}
+          isFreeRoll={isFreeRoll}
+          rollDisabled={rollDisabled}
+          bankDisabled={bankDisabled}
         />
         </>
   }
