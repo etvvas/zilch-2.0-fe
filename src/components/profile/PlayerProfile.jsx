@@ -28,8 +28,8 @@ const PlayerProfile = () => {
     setWins(fetchedWins.length);
     
     const fetchedGames = await getPlayerGames(fetchedUser.userId);
-    setGames(fetchedGames);
     const filteredGames = fetchedGames.filter(fetchedGame => fetchedGame.timestampEnd)
+    setGames(filteredGames);
     const filteredLosses = (filteredGames.length - fetchedWins.length) 
     setLosses(filteredLosses);
     
@@ -104,6 +104,7 @@ const header = `
   flex-row
   items-center
   gap-4
+  mb-6
 `;
 
 const title = `
@@ -128,6 +129,7 @@ const h1 = `
   text-2xl
   sm:text-4xl
   truncate
+  mb-2
 `;
 
 const span = `
@@ -141,7 +143,6 @@ const svg = `
   h-24
   md:w-40
   md:h-40
-  my-2
   border-4
   border-transparent
 `;
