@@ -1,7 +1,7 @@
 import React from 'react';
 import avatars from '../../assets/avatars.svg';
 //comment
-const Results = ({user1, user2}) => {
+const Results = ({user1, user2, results}) => {
 
   return(
     <>
@@ -27,7 +27,7 @@ const Results = ({user1, user2}) => {
               <td className={td + rounds + right}>{user1.numberOfRounds}</td>
               <td className={td + zilches + right}>{user1.playerZilches}</td>
               <td className={td + uberZilches + right}>{user1.playerUberZilches}</td>
-              <td className={td + score + right}>{user1.playerScore}</td>
+              <td className={td + score + right}>{results.firstUser.playerScore}</td>
           </tr>
           <tr>
               <td className={td + avatar}>
@@ -39,7 +39,7 @@ const Results = ({user1, user2}) => {
               <td className={td + rounds + right}>{user2.numberOfRounds}</td>
               <td className={td + zilches + right}>{user2.playerZilches}</td>
               <td className={td + uberZilches + right}>{user2.playerUberZilches}</td>
-              <td className={td + score + right}>{user2.playerScore}</td>
+              <td className={td + score + right}>{results.secondUser.playerScore}</td>
           </tr>
       </tbody>
     </table>

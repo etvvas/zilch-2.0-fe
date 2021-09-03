@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Zilch 2.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Zilch 2.0 is an interactive multiplayer browser game of chance and skill; based on Zilch, the dice game. With it's responsive design, users can play on their phone or desktop. Utilizing socket.io, multiple rooms will allow for different games to be played simultaneously while players can see their opponent's moves in real time. Users will also be able to view their game history and overall stats through player profiles and the global leaderboard.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- Multiplayer
+- Watch Live Games in the Lobby
+- Responsive Design (Mobile Friendly)
+- Global Scoreboard
+- Player Profiles
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Etvvas Team
 
-### `yarn test`
+- Chase Abbott [GitHub](https://github.com/chase-abbott) | [LinkedIn](https://www.linkedin.com/in/chase-abbott/)
+- Gabriel Simek [GitHub](https://github.com/gabrielsimek) | [LinkedIn](https://www.linkedin.com/in/gabrielsimek/)
+- Joe Davis [GitHub](https://github.com/jdavisfsdev) | [LinkedIn](https://www.linkedin.com/in/joedavis-fsdev/)
+- Katherine Tam [GitHub](https://github.com/katherinemtam) | [LinkedIn](https://www.linkedin.com/in/katherinemtam/)
+- Tis Lais [GitHub](https://github.com/tislais) | [LinkedIn](https://www.linkedin.com/in/tislais/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+## Tech Highlights
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React](https://reactjs.org/)
+- SQL
+- [socket.io](https://socket.io/)
+- [Redis](https://redis.io/)
+- [TailwindCSS](https://tailwindcss.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Links
 
-### `yarn eject`
+### Deployed
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Frontend: https://zilch-v2.netlify.app/ <br>
+Server: https://zilch-v2.herokuapp.com/
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Repos
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Frontend: https://github.com/etvvas/zilch-2.0-fe <br>
+Server: https://github.com/etvvas/zilch-2.0-be
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

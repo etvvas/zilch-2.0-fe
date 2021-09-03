@@ -29,8 +29,9 @@ const PlayerProfile = () => {
     
     const fetchedGames = await getPlayerGames(fetchedUser.userId);
     setGames(fetchedGames);
-    const losses = fetchedGames.length - wins 
-    setLosses(losses);
+    const filteredGames = fetchedGames.filter(fetchedGame => fetchedGame.timestampEnd)
+    const filteredLosses = (filteredGames.length - fetchedWins.length) 
+    setLosses(filteredLosses);
     
     const fetchedZilches = await getPlayerZilches(fetchedUser.userId);
     const allZilches = fetchedZilches.reduce((a, b) => a + b.playerZilches, 0)
@@ -48,11 +49,8 @@ const PlayerProfile = () => {
     }
 
     holder()
-  }, [])
+  }, [username])
 
-  // stats renders sometimes; not enough time to fetch
-
-  // global rank = take leaderboard (wins), match userId, and get index + 1
   return (
     <div>
     {loading 
@@ -67,6 +65,7 @@ const PlayerProfile = () => {
             <h2>Global Rank #{rank}</h2>
             <PlayerStats user={user} wins={wins} losses={losses} zilches={zilches} uberZilches={uberZilches}/>
 
+            <h1>Game History</h1>
             <GameHistory user={user} games={games}/>
             
           </div>

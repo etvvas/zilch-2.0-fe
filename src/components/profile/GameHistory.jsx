@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import avatars from '../../assets/avatars.svg'
 import {getGameResults, getGameUberZilches, getGameZilches, getUserById, getWinner} from '../../utils/profile.js'
 
 const GameHistory = ({user, games}) => {
   const [game, setGame] = useState();
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=> {
 
@@ -18,28 +20,28 @@ const GameHistory = ({user, games}) => {
 
     // grab player score
     const results = await getGameResults(game.gameId)
-    const playerScore1 = results.map((result, i) => {
+    const playerScore1 = results.map((result) => {
       if(result.userId === user1.userId) return result.playerScore
     })
-    const playerScore2 = results.map((result, i) => {
+    const playerScore2 = results.map((result) => {
       if(result.userId === user2.userId) return result.playerScore
     })
 
     // grab player zilches
     const zilches = await getGameZilches(game.gameId)
-    const zilches1 = await zilches.map((zilch, i) => {
+    const zilches1 = await zilches.map((zilch) => {
       if(zilch.userId === user1.userId) return zilch.playerZilches
     })
-    const zilches2 = zilches.map((zilch, i) => {
+    const zilches2 = zilches.map((zilch) => {
       if(zilch.userId === user2.userId) return zilch.playerZilches; 
     })
   
     // grab player uber zilches
     const uberZilches = await getGameUberZilches(game.gameId)
-       const uberZilches1 = uberZilches.map((uberZilch, i) => {
+       const uberZilches1 = uberZilches.map((uberZilch) => {
       if(uberZilch.userId === user1.userId) return uberZilch.playerUberZilches
     })
-    const uberZilches2 = uberZilches.map((uberZilch, i) => {
+    const uberZilches2 = uberZilches.map((uberZilch) => {
       if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilches
     })
 
@@ -62,17 +64,21 @@ const GameHistory = ({user, games}) => {
                 <h2 className={stat}>uberZilches: {uberZilches1}</h2>
               </div>
             </div>
-            <svg className={svg}>
-              <use href={avatars + `#${user1.avatar}`} />
-            </svg>
+            <Link to={`/profile/${user1.username}`}>
+              <svg className={svg}>
+                <use href={avatars + `#${user1.avatar}`} />
+              </svg>
+            </Link>
           </div>
           <div class={winloss}>
             {result}
           </div>
           <div className={userTwo}>
-            <svg className={svg}>
-              <use href={avatars + `#${user2.avatar}`} />
-            </svg>
+            <Link to={`/profile/${user2.username}`}>
+              <svg className={svg}>
+                <use href={avatars + `#${user2.avatar}`} />
+              </svg>
+            </Link>
             <div className={userInfo}>
               <h1 className={user2Name}>{user2.username}</h1>
               <div className={stats}>
@@ -85,16 +91,18 @@ const GameHistory = ({user, games}) => {
         </div>
       </li>
     )
-  })
-  ).then(setGame); 
-
-}, [])
+  })).then(setGame).finally(() => setLoading(false));
+  }, [games])
   
 
   return(
     <>
-    <h1>Game History</h1>
-    <ul>{game}</ul>
+    {loading 
+      ? <h1>Loading...</h1>
+      : <>
+      <ul>{game}</ul>
+      </>
+    }
     </>
   )
 }

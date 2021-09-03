@@ -11,6 +11,10 @@ import Rules from "../game/Rules";
 import ScoringOptions from "../game/ScoringOptions";
 import Scoring from '../game/Scoring';
 import ResultsPage from '../results/ResultsPage';
+<<<<<<< HEAD
+=======
+import rooms from '../../roomData.js'
+>>>>>>> e9ddceaf91b0b5a6548a1758208e652ef8261d7e
 
 const GameRoom = () => {
   const [results, setResults] = useState(false)
@@ -32,10 +36,15 @@ const GameRoom = () => {
   const [roundScores, setRoundScores] = useState([])
   // const [pastScores, setPastScores] = useState([])
 
+  const findMatchingRoom = room => {
+    return rooms.find(lobbyRoom => lobbyRoom.roomName === room)
+  }
 
   useEffect(() => {
-    socket.emit("JOIN_ROOM", session, room);
+    const targetScore = findMatchingRoom(room)
+    socket.emit("JOIN_ROOM", session, room, targetScore);
     socket.on("ROOM_JOINED", (gameState) => {
+      console.log(gameState)
       setGameState(gameState[room]);
       setLoading(false)
     });
@@ -71,7 +80,6 @@ const GameRoom = () => {
     })
 
     socket.on("ROLLED", (dice, scoringOptions, isFreeRoll) => {
-      console.log('SCORING OPTIONS AFTER ROLL', scoringOptions)
       setIsRolled(true)
       setRollDisabled(true)
       setIsZilch(false)
@@ -124,17 +132,17 @@ const GameRoom = () => {
       }
 
       let matchingUser;
-      
+      console.log('CURRENT PLAYER', gameState.players[gameState.currentPlayerIndex]);
+      console.log('FIRST USER ID', gameState.firstUser.userId);
       gameState.firstUser.userId === gameState.players[gameState.currentPlayerIndex]
         ? (matchingUser = "firstUser")
         : (matchingUser = "secondUser");
-   
+      console.log('GAMESTATE', gameState[matchingUser].roundScore);
       if (gameState[matchingUser].roundScore >= 300) {
         setBankDisabled(false)
       }
       setRollDisabled(false)
       // setBankDisabled(false)
-      console.log('SCORING OPTIONS')
     })
 
     socket.on('GAME_OVER', (gameData) => {
@@ -147,6 +155,11 @@ const GameRoom = () => {
     socket.on("disconnect", (reason) => {
       console.log('GAMEROOM', reason);
     });
+
+    socket.on('OPPONENT_DISCONNECT', () => {
+      alert('Other player has disconnected, redirecting to Lobby')
+      history.push('/lobby')
+    })
 
     return () => socket.emit("DISCONNECT");
   }, []);
@@ -178,7 +191,9 @@ else
   return (
     <div className={main}>
 
-        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room} winner={gameState.winner}/> : 
+        {results ? <ResultsPage socket={socket} results={results} ready={gameState.ready} 
+        user1={results ? results.firstUser : gameState.firstUser} 
+        user2={results ? results.secondUser : gameState.secondUser} room={room} winner={gameState.winner}/> : 
       <div className={wrap}>
         {(gameState.ready && gameState.ready.length < 2) ? <WaitingRoom results={results} onReady={handleReady} ready={gameState.ready} user1={gameState.firstUser} user2={gameState.secondUser} room={room}/> 
         : <>
