@@ -37,7 +37,7 @@ const Scoring = () => {
                           <i className={die + 'fa-dice-five'}></i><span className={span}>50 Points Each</span>
                         </div>
 
-                        <h3 className={h3}>Three of a Kind</h3>
+                        <h3 className={h3}>Three of a kind</h3>
                         <div className={dice}>
                           <i className={die + 'fa-dice-one'}></i>
                           <i className={die + 'fa-dice-one'}></i>
@@ -56,7 +56,7 @@ const Scoring = () => {
                         <div className={dice}>
                           <i className={die + 'fa-dice-four'}></i>
                           <i className={die + 'fa-dice-four'}></i>
-                          <i className={die + 'fa-dice-four'}></i><span className={span}>400Points</span>
+                          <i className={die + 'fa-dice-four'}></i><span className={span}>400 Points</span>
                         </div>
                         <div className={dice}>
                           <i className={die + 'fa-dice-five'}></i>
@@ -70,7 +70,7 @@ const Scoring = () => {
                         </div>
                     </div>
                     <div className={side}>
-                        <h3 className={h3}> Four or More of a Kind:</h3> 
+                        <h3 className={h3}> Four or more of a kind</h3> 
                         <div className={subtext}>Every extra die doubles the score.</div>
                         <div className={dice}>
                                 <i className={die + 'fa-dice-three'}></i>
@@ -98,7 +98,7 @@ const Scoring = () => {
                         </div>
                         <span className={span}>1500 Points</span>
 
-                        <h3 className={h3}>Any Three Pairs</h3>
+                        <h3 className={h3}>Any three pairs</h3>
                         <div className={dice}>
                             <i className={die + 'fa-dice-two'}></i>
                             <i className={die + 'fa-dice-two'}></i>
@@ -160,15 +160,11 @@ const modal = `
   bg-black
   bg-opacity-50
   fixed
-  top-0
-  left-0
-  right-0
-  bottom-0
+  inset-0
   px-2
   pt-16
   sm:pt-36
   pb-2
-  overflow-hidden
 `;
 
 const modalWrap = `

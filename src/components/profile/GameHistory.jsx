@@ -126,7 +126,7 @@ const GameHistory = ({user, games}) => {
 const ul = `
   flex
   flex-wrap
-  justify-evenly
+  justify-start
   flex-col
   sm:flex-row 
 `;
