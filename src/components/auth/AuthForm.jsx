@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useAuthForm from '../../state/hooks/useAuthForm';
 import { useLogin, useSession, useSetLoading, useSignup, useVerificationLoading } from '../../state/SessionProvider';
@@ -12,7 +12,7 @@ const AuthForm = () => {
   const session = useSession()
   const loading = useVerificationLoading()
   const setLoading = useSetLoading()
-  
+  const [error, setError] = useState(null)
   useEffect(() => {
     setLoading(true)
     if(session !== null) history.push("/lobby")
@@ -20,12 +20,13 @@ const AuthForm = () => {
     console.log(loading)
   }, [session])
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    if(isSignUp) await signup({username, password, avatar})
-    else await login({username, password})
-    history.push('/lobby')
+    if(isSignUp) signup({username, password, avatar}).catch(setError)
+      login({username, password}).catch(setError)
   }
+
+  
 
 if(loading) return <h1>LOADING</h1>
   return (
@@ -62,10 +63,14 @@ if(loading) return <h1>LOADING</h1>
               />
           </label>
 
+          {error && 
+          <div className={errMsg}>{error.message}</div>
+          }
+
           { isSignUp && 
             <Avatars onChange={handleChange} />
           }
-
+          
           { isSignUp
             ? <button className={button}>Sign up</button>
             : <button className={button}>Log in</button>
@@ -157,6 +162,11 @@ const p = `
   text-center
   cursor-pointer
   hover:text-indigo-600
+`;
+
+const errMsg = `
+  text-red-500
+  text-center
 `;
 
 export default AuthForm;

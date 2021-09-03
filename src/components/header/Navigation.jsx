@@ -11,7 +11,6 @@ const Navigation = ({ isOpen, setIsOpen, socket }) => {
   const setSession = useSetSession();
   const slug = useLocation()
   
-
   const handleLobby = () => {
     setIsOpen(!isOpen)
     socket.emit('DISCONNECT')
@@ -37,7 +36,6 @@ const Navigation = ({ isOpen, setIsOpen, socket }) => {
     return
   }
 
-  console.log(isOpen);
   return (
     <nav className={
       isOpen

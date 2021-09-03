@@ -1,163 +1,234 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import avatars from '../../assets/avatars.svg'
+import {getGameResults, getGameUberZilches, getGameZilches, getUserById, getWinner} from '../../utils/profile.js'
 
 const GameHistory = ({user, games}) => {
-  console.log('games', games)
-  const avatar = 'dice'
+  const [game, setGame] = useState();
+  const [loading, setLoading] = useState(true)
 
-  const gameHistory = games.map((game, i)=> {
+  useEffect(()=> {
 
-  // const gameHistory = Promise.all(games.map(async(game, i)=> {
+    Promise.all(games.map(async(game, i)=> {
 
-    // this page gets angry when you add async to the map function
+    // grab target_score
+    const target = game.targetScore;
 
     // grab user profiles
-    // const user1 = await getUserById(game.firstUserId)
-    // const user2 = await getUserById(game.secondUserId)
+    const user1 = await getUserById(game.firstUserId)
+    const user2 = await getUserById(game.secondUserId)
 
-    // // grab player score
-    // const results = await getGameResults(game.gameId)
-    // const playerScore1 = results.map(result, i => {
-    //   if(result.userId === user1.userId) return result.playerScore
-    // })
-    // const playerScore2 = results.map(results, i => {
-    //   if(results.userId === user2.userId) return 
-    //     result.playerScore
-    // })
+    // grab player score
+    const results = await getGameResults(game.gameId)
+    const playerScore1 = results.map((result) => {
+      if(result.userId === user1.userId) return result.playerScore
+    })
+    const playerScore2 = results.map((result) => {
+      if(result.userId === user2.userId) return result.playerScore
+    })
 
-    // // grab player zilches
-    // const zilches = await getGameZilches(game.gameId)
-    // const zilches1 = zilches.map(zilch, i => {
-    //   if(zilch.userId === user1.userId) return zilch.playerZilch
-    // })
-    // const zilches2 = zilches.map(zilch, i => {
-    //   if(zilch.userId === user2.userId) return zilch.playerZilch
-    // })
+    // grab player zilches
+    const zilches = await getGameZilches(game.gameId)
+    const zilches1 = await zilches.map((zilch) => {
+      if(zilch.userId === user1.userId) return zilch.playerZilches
+    })
+    const zilches2 = zilches.map((zilch) => {
+      if(zilch.userId === user2.userId) return zilch.playerZilches; 
+    })
   
-    // // grab player uber zilches
-    // const uberZilches = await getGameUberZilches(game.gameId)
-    //    const uberZilches1 = uberZilches.map(uberZilch, i => {
-    //   if(uberZilch.userId === user1.userId) return uberZilch.playerUberZilch
-    // })
-    // const uberZilches2 = uberZilches.map(uberZilch, i => {
-    //   if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilch
-    // })
+    // grab player uber zilches
+    const uberZilches = await getGameUberZilches(game.gameId)
+       const uberZilches1 = uberZilches.map((uberZilch) => {
+      if(uberZilch.userId === user1.userId) return uberZilch.playerUberZilches
+    })
+    const uberZilches2 = uberZilches.map((uberZilch) => {
+      if(uberZilch.userId === user2.userId) return uberZilch.playerUberZilches
+    })
 
-    // // display win or loss
-    // // determine who's profile we are viewing and match with playerScore
-    // if(user.userId === user1.userId) {
-    //   // user1 return
-    //   if(playerScore1 > playerScore2) {
-    //     return 'WIN'
-    //   } else {
-    //     return 'LOSE'
-    //   }
-    // } else {
-    //   // user2 return
-    //   if(playerScore1 < playerScore2) {
-    //     return 'WIN'
-    //   } else {
-    //     return 'LOSE'
-    //   }
-    // }
-
+    // grab player result per game/*  */
+    let result;
+    result = getWinner(user, user1, user2, playerScore1, playerScore2, result)
+      
     return(
-      <li key={i}>
+      <li key={i} className={li}>
         <div className={wrapper}>
-          <div className={user1}>
-            <div className={userInfo}>
-              <span className={user1Name}>username</span>
-              <div className={stats}>
-                <h1 className={stat}>score: 0</h1>
-                <h2 className={stat}>zilches: 0</h2>
-                <h2 className={stat}>uberZilches: 0</h2>
-              </div>
-            </div>
-            <svg className={svg}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
+          <div className={targetClass}>
+            <div className="text-green-300">{result}</div>
+            <div>Goal: {target}</div>
           </div>
           <div class={winloss}>
-            WIN
-          </div>
-          <div className={user2}>
-            <svg className={svg}>
-              <use href={avatars + `#${avatar}`} />
-            </svg>
-            <div className={userInfo}>
-              <h1 className={user2Name}>username</h1>
-              <div className={stats}>
-                <h1 className={stat}>score: 0</h1>
-                <h2 className={stat}>zilches: 0</h2>
-                <h2 className={stat}>uberZilches: 0</h2>
+            <Link to={`/profile/${user1.username}`}>
+              <div className={side}>
+                  <svg className={svg}>
+                    <use href={avatars + `#${user1.avatar}`} />
+                  </svg>
+                  <h3 className={user1Name}>{user1.username}</h3>
+                <div className={stats}>
+                  <div className={stat + statText}>
+                    <span className={points}>{playerScore1}</span> 
+                    <span className={text}> pts</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={points}>{zilches1}</span>
+                    <span className={text}> zilches</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={stat}>{uberZilches1}</span>
+                    <span className={text}> uberZilches</span>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Link>
+            <span className={vs}>vs</span>
+            <Link to={`/profile/${user2.username}`}>
+              <div className={side}>
+                <svg className={svg}>
+                  <use href={avatars + `#${user2.avatar}`} />
+                </svg>
+                <h3 className={user2Name}>{user2.username}</h3>
+                <div className={stats}>
+                  <div className={stat + statText}>
+                    <span className={points}>{playerScore2}</span> 
+                    <span className={text}> pts</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={points}>{zilches2}</span>
+                    <span className={text}> zilches</span>
+                  </div>
+                  <div className={stat + statText}>
+                    <span className={stat}>{uberZilches2}</span>
+                    <span className={text}> uberZilches</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </li>
     )
-  })
-  // )
+  })).then(setGame).finally(() => setLoading(false));
+  }, [games])
+  
 
   return(
     <>
-    <h1>Game History</h1>
-    <ul>{gameHistory}</ul>
+    {loading 
+      ? <h1>Loading...</h1>
+      : <>
+        <h1 className={h1}>Game History</h1>
+          <ul className={ul}>{game}</ul>
+        </>
+    }
     </>
   )
 }
 
+const ul = `
+  flex
+  flex-wrap
+  justify-start
+  flex-col
+  sm:flex-row 
+`;
+
+const li = `
+  sm:w-1/2
+  w-full
+  p-1
+`;
+
+const h1 = `
+  text-lg
+  text-gray-600
+  sm:text-lg
+  font-semibold
+`;
+
 const wrapper = `
   flex
-  border
+  flex-col
+  bg-gray-800
+  rounded-lg
 `;
 
-const user1 = `
-flex
-justify-center
-items-center
-m-2
+const targetClass = `
+  bg-gray-700
+  rounded-t-lg
+  text-gray-300
+  text-xs
+  font-semibold
+  tracking-wide
+  text-center
+  p-2
+  flex
+  flex-row
+  justify-between
 `;
 
-const user2 = `
-flex
-justify-center
-items-center
-m-2
+const side = `
+  flex
+  flex-col
+  w-24
+  items-center
+  justify-center
 `;
 
-const userInfo = `
-flex
-flex-col
+const vs = `
+  text-gray-400
+  text-2xl
+  font-light
+  mt-4
 `;
 
 const user1Name = `
-text-right
-m-1
+  text-purple-400
+  font-semibold
+  tracking-wide
+  my-2
 `;
 
 const user2Name = `
-m-1
+  text-pink-400
+  font-semibold
+  tracking-wide
+  my-2
 `;
 
 const svg = `
-  w-20
-  h-20
+  w-12
+  h-12
 `;
 
 const stats = `
   flex
+  flex-col
+  text-center
+`;
+
+const text = `
+  text-gray-400
+  text-xs
+`;
+
+const points = `
+  text-gray-200
+`;
+
+const statText = `
+  text-sm
+  font-light
+  text-white
 `;
 
 const stat = `
-  m-1
+  text-xs
 `;
 
 const winloss = `
   flex
   justify-center
-  items-center
-  p-2
+  gap-4
+  my-4
 `;
 
 

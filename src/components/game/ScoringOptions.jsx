@@ -1,22 +1,59 @@
 import React from "react";
 import { useSession } from "../../state/SessionProvider";
 
-const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) => {
+const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch, isFreeRoll, rollDisabled, bankDisabled }) => {
   const session = useSession();
+  let message = null;
+
+  if(isZilch && session.userId !== currentPlayer && !isFreeRoll){
+    message = 'Oof. You lost your turn!'
+  }
+
+  if(isZilch && session.userId === currentPlayer){
+    message = 'Roll the dice to start your turn.'
+  }
+
+  if(isZilch && session.userId !== currentPlayer && isFreeRoll){
+    message = 'Your opponent got a free roll! Womp womp.'
+  }
+  
+  if(!isZilch && session.userId === currentPlayer && !rollDisabled && !scoringOptions[1]){
+      message = 'Roll the dice.'
+    }
+  
+  if(!isZilch && session.userId === currentPlayer && !rollDisabled && !scoringOptions[1] && !bankDisabled){
+      message = 'Roll the dice or bank your points.'
+    }
+
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && !rollDisabled){
+    message = 'Roll the dice or score some points.'
+  }
+  
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && bankDisabled && !rollDisabled){
+    message = 'Roll the dice or score more points.'
+  }
+  
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && rollDisabled){
+    message = 'Score some points.'
+  }
+
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && !bankDisabled){
+    message = 'Score some points or bank.'
+  }
+  
+  if(!isZilch && session.userId === currentPlayer && scoringOptions[0] && scoringOptions[0].choice !== 'ZILCH' && !rollDisabled && !bankDisabled){
+    message = 'Roll, score, or bank!'
+  }
+
+  if(!isZilch && session.userId !== currentPlayer){
+    message = 'Your opponent is thinking...'
+  }
 
   return (
   <>
     <div className={isZilch ? 'zilch animate' : 'zilch'}> Zilch! </div>
     <form className={scoringOptionsForm}>
-
-      {/* CASE: Zilch */}
-      {/* <div className={message}>Oof. Lose a turn.</div> */}
-
-      {/* CASE: User has selected all options and form is blank. */}
-      {/* <div className={message}>Roll remaining dice or bank your points.</div> */}
-
-      {/* CASE: Before first roll of turn */}
-      {/* <div className={message}>PlayerName, roll the dice to start your turn.</div> */}
+      <div className={messageDiv}>{message}</div>
 
       {scoringOptions.map((option, i) => {
         if(option.choice === 'ZILCH') return null;
@@ -43,6 +80,15 @@ const ScoringOptions = ({ scoringOptions, currentPlayer, onChange, isZilch }) =>
   );
 };
 
+const messageDiv = `
+  w-full
+  text-center
+  text-sm
+  text-gray-600
+  font-semibold
+  sm:text-base
+`;
+
 const scoringOptionsForm = `
   flex
   flex-wrap
@@ -53,17 +99,9 @@ const scoringOptionsForm = `
   justify-center
   p-2
   sm:p-6
-  my-4
   bg-gray-200
   rounded-lg
   scoring-form
-`;
-
-const message = `
-  text-center
-  text-sm
-  text-gray-700
-  font-semibold
 `;
 
 const scoringOption = `

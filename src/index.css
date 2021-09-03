@@ -6,6 +6,7 @@
 
 
 .zilch {
+  font-family: 'Open Sans', sans-serif;
   opacity: 0;
   font-size: 2px;
 }
@@ -40,12 +41,11 @@
   .zilch.animate {
     font-size: 100px;
     left: 190px;
-    top: 163px;
+    top: 140px;
   }
 }
 
 body {
-  /* font-family: 'Open Sans', sans-serif; */
   font-family: 'Nunito', sans-serif;
 }
 
@@ -69,6 +69,10 @@ input[type="checkbox"]:checked + label {
   background-color: #F472B6;
   color: #FDF2F8;
   border-color: #EC4899;
+}
+
+input[type="checkbox"]:disabled + label {
+  opacity: .5;
 }
 
 .roll {
