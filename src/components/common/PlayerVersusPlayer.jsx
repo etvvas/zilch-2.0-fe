@@ -47,7 +47,10 @@ const PlayerVersusPlayer = ({results, user1, user2, room, winner, ready}) => {
             </div>
             </>)
             }
-            <div className={readyDisplay}>READY!</div>
+            {ready.includes(user1.userId)
+            ? <div className={readyDisplay}>READY!</div>
+            : null
+            }
           </div>
           <div className={vs}>
             vs
