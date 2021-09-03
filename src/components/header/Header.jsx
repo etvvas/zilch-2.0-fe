@@ -77,6 +77,7 @@ const h1 = `
   font-bold
   text-xl
   sm:text-2xl
+  sm:ml-2
 `;
 
 const h2 = `
