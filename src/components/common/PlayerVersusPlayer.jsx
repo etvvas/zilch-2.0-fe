@@ -28,8 +28,8 @@ console.log(ready)
       <div className={outerWrap}>
         
         </div>
-        {winner
-        ? <h1 className={h1}><span className={span}>{winner}</span> wins!</h1>
+        {results?.winner
+        ? <h1 className={h1}><span className={span}>{results.winner}</span> wins!</h1>
         : <h3 className={h3}>{room} Room</h3>
         }
         <div className={innerWrap}>

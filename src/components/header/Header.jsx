@@ -26,14 +26,14 @@ const Header = () => {
             <Link to="/"><h1 className={h1}>Zilch 2.0</h1></Link>
           </div>
           {user ?  
-          <div className={wrap}>
             <NavLink to={`/profile/${user.username}`}>
-            <h2 className={h2}>{user.username}</h2>
-              <svg className={svg}>
-                <use href={avatars + `#${user.avatar}`} />
-              </svg>
+              <div className={wrap}>
+                <h2 className={h2}>{user.username}</h2>
+                  <svg className={svg}>
+                    <use href={avatars + `#${user.avatar}`} />
+                  </svg>
+              </div>
             </NavLink>
-          </div>
           : null
           }
         </header>
